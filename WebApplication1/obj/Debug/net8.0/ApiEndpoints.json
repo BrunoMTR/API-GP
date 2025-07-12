@@ -1,0 +1,40 @@
+[
+  {
+    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
+    "Method": "PostProcess",
+    "RelativePath": "processes/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "process",
+        "Type": "Presentation.Models.Form.ProcessForm",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
+    "Method": "GetProcess",
+    "RelativePath": "processes/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

@@ -15,12 +15,21 @@ namespace Infrastructure.SQL.Configurations
         {
             builder.ToTable("Document", "dbo");
             builder.HasKey(d => d.Id);
-            builder.Property(d => d.Name).IsRequired().HasMaxLength(200);
-            builder.Property(d => d.Location).IsRequired().HasMaxLength(500);
+            builder.Property(d => d.Name).IsRequired().HasMaxLength(20);
+            builder.Property(d => d.Location).IsRequired().HasMaxLength(100);
+            builder.Property(d => d.UploadedAt);
             builder.HasOne(d => d.Process)
                 .WithMany(p => p.Documents)
                 .HasForeignKey(d => d.ProcessId)
                 .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(d => d.Step)
+               .WithMany()
+               .HasForeignKey(d => d.StepId)
+               .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(d => d.UploadedBy)
+               .WithMany()
+               .HasForeignKey(d => d.UploadedById)
+               .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

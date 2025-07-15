@@ -14,5 +14,10 @@ namespace Infrastructure.SQL.DB.Entities
         public string Location { get; set; }
         public int ProcessId { get; set; }
         public ProcessEntity Process { get; set; }
+        public int StepId { get; set; }
+        public StepEntity Step { get; set; }
+        public DateTime UploadedAt { get; set; }
+        public int UploadedById { get; set; }
+        public AssociateEntity UploadedBy { get; set; }
     }
 }

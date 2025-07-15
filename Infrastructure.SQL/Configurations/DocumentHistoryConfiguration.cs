@@ -17,12 +17,22 @@ namespace Infrastructure.SQL.Configurations
             builder.HasKey(h => h.Id);
             builder.Property(h => h.ActionType).IsRequired().HasMaxLength(20);
             builder.Property(h => h.ActionDate).IsRequired();
+            builder.Property(h => h.Notes)
+                .HasMaxLength(500);
             builder.HasOne(h => h.Document)
-                      .WithMany()
-                      .HasForeignKey(h => h.DocumentId);
+               .WithMany() 
+               .HasForeignKey(h => h.DocumentId)
+               .OnDelete(DeleteBehavior.Cascade);
+
             builder.HasOne(h => h.PerformedBy)
-                      .WithMany()
-                      .HasForeignKey(h => h.PerformedById);
+             .WithMany() 
+             .HasForeignKey(h => h.PerformedById)
+             .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(h => h.Step)
+                .WithMany() 
+                .HasForeignKey(h => h.StepId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Infrastructure.SQL.Configurations
             builder.ToTable("State", "dbo");
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Name).IsRequired().HasMaxLength(15);
-            builder.Property(s => s.Description).HasMaxLength(50);
+            builder.Property(s => s.Description).HasMaxLength(100);
         }
     }
 }

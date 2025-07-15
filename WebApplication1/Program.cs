@@ -10,6 +10,7 @@ using FluentValidation;
 using Infrastructure.SQL.Repositories;
 using Domain.Services;
 using BL.Services;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 var DbConnection = builder.Configuration.GetConnectionString("DemoDb");

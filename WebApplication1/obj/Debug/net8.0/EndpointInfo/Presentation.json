@@ -66,6 +66,30 @@
           }
         }
       }
+    },
+    "/processes/{id}": {
+      "get": {
+        "tags": [
+          "ProcessEndpoints"
+        ],
+        "operationId": "processById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -81,10 +105,6 @@
             "type": "string",
             "nullable": true
           },
-          "stateId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "createdById": {
             "type": "integer",
             "format": "int32"
@@ -92,19 +112,6 @@
           "applicationId": {
             "type": "integer",
             "format": "int32"
-          },
-          "holderId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "lastUpdatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
           },
           "files": {
             "type": "array",

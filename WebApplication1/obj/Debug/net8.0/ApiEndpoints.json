@@ -36,5 +36,28 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
+    "Method": "Retrive",
+    "RelativePath": "processes/{id}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "processById"
   }
 ]

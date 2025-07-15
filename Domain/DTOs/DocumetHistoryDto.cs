@@ -17,7 +17,7 @@ namespace Domain.DTOs
         public int PerformedById { get; set; }
         public AssociateDto PerformedBy { get; set; }
         public string? Notes { get; set; }
-        public string? OldFileName { get; set; }
-        public string? OldFilePath { get; set; }
+        public int StepId { get; set; }
+        public StepDto Step { get; set; }
     }
 }

@@ -15,3 +15,4 @@ C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SQL\obj\Debug\net8.0\refint\Inf
 C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SQL\obj\Debug\net8.0\Infrastructure.SQL.pdb
 C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SQL\obj\Debug\net8.0\Infrastructure.SQL.genruntimeconfig.cache
 C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SQL\obj\Debug\net8.0\ref\Infrastructure.SQL.dll
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SQL\obj\Debug\net8.0\Infrastructure.SQL.sourcelink.json

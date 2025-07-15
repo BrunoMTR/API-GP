@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,10 +34,9 @@ namespace Infrastructure.SQL.Repositories
                 CreatedAt = DateTime.UtcNow,
                 LastUpdatedAt = dto.LastUpdatedAt,
                 Notes = dto.Notes,
-                StateId = dto.StateId,
                 CreatedById = dto.CreatedById,
                 ApplicationId = dto.ApplicationId,
-                HolderId = dto.HolderId
+                
             };
 
             await _demoContext.AddAsync(processEntity);
@@ -62,10 +62,9 @@ namespace Infrastructure.SQL.Repositories
                     CreatedAt = x.CreatedAt,
                     LastUpdatedAt = x.LastUpdatedAt,
                     Notes = x.Notes,
-                    StateId = x.StateId,
                     CreatedById = x.CreatedById,
+                    CurrentStepId = x.CurrentStepId,
                     ApplicationId = x.ApplicationId,
-                    HolderId = x.HolderId
                 }).ToListAsync();
         }
 
@@ -76,7 +75,8 @@ namespace Infrastructure.SQL.Repositories
 
         public async Task<ProcessDto> RetrieveAsync(int id)
         {
-            return await _demoContext.Process.AsNoTracking()
+            return await _demoContext.Process
+                .AsNoTracking()
                 .Where(x => x.Id == id)
                 .Select(x => new ProcessDto
                 {
@@ -85,17 +85,9 @@ namespace Infrastructure.SQL.Repositories
                     CreatedAt = x.CreatedAt,
                     LastUpdatedAt = x.LastUpdatedAt,
                     Notes = x.Notes,
-                    StateId = x.StateId,
                     CreatedById = x.CreatedById,
+                    CurrentStepId = x.CurrentStepId,
                     ApplicationId = x.ApplicationId,
-                    HolderId = x.HolderId,
-
-                    State = new StateDto
-                    {
-                        Id = x.State.Id,
-                        Name = x.State.Name,
-                        Description = x.State.Description
-                    },
 
                     CreatedBy = new AssociateDto
                     {
@@ -110,25 +102,26 @@ namespace Infrastructure.SQL.Repositories
                     {
                         Id = x.Application.Id,
                         Name = x.Application.Name,
-                        Acronym = x.Application.Acronym,
+                        Abbreviation = x.Application.Abbreviation,
                         Team = x.Application.Team,
                         Email = x.Application.Email
                     },
 
-                    Holder = new HolderDto
+                    CurrentStep = new StepDto
                     {
-                        Id = x.Holder.Id,
-                        Name = x.Holder.Name,
-                        Acronym = x.Holder.Acronym,
-                        Email = x.Holder.Email
+                        Id = x.CurrentStep.Id,
+                        Order = x.CurrentStep.Order,
+                        Description = x.CurrentStep.Description,
+                        IsFinal = x.CurrentStep.IsFinal
+                        
                     },
-                    Documents = x.Documents.Select(d => new DocumentDto {
-                         Id = d.Id,
-                         Name = d.Name,
-                         Location = d.Location
-                     }).ToList()
 
-
+                    Documents = x.Documents.Select(d => new DocumentDto
+                    {
+                        Id = d.Id,
+                        Name = d.Name,
+                        Location = d.Location
+                    }).ToList()
                 }).FirstOrDefaultAsync();
         }
 

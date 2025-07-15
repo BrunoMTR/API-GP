@@ -17,9 +17,11 @@ namespace Infrastructure.SQL.Configurations
             builder.ToTable("Application", "dbo");
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Name).IsRequired().HasMaxLength(100);
-            builder.Property(a => a.Acronym).IsRequired().HasMaxLength(10);
+            builder.Property(a => a.Abbreviation).IsRequired().HasMaxLength(10);
             builder.Property(a => a.Team).IsRequired().HasMaxLength(50);
-            builder.Property(a => a.Email).IsRequired().HasMaxLength(100);
+            builder.Property(a => a.Email).HasMaxLength(100);
+            builder.Property(a => a.TeamEmail).HasMaxLength(50);
+            builder.Property(a => a.ApplicationEmail).HasMaxLength(50);
         }
     }
 }

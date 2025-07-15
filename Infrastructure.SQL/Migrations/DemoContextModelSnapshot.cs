@@ -30,13 +30,16 @@ namespace Infrastructure.SQL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Acronym")
+                    b.Property<string>("Abbreviation")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<string>("ApplicationEmail")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -47,6 +50,10 @@ namespace Infrastructure.SQL.Migrations
 
                     b.Property<string>("Team")
                         .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("TeamEmail")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -98,20 +105,33 @@ namespace Infrastructure.SQL.Migrations
 
                     b.Property<string>("Location")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("ProcessId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StepId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UploadedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UploadedById")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProcessId");
+
+                    b.HasIndex("StepId");
+
+                    b.HasIndex("UploadedById");
 
                     b.ToTable("Document", "dbo");
                 });
@@ -136,15 +156,13 @@ namespace Infrastructure.SQL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OldFileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OldFilePath")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int>("PerformedById")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StepId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -152,6 +170,8 @@ namespace Infrastructure.SQL.Migrations
                     b.HasIndex("DocumentId");
 
                     b.HasIndex("PerformedById");
+
+                    b.HasIndex("StepId");
 
                     b.ToTable("DocumentHistory", "dbo");
                 });
@@ -164,7 +184,7 @@ namespace Infrastructure.SQL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Acronym")
+                    b.Property<string>("Abbreviation")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
@@ -184,40 +204,6 @@ namespace Infrastructure.SQL.Migrations
                     b.ToTable("Holder", "dbo");
                 });
 
-            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.HolderHistoryEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ChangedById")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HolderId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("MovedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProcessId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ReleasedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ChangedById");
-
-                    b.HasIndex("HolderId");
-
-                    b.HasIndex("ProcessId");
-
-                    b.ToTable("HolderHistory", "dbo");
-                });
-
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.ProcessEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -235,23 +221,19 @@ namespace Infrastructure.SQL.Migrations
                     b.Property<int>("CreatedById")
                         .HasColumnType("int");
 
-                    b.Property<int>("HolderId")
+                    b.Property<int>("CurrentStepId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("LastUpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Notes")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("ProcessCode")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("StateId")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -259,12 +241,10 @@ namespace Infrastructure.SQL.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.HasIndex("HolderId");
+                    b.HasIndex("CurrentStepId");
 
                     b.HasIndex("ProcessCode")
                         .IsUnique();
-
-                    b.HasIndex("StateId");
 
                     b.ToTable("Process", "dbo");
                 });
@@ -278,8 +258,8 @@ namespace Infrastructure.SQL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -291,7 +271,7 @@ namespace Infrastructure.SQL.Migrations
                     b.ToTable("State", "dbo");
                 });
 
-            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.StateHistoryEntity", b =>
+            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.StepEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -299,11 +279,44 @@ namespace Infrastructure.SQL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ChangedById")
+                    b.Property<string>("Description")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("HolderId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("EndedAt")
+                    b.Property<bool>("IsFinal")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StateId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HolderId");
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("Step", "dbo");
+                });
+
+            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.StepHistoryEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CompletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("ExecutedById")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProcessId")
                         .HasColumnType("int");
@@ -311,18 +324,23 @@ namespace Infrastructure.SQL.Migrations
                     b.Property<DateTime>("StartedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("StateId")
+                    b.Property<int?>("StepEntityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StepId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChangedById");
+                    b.HasIndex("ExecutedById");
 
                     b.HasIndex("ProcessId");
 
-                    b.HasIndex("StateId");
+                    b.HasIndex("StepEntityId");
 
-                    b.ToTable("StateHistory", "dbo");
+                    b.HasIndex("StepId");
+
+                    b.ToTable("StepHistory", "dbo");
                 });
 
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.DocumentEntity", b =>
@@ -333,7 +351,23 @@ namespace Infrastructure.SQL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Infrastructure.SQL.DB.Entities.StepEntity", "Step")
+                        .WithMany()
+                        .HasForeignKey("StepId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Infrastructure.SQL.DB.Entities.AssociateEntity", "UploadedBy")
+                        .WithMany()
+                        .HasForeignKey("UploadedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Process");
+
+                    b.Navigation("Step");
+
+                    b.Navigation("UploadedBy");
                 });
 
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.DocumentHistoryEntity", b =>
@@ -347,39 +381,20 @@ namespace Infrastructure.SQL.Migrations
                     b.HasOne("Infrastructure.SQL.DB.Entities.AssociateEntity", "PerformedBy")
                         .WithMany()
                         .HasForeignKey("PerformedById")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Infrastructure.SQL.DB.Entities.StepEntity", "Step")
+                        .WithMany()
+                        .HasForeignKey("StepId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Document");
 
                     b.Navigation("PerformedBy");
-                });
 
-            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.HolderHistoryEntity", b =>
-                {
-                    b.HasOne("Infrastructure.SQL.DB.Entities.AssociateEntity", "ChangedBy")
-                        .WithMany()
-                        .HasForeignKey("ChangedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Infrastructure.SQL.DB.Entities.HolderEntity", "Holder")
-                        .WithMany()
-                        .HasForeignKey("HolderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Infrastructure.SQL.DB.Entities.ProcessEntity", "Process")
-                        .WithMany()
-                        .HasForeignKey("ProcessId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ChangedBy");
-
-                    b.Navigation("Holder");
-
-                    b.Navigation("Process");
+                    b.Navigation("Step");
                 });
 
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.ProcessEntity", b =>
@@ -396,6 +411,21 @@ namespace Infrastructure.SQL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Infrastructure.SQL.DB.Entities.StepEntity", "CurrentStep")
+                        .WithMany()
+                        .HasForeignKey("CurrentStepId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("CurrentStep");
+                });
+
+            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.StepEntity", b =>
+                {
                     b.HasOne("Infrastructure.SQL.DB.Entities.HolderEntity", "Holder")
                         .WithMany()
                         .HasForeignKey("HolderId")
@@ -408,45 +438,52 @@ namespace Infrastructure.SQL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Application");
-
-                    b.Navigation("CreatedBy");
-
                     b.Navigation("Holder");
 
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.StateHistoryEntity", b =>
+            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.StepHistoryEntity", b =>
                 {
-                    b.HasOne("Infrastructure.SQL.DB.Entities.AssociateEntity", "ChangedBy")
+                    b.HasOne("Infrastructure.SQL.DB.Entities.AssociateEntity", "ExecutedBy")
                         .WithMany()
-                        .HasForeignKey("ChangedById")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("ExecutedById")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Infrastructure.SQL.DB.Entities.ProcessEntity", "Process")
-                        .WithMany()
+                        .WithMany("Executions")
                         .HasForeignKey("ProcessId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Infrastructure.SQL.DB.Entities.StateEntity", "State")
+                    b.HasOne("Infrastructure.SQL.DB.Entities.StepEntity", null)
+                        .WithMany("Executions")
+                        .HasForeignKey("StepEntityId");
+
+                    b.HasOne("Infrastructure.SQL.DB.Entities.StepEntity", "Step")
                         .WithMany()
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("StepId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("ChangedBy");
+                    b.Navigation("ExecutedBy");
 
                     b.Navigation("Process");
 
-                    b.Navigation("State");
+                    b.Navigation("Step");
                 });
 
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.ProcessEntity", b =>
                 {
                     b.Navigation("Documents");
+
+                    b.Navigation("Executions");
+                });
+
+            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.StepEntity", b =>
+                {
+                    b.Navigation("Executions");
                 });
 #pragma warning restore 612, 618
         }

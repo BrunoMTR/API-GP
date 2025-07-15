@@ -23,19 +23,23 @@ namespace Infrastructure.SQL.Configurations
                    .IsUnique();
 
             builder.Property(p => p.ProcessCode)
-                   .IsRequired()
-                   .HasMaxLength(100);
+                   .IsRequired();
+
 
             builder.Property(p => p.CreatedAt)
                    .IsRequired();
 
-            builder.Property(p => p.Notes)
-                   .HasMaxLength(50);
+            builder.Property(p => p.LastUpdatedAt)
+                   .IsRequired(false);
 
-            builder.HasOne(p => p.State)
-                  .WithMany()
-                  .HasForeignKey(p => p.StateId)
+            builder.Property(p => p.Notes)
+                   .HasMaxLength(200);
+
+            builder.HasOne(p => p.CurrentStep)
+                  .WithMany() 
+                  .HasForeignKey(p => p.CurrentStepId)
                   .OnDelete(DeleteBehavior.Restrict);
+
 
             builder.HasOne(p => p.CreatedBy)
                    .WithMany()
@@ -47,15 +51,15 @@ namespace Infrastructure.SQL.Configurations
                    .HasForeignKey(p => p.ApplicationId)
                    .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(p => p.Holder)
-                   .WithMany()
-                   .HasForeignKey(p => p.HolderId)
-                   .OnDelete(DeleteBehavior.Restrict);
-
             builder.HasMany(p => p.Documents)
                    .WithOne(d => d.Process)
                    .HasForeignKey(d => d.ProcessId)
                    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(p => p.Executions)
+                  .WithOne(e => e.Process)
+                  .HasForeignKey(e => e.ProcessId)
+                  .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

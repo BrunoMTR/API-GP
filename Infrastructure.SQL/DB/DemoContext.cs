@@ -17,15 +17,16 @@ namespace Infrastructure.SQL.DB
         public DbSet<ProcessEntity> Process { get; set; }
         public DbSet<StateEntity> State { get; set; }
         public DbSet<HolderEntity> Holder { get; set; }
-        public DbSet<StateHistoryEntity> StateHistory { get; set; }
+        public DbSet<StepHistoryEntity> StateHistory { get; set; }
         public DbSet<ApplicationEntity> Application { get; set; }
-        public DbSet<HolderHistoryEntity> HolderHistory { get; set; }
         public DbSet<DocumentEntity> Document { get; set; }
         public DbSet<DocumentHistoryEntity> DocumentHistory { get; set; }
         public DbSet<AssociateEntity> Associate { get; set; }
-    
+        public DbSet<StepEntity> Step { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DemoContext).Assembly);
 

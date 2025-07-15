@@ -22,9 +22,11 @@ namespace Infrastructure.SQL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Acronym = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Abbreviation = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Team = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    TeamEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ApplicationEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,7 +57,7 @@ namespace Infrastructure.SQL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Acronym = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Abbreviation = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
@@ -72,11 +74,43 @@ namespace Infrastructure.SQL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_State", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Step",
+                schema: "dbo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Order = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    StateId = table.Column<int>(type: "int", nullable: false),
+                    HolderId = table.Column<int>(type: "int", nullable: false),
+                    IsFinal = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Step", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Step_Holder_HolderId",
+                        column: x => x.HolderId,
+                        principalSchema: "dbo",
+                        principalTable: "Holder",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Step_State_StateId",
+                        column: x => x.StateId,
+                        principalSchema: "dbo",
+                        principalTable: "State",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -86,14 +120,13 @@ namespace Infrastructure.SQL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProcessCode = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProcessCode = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Notes = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    StateId = table.Column<int>(type: "int", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    CurrentStepId = table.Column<int>(type: "int", nullable: false),
                     CreatedById = table.Column<int>(type: "int", nullable: false),
-                    ApplicationId = table.Column<int>(type: "int", nullable: false),
-                    HolderId = table.Column<int>(type: "int", nullable: false)
+                    ApplicationId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -113,17 +146,10 @@ namespace Infrastructure.SQL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Process_Holder_HolderId",
-                        column: x => x.HolderId,
+                        name: "FK_Process_Step_CurrentStepId",
+                        column: x => x.CurrentStepId,
                         principalSchema: "dbo",
-                        principalTable: "Holder",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Process_State_StateId",
-                        column: x => x.StateId,
-                        principalSchema: "dbo",
-                        principalTable: "State",
+                        principalTable: "Step",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -135,13 +161,23 @@ namespace Infrastructure.SQL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    ProcessId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProcessId = table.Column<int>(type: "int", nullable: false),
+                    StepId = table.Column<int>(type: "int", nullable: false),
+                    UploadedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UploadedById = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Document", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Document_Associate_UploadedById",
+                        column: x => x.UploadedById,
+                        principalSchema: "dbo",
+                        principalTable: "Associate",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Document_Process_ProcessId",
                         column: x => x.ProcessId,
@@ -149,84 +185,59 @@ namespace Infrastructure.SQL.Migrations
                         principalTable: "Process",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Document_Step_StepId",
+                        column: x => x.StepId,
+                        principalSchema: "dbo",
+                        principalTable: "Step",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "HolderHistory",
+                name: "StepHistory",
                 schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProcessId = table.Column<int>(type: "int", nullable: false),
-                    HolderId = table.Column<int>(type: "int", nullable: false),
-                    MovedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ReleasedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ChangedById = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HolderHistory", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_HolderHistory_Associate_ChangedById",
-                        column: x => x.ChangedById,
-                        principalSchema: "dbo",
-                        principalTable: "Associate",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_HolderHistory_Holder_HolderId",
-                        column: x => x.HolderId,
-                        principalSchema: "dbo",
-                        principalTable: "Holder",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_HolderHistory_Process_ProcessId",
-                        column: x => x.ProcessId,
-                        principalSchema: "dbo",
-                        principalTable: "Process",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StateHistory",
-                schema: "dbo",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProcessId = table.Column<int>(type: "int", nullable: false),
-                    StateId = table.Column<int>(type: "int", nullable: false),
+                    StepId = table.Column<int>(type: "int", nullable: false),
                     StartedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ChangedById = table.Column<int>(type: "int", nullable: false)
+                    CompletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExecutedById = table.Column<int>(type: "int", nullable: false),
+                    StepEntityId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StateHistory", x => x.Id);
+                    table.PrimaryKey("PK_StepHistory", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StateHistory_Associate_ChangedById",
-                        column: x => x.ChangedById,
+                        name: "FK_StepHistory_Associate_ExecutedById",
+                        column: x => x.ExecutedById,
                         principalSchema: "dbo",
                         principalTable: "Associate",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_StateHistory_Process_ProcessId",
+                        name: "FK_StepHistory_Process_ProcessId",
                         column: x => x.ProcessId,
                         principalSchema: "dbo",
                         principalTable: "Process",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_StateHistory_State_StateId",
-                        column: x => x.StateId,
+                        name: "FK_StepHistory_Step_StepEntityId",
+                        column: x => x.StepEntityId,
                         principalSchema: "dbo",
-                        principalTable: "State",
+                        principalTable: "Step",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_StepHistory_Step_StepId",
+                        column: x => x.StepId,
+                        principalSchema: "dbo",
+                        principalTable: "Step",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -240,9 +251,8 @@ namespace Infrastructure.SQL.Migrations
                     ActionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ActionType = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     PerformedById = table.Column<int>(type: "int", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OldFileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OldFilePath = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Notes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    StepId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -253,7 +263,7 @@ namespace Infrastructure.SQL.Migrations
                         principalSchema: "dbo",
                         principalTable: "Associate",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_DocumentHistory_Document_DocumentId",
                         column: x => x.DocumentId,
@@ -261,6 +271,13 @@ namespace Infrastructure.SQL.Migrations
                         principalTable: "Document",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DocumentHistory_Step_StepId",
+                        column: x => x.StepId,
+                        principalSchema: "dbo",
+                        principalTable: "Step",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -268,6 +285,18 @@ namespace Infrastructure.SQL.Migrations
                 schema: "dbo",
                 table: "Document",
                 column: "ProcessId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Document_StepId",
+                schema: "dbo",
+                table: "Document",
+                column: "StepId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Document_UploadedById",
+                schema: "dbo",
+                table: "Document",
+                column: "UploadedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DocumentHistory_DocumentId",
@@ -282,22 +311,10 @@ namespace Infrastructure.SQL.Migrations
                 column: "PerformedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HolderHistory_ChangedById",
+                name: "IX_DocumentHistory_StepId",
                 schema: "dbo",
-                table: "HolderHistory",
-                column: "ChangedById");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HolderHistory_HolderId",
-                schema: "dbo",
-                table: "HolderHistory",
-                column: "HolderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HolderHistory_ProcessId",
-                schema: "dbo",
-                table: "HolderHistory",
-                column: "ProcessId");
+                table: "DocumentHistory",
+                column: "StepId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Process_ApplicationId",
@@ -312,10 +329,10 @@ namespace Infrastructure.SQL.Migrations
                 column: "CreatedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Process_HolderId",
+                name: "IX_Process_CurrentStepId",
                 schema: "dbo",
                 table: "Process",
-                column: "HolderId");
+                column: "CurrentStepId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Process_ProcessCode",
@@ -325,28 +342,40 @@ namespace Infrastructure.SQL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Process_StateId",
+                name: "IX_Step_HolderId",
                 schema: "dbo",
-                table: "Process",
+                table: "Step",
+                column: "HolderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Step_StateId",
+                schema: "dbo",
+                table: "Step",
                 column: "StateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StateHistory_ChangedById",
+                name: "IX_StepHistory_ExecutedById",
                 schema: "dbo",
-                table: "StateHistory",
-                column: "ChangedById");
+                table: "StepHistory",
+                column: "ExecutedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StateHistory_ProcessId",
+                name: "IX_StepHistory_ProcessId",
                 schema: "dbo",
-                table: "StateHistory",
+                table: "StepHistory",
                 column: "ProcessId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StateHistory_StateId",
+                name: "IX_StepHistory_StepEntityId",
                 schema: "dbo",
-                table: "StateHistory",
-                column: "StateId");
+                table: "StepHistory",
+                column: "StepEntityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StepHistory_StepId",
+                schema: "dbo",
+                table: "StepHistory",
+                column: "StepId");
         }
 
         /// <inheritdoc />
@@ -357,11 +386,7 @@ namespace Infrastructure.SQL.Migrations
                 schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "HolderHistory",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "StateHistory",
+                name: "StepHistory",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
@@ -378,6 +403,10 @@ namespace Infrastructure.SQL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Associate",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "Step",
                 schema: "dbo");
 
             migrationBuilder.DropTable(

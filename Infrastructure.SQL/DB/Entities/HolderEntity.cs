@@ -9,8 +9,8 @@ namespace Infrastructure.SQL.DB.Entities
     public class HolderEntity
     {
         public int Id { get; set; }
-        public string Acronym { get; set; }
+        public string? Abbreviation { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
+        public string? Email { get; set; }
     }
 }

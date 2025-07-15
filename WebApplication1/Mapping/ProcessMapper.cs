@@ -16,10 +16,9 @@ namespace Presentation.Mapping
                 CreatedAt = process.CreatedAt,
                 LastUpdatedAt = process.LastUpdatedAt,
                 Notes = process.Notes,
-                StateId = process.StateId,
+                CurrentStepId = process.CurrentStepId,
                 CreatedById = process.CreatedById,
                 ApplicationId = process.ApplicationId,
-                HolderId = process.HolderId
             } : null;
         }
 
@@ -32,10 +31,9 @@ namespace Presentation.Mapping
                 CreatedAt = process.CreatedAt,
                 LastUpdatedAt = process.LastUpdatedAt,
                 Notes = process.Notes,
-                StateId = process.StateId,
+                CurrentStepId = process.CurrentStepId,
                 CreatedById = process.CreatedById,
                 ApplicationId = process.ApplicationId,
-                HolderId = process.HolderId
             } : null;
         }
 
@@ -44,19 +42,32 @@ namespace Presentation.Mapping
             return processes.Select(Map).ToList();
         }
 
-        public ProcessDto? Map(ProcessForm process)
+        public ProcessDto Map(ProcessForm process)
         {
-            return process is not null ? new ProcessDto
-            {
-                ProcessCode = process.ProcessCode,
-                CreatedAt = process.CreatedAt,
-                LastUpdatedAt = process.LastUpdatedAt,
-                Notes = process.Notes,
-                StateId = process.StateId,
-                CreatedById = process.CreatedById,
-                ApplicationId = process.ApplicationId,
-                HolderId = process.HolderId
-            } : null;
+            throw new NotImplementedException();
         }
+
+        //public ProcessDto? Map(ProcessForm process)
+        //{
+        //    return process is not null ? new ProcessDto
+        //    {
+        //        Id = process.Id,
+        //        ProcessCode = process.ProcessCode,
+        //        CreatedAt = process.CreatedAt,
+        //        LastUpdatedAt = process.LastUpdatedAt,
+        //        Notes = process.Notes,
+        //        CurrentStepId = process.CurrentStepId,
+        //        CreatedById = process.CreatedById,
+        //        ApplicationId = process.ApplicationId,
+
+        //        Documents = process.Files?
+        //        .Select(f => new DocumentDto
+        //        {
+        //            File = f,
+        //            Name = f.FileName,
+        //            Location = string.Empty
+        //        }).ToList() ?? new List<DocumentDto>()
+        //    } : null;
+        //}
     }
 }

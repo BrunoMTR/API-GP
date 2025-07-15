@@ -24,9 +24,9 @@ namespace BL.Services
             throw new NotImplementedException();
         }
 
-        public Task<int> Create(ProcessDto dto)
+        public async Task<int> Create(ProcessDto dto)
         {
-            throw new NotImplementedException();
+            return await _processRepository.CreateAsync(dto);
         }
 
         public Task<bool> Delete(int id)

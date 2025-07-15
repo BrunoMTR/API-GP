@@ -10,8 +10,10 @@ namespace Domain.DTOs
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Acronym { get; set; }
-        public string Team { get; set; }
-        public string Email { get; set; }
+        public string Abbreviation { get; set; }
+        public string? Team { get; set; }
+        public string? Email { get; set; }
+        public string? TeamEmail { get; set; }
+        public string? ApplicationEmail { get; set; }
     }
 }

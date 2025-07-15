@@ -15,7 +15,7 @@ namespace Infrastructure.SQL.Configurations
         {
             builder.ToTable("Holder", "dbo");
             builder.HasKey(h => h.Id);
-            builder.Property(h => h.Acronym).IsRequired().HasMaxLength(20);
+            builder.Property(h => h.Abbreviation).IsRequired().HasMaxLength(20);
             builder.Property(h => h.Name).IsRequired().HasMaxLength(100);
             builder.Property(h => h.Email).IsRequired().HasMaxLength(100);
         }

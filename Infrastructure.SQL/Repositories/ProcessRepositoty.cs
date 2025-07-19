@@ -104,7 +104,7 @@ namespace Infrastructure.SQL.Repositories
                         Name = x.Application.Name,
                         Abbreviation = x.Application.Abbreviation,
                         Team = x.Application.Team,
-                        Email = x.Application.Email
+                       
                     },
 
                     CurrentStep = new StepDto

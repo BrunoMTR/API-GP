@@ -32,7 +32,13 @@ namespace Infrastructure.SQL.Configurations
             builder.HasMany(a => a.Executions)
                   .WithOne(e => e.Step)
                   .HasForeignKey(e => e.StepId)
-                  .OnDelete(DeleteBehavior.Cascade);
+                  .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(a => a.Application)
+           .WithMany(a => a.Steps)
+           .HasForeignKey(a => a.ApplicationId)
+           .OnDelete(DeleteBehavior.Cascade);
+
 
         }
     }

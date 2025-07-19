@@ -16,6 +16,8 @@ namespace Domain.DTOs
         public int HolderId { get; set; }
         public HolderDto Holder { get; set; }
         public bool IsFinal { get; set; }
+        public int ApplicationId { get; set; }
+        public ApplicationDto Application { get; set; }
         ICollection<StepHistoryDto> Executions { get; set; } = new List<StepHistoryDto>();
     }
 }

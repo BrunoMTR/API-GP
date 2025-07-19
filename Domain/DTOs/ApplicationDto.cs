@@ -10,10 +10,11 @@ namespace Domain.DTOs
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Abbreviation { get; set; }
+        public string? Abbreviation { get; set; }
         public string? Team { get; set; }
-        public string? Email { get; set; }
         public string? TeamEmail { get; set; }
         public string? ApplicationEmail { get; set; }
+        public ICollection<ProcessDto> Processes { get; set; } = new List<ProcessDto>();
+        public ICollection<StepDto> Steps { get; set; } = new List<StepDto>();
     }
 }

@@ -1,0 +1,542 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API, PROCESS MANAGER",
+    "version": "1.0"
+  },
+  "paths": {
+    "/applications": {
+      "post": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Create a new application",
+        "description": "Creates a new application entity with the provided information. Validates the input before persisting.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApplication"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "List all applications",
+        "description": "Returns a list of all applications registered in the system.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/applications/{id}": {
+      "get": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Retrieve an application by ID",
+        "description": "Fetches the application details associated with the specified unique identifier.",
+        "operationId": "applicationId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Update an existing application",
+        "description": "Updates the properties of an existing application using the specified ID and request body.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateApplication"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Delete an application",
+        "description": "Deletes the application that matches the provided ID from the system.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Application": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the application.",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the application.",
+            "nullable": true
+          },
+          "abbreviation": {
+            "type": "string",
+            "description": "Abbreviation of the application's name.",
+            "nullable": true
+          },
+          "team": {
+            "type": "string",
+            "description": "Name of the team responsible for the application.",
+            "nullable": true
+          },
+          "teamEmail": {
+            "type": "string",
+            "description": "Contact email of the responsible team.",
+            "nullable": true
+          },
+          "applicationEmail": {
+            "type": "string",
+            "description": "Main email address of the application.",
+            "nullable": true
+          },
+          "processes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Process"
+            },
+            "description": "Collection of processes associated with the application.",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Step"
+            },
+            "description": "Collection of steps associated with the application.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an application that contains processes and steps."
+      },
+      "Associate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateApplication": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the application.",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the application.",
+            "nullable": true
+          },
+          "abbreviation": {
+            "type": "string",
+            "description": "Abbreviation of the application's name.",
+            "nullable": true
+          },
+          "team": {
+            "type": "string",
+            "description": "Name of the team responsible for the application.",
+            "nullable": true
+          },
+          "teamEmail": {
+            "type": "string",
+            "description": "Contact email of the responsible team.",
+            "nullable": true
+          },
+          "applicationEmail": {
+            "type": "string",
+            "description": "Main email address of the application.",
+            "nullable": true
+          },
+          "processes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Process"
+            },
+            "description": "Collection of processes associated with the application.",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Step"
+            },
+            "description": "Collection of steps associated with the application.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Document": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "processId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "process": {
+            "$ref": "#/components/schemas/Process"
+          },
+          "stepId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "step": {
+            "$ref": "#/components/schemas/Step"
+          },
+          "uploadedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "uploadedById": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uploadedBy": {
+            "$ref": "#/components/schemas/Associate"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Holder": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "abbreviation": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Process": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "processCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastUpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentStepId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentStep": {
+            "$ref": "#/components/schemas/Step"
+          },
+          "createdById": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/Associate"
+          },
+          "applicationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "application": {
+            "$ref": "#/components/schemas/Application"
+          },
+          "executions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StepHistory"
+            },
+            "nullable": true
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "State": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Step": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "state": {
+            "$ref": "#/components/schemas/State"
+          },
+          "holderId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "holder": {
+            "$ref": "#/components/schemas/Holder"
+          },
+          "isFinal": {
+            "type": "boolean"
+          },
+          "applicationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "application": {
+            "$ref": "#/components/schemas/Application"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StepHistory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "processId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "process": {
+            "$ref": "#/components/schemas/Process"
+          },
+          "stepId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "step": {
+            "$ref": "#/components/schemas/Step"
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "executedById": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "executedBy": {
+            "$ref": "#/components/schemas/Associate"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateApplication": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier of the application.",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the application.",
+            "nullable": true
+          },
+          "abbreviation": {
+            "type": "string",
+            "description": "Abbreviation of the application's name.",
+            "nullable": true
+          },
+          "team": {
+            "type": "string",
+            "description": "Name of the team responsible for the application.",
+            "nullable": true
+          },
+          "teamEmail": {
+            "type": "string",
+            "description": "Contact email of the responsible team.",
+            "nullable": true
+          },
+          "applicationEmail": {
+            "type": "string",
+            "description": "Main email address of the application.",
+            "nullable": true
+          },
+          "processes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Process"
+            },
+            "description": "Collection of processes associated with the application.",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Step"
+            },
+            "description": "Collection of steps associated with the application.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

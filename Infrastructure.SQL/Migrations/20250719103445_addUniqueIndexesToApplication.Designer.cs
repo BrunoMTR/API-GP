@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.SQL.Migrations
 {
     [DbContext(typeof(DemoContext))]
-    [Migration("20250715184255_initial")]
-    partial class initial
+    [Migration("20250719103445_addUniqueIndexesToApplication")]
+    partial class addUniqueIndexesToApplication
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,10 +42,6 @@ namespace Infrastructure.SQL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -61,6 +57,12 @@ namespace Infrastructure.SQL.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Abbreviation")
+                        .IsUnique();
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Application", "dbo");
                 });
@@ -215,6 +217,9 @@ namespace Infrastructure.SQL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("ApplicationEntityId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ApplicationId")
                         .HasColumnType("int");
 
@@ -239,6 +244,8 @@ namespace Infrastructure.SQL.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationEntityId");
 
                     b.HasIndex("ApplicationId");
 
@@ -282,6 +289,9 @@ namespace Infrastructure.SQL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ApplicationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -299,6 +309,8 @@ namespace Infrastructure.SQL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationId");
 
                     b.HasIndex("HolderId");
 
@@ -402,6 +414,10 @@ namespace Infrastructure.SQL.Migrations
 
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.ProcessEntity", b =>
                 {
+                    b.HasOne("Infrastructure.SQL.DB.Entities.ApplicationEntity", null)
+                        .WithMany("Processes")
+                        .HasForeignKey("ApplicationEntityId");
+
                     b.HasOne("Infrastructure.SQL.DB.Entities.ApplicationEntity", "Application")
                         .WithMany()
                         .HasForeignKey("ApplicationId")
@@ -429,6 +445,12 @@ namespace Infrastructure.SQL.Migrations
 
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.StepEntity", b =>
                 {
+                    b.HasOne("Infrastructure.SQL.DB.Entities.ApplicationEntity", "Application")
+                        .WithMany("Steps")
+                        .HasForeignKey("ApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Infrastructure.SQL.DB.Entities.HolderEntity", "Holder")
                         .WithMany()
                         .HasForeignKey("HolderId")
@@ -440,6 +462,8 @@ namespace Infrastructure.SQL.Migrations
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Application");
 
                     b.Navigation("Holder");
 
@@ -475,6 +499,13 @@ namespace Infrastructure.SQL.Migrations
                     b.Navigation("Process");
 
                     b.Navigation("Step");
+                });
+
+            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.ApplicationEntity", b =>
+                {
+                    b.Navigation("Processes");
+
+                    b.Navigation("Steps");
                 });
 
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.ProcessEntity", b =>

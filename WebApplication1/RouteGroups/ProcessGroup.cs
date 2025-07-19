@@ -14,7 +14,7 @@ namespace Presentation.RouteGroups
         {
             var group = app.MapGroup("/processes");
             group.MapPost("/", ProcessEndpoints.PostProcess)
-                .AddEndpointFilter<InputValidatorFilters<ProcessForm>>()
+                .AddEndpointFilter<InputValidatorFilter<ProcessForm>>()
                 .DisableAntiforgery(); 
 
             group.MapGet("/", ProcessEndpoints.GetProcess);

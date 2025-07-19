@@ -16,6 +16,8 @@ namespace Infrastructure.SQL.DB.Entities
         public int HolderId { get; set; }
         public HolderEntity Holder { get; set; }
         public bool IsFinal { get; set; }
+        public int ApplicationId { get; set; }
+        public ApplicationEntity Application { get; set; }
         public ICollection<StepHistoryEntity> Executions { get; set; } = new List<StepHistoryEntity>();
     }
 }

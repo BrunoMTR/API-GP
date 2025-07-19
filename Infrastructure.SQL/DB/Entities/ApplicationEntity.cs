@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,9 @@ namespace Infrastructure.SQL.DB.Entities
         public string Name { get; set; }
         public string? Abbreviation { get; set; }
         public string? Team { get; set; }
-        public string? Email { get; set; }
         public string? TeamEmail { get; set; }
         public string? ApplicationEmail { get; set; }
+        public ICollection<ProcessEntity> Processes { get; set; } = new List<ProcessEntity>();
+        public ICollection<StepEntity> Steps { get; set; } = new List<StepEntity>();
     }
 }

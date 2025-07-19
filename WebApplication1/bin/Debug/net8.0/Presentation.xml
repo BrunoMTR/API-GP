@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Presentation</name>
+    </assembly>
+    <members>
+        <member name="T:Presentation.Models.Application">
+            <summary>
+            Represents an application that contains processes and steps.
+            </summary>
+        </member>
+        <member name="P:Presentation.Models.Application.Id">
+            <summary>
+            Unique identifier of the application.
+            </summary>
+        </member>
+        <member name="P:Presentation.Models.Application.Name">
+            <summary>
+            Name of the application.
+            </summary>
+        </member>
+        <member name="P:Presentation.Models.Application.Abbreviation">
+            <summary>
+            Abbreviation of the application's name.
+            </summary>
+        </member>
+        <member name="P:Presentation.Models.Application.Team">
+            <summary>
+            Name of the team responsible for the application.
+            </summary>
+        </member>
+        <member name="P:Presentation.Models.Application.TeamEmail">
+            <summary>
+            Contact email of the responsible team.
+            </summary>
+        </member>
+        <member name="P:Presentation.Models.Application.ApplicationEmail">
+            <summary>
+            Main email address of the application.
+            </summary>
+        </member>
+        <member name="P:Presentation.Models.Application.Processes">
+            <summary>
+            Collection of processes associated with the application.
+            </summary>
+        </member>
+        <member name="P:Presentation.Models.Application.Steps">
+            <summary>
+            Collection of steps associated with the application.
+            </summary>
+        </member>
+    </members>
+</doc>

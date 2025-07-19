@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.SQL.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class mg01 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,7 +24,6 @@ namespace Infrastructure.SQL.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Abbreviation = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Team = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     TeamEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ApplicationEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
@@ -92,11 +91,19 @@ namespace Infrastructure.SQL.Migrations
                     Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     StateId = table.Column<int>(type: "int", nullable: false),
                     HolderId = table.Column<int>(type: "int", nullable: false),
-                    IsFinal = table.Column<bool>(type: "bit", nullable: false)
+                    IsFinal = table.Column<bool>(type: "bit", nullable: false),
+                    ApplicationId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Step", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Step_Application_ApplicationId",
+                        column: x => x.ApplicationId,
+                        principalSchema: "dbo",
+                        principalTable: "Application",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Step_Holder_HolderId",
                         column: x => x.HolderId,
@@ -126,11 +133,18 @@ namespace Infrastructure.SQL.Migrations
                     Notes = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     CurrentStepId = table.Column<int>(type: "int", nullable: false),
                     CreatedById = table.Column<int>(type: "int", nullable: false),
-                    ApplicationId = table.Column<int>(type: "int", nullable: false)
+                    ApplicationId = table.Column<int>(type: "int", nullable: false),
+                    ApplicationEntityId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Process", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Process_Application_ApplicationEntityId",
+                        column: x => x.ApplicationEntityId,
+                        principalSchema: "dbo",
+                        principalTable: "Application",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Process_Application_ApplicationId",
                         column: x => x.ApplicationId,
@@ -317,6 +331,12 @@ namespace Infrastructure.SQL.Migrations
                 column: "StepId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Process_ApplicationEntityId",
+                schema: "dbo",
+                table: "Process",
+                column: "ApplicationEntityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Process_ApplicationId",
                 schema: "dbo",
                 table: "Process",
@@ -340,6 +360,12 @@ namespace Infrastructure.SQL.Migrations
                 table: "Process",
                 column: "ProcessCode",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Step_ApplicationId",
+                schema: "dbo",
+                table: "Step",
+                column: "ApplicationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Step_HolderId",
@@ -398,15 +424,15 @@ namespace Infrastructure.SQL.Migrations
                 schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "Application",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
                 name: "Associate",
                 schema: "dbo");
 
             migrationBuilder.DropTable(
                 name: "Step",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "Application",
                 schema: "dbo");
 
             migrationBuilder.DropTable(

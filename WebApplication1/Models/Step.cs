@@ -13,6 +13,8 @@ namespace Presentation.Models
         public int HolderId { get; set; }
         public Holder Holder { get; set; }
         public bool IsFinal { get; set; }
+        public int ApplicationId { get; set; }
+        public Application Application { get; set; }
         ICollection<StepHistory> Executions { get; set; } = new List<StepHistory>();
     }
 }

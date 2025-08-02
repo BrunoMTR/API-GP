@@ -23,12 +23,15 @@ var DbConnection = builder.Configuration.GetConnectionString("DemoDb");
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
-builder.Services.AddScoped<IProcessMapper, ProcessMapper>();
-builder.Services.AddScoped<IProcessRepository, ProcessRepositoty>();
-builder.Services.AddScoped<IProcessService, ProcessService>();
 builder.Services.AddScoped<IApplicationService, ApplicationService>();
 builder.Services.AddScoped<IApplicationMapper, ApplicationMapper>();
 builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
+builder.Services.AddScoped<IFlowRepository, FlowRepository>();
+builder.Services.AddScoped<IFlowService, FlowService>();
+builder.Services.AddScoped<IGraphMapper, GraphMapper>();
+builder.Services.AddScoped<IUnitMapper, UnitMapper>();
+builder.Services.AddScoped<IUnitService, UnitService>();
+builder.Services.AddScoped<IUnitRepository, UnitRepository>();
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -78,8 +81,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.AddProcessEndpoints();
+
 app.AddApllicatioGroup();
+app.AddFlowGroup();
+app.AddUnitEndpoints();
 
 app.Run();
 

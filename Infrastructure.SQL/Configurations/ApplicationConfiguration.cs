@@ -22,15 +22,7 @@ namespace Infrastructure.SQL.Configurations
             builder.Property(a => a.TeamEmail).HasMaxLength(50);
             builder.Property(a => a.ApplicationEmail).HasMaxLength(50);
 
-            builder.HasMany(a => a.Processes)
-                  .WithOne(p => p.Application)
-                  .HasForeignKey(p => p.ApplicationId)
-                  .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasMany(a => a.Steps)
-                   .WithOne(s => s.Application)
-                   .HasForeignKey(s => s.ApplicationId)
-                   .OnDelete(DeleteBehavior.Cascade);
+           
 
             builder.HasIndex(a => a.Name).IsUnique();
             builder.HasIndex(a => a.Abbreviation).IsUnique();

@@ -15,7 +15,6 @@ namespace Infrastructure.SQL.DB.Entities
         public string? Team { get; set; }
         public string? TeamEmail { get; set; }
         public string? ApplicationEmail { get; set; }
-        public ICollection<ProcessEntity> Processes { get; set; } = new List<ProcessEntity>();
-        public ICollection<StepEntity> Steps { get; set; } = new List<StepEntity>();
+
     }
 }

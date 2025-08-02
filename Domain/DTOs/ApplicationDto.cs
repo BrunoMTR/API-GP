@@ -14,7 +14,5 @@ namespace Domain.DTOs
         public string? Team { get; set; }
         public string? TeamEmail { get; set; }
         public string? ApplicationEmail { get; set; }
-        public ICollection<ProcessDto> Processes { get; set; } = new List<ProcessDto>();
-        public ICollection<StepDto> Steps { get; set; } = new List<StepDto>();
     }
 }

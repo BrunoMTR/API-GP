@@ -14,17 +14,11 @@ namespace Infrastructure.SQL.DB
         {
 
         }
-        public DbSet<ProcessEntity> Process { get; set; }
-        public DbSet<StateEntity> State { get; set; }
-        public DbSet<HolderEntity> Holder { get; set; }
-        public DbSet<StepHistoryEntity> StateHistory { get; set; }
+
+        public DbSet<UnitEntity> Unit { get; set; }
+ 
         public DbSet<ApplicationEntity> Application { get; set; }
-        public DbSet<DocumentEntity> Document { get; set; }
-        public DbSet<DocumentHistoryEntity> DocumentHistory { get; set; }
-        public DbSet<AssociateEntity> Associate { get; set; }
-        public DbSet<StepEntity> Step { get; set; }
-
-
+        public DbSet<NodeEntity> Node { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

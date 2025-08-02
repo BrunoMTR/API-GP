@@ -39,14 +39,24 @@
             Main email address of the application.
             </summary>
         </member>
-        <member name="P:Presentation.Models.Application.Processes">
+        <member name="P:Presentation.Models.Node.OriginId">
             <summary>
-            Collection of processes associated with the application.
+            Foreign key for origin unit.
             </summary>
         </member>
-        <member name="P:Presentation.Models.Application.Steps">
+        <member name="P:Presentation.Models.Node.DestinationId">
             <summary>
-            Collection of steps associated with the application.
+            Foreign key for destination unit.
+            </summary>
+        </member>
+        <member name="P:Presentation.Models.Node.Approvals">
+            <summary>
+            Number of approvals required to traverse this edge (null if not applicable).
+            </summary>
+        </member>
+        <member name="P:Presentation.Models.Node.Direction">
+            <summary>
+            Direction of the transition (e.g., Forward or Backward).
             </summary>
         </member>
     </members>

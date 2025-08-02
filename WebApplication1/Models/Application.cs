@@ -37,14 +37,6 @@ namespace Presentation.Models
         /// </summary>
         public string? ApplicationEmail { get; set; }
 
-        /// <summary>
-        /// Collection of processes associated with the application.
-        /// </summary>
-        public ICollection<Process> Processes { get; set; } = new List<Process>();
 
-        /// <summary>
-        /// Collection of steps associated with the application.
-        /// </summary>
-        public ICollection<Step> Steps { get; set; } = new List<Step>();
     }
 }

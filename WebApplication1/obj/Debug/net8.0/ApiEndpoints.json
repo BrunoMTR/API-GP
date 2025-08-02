@@ -149,5 +149,217 @@
     "Tags": [
       "Applications"
     ]
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.FlowEndpoints",
+    "Method": "PostFlow",
+    "RelativePath": "flows/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "graph",
+        "Type": "Presentation.Models.Graph",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Flows"
+    ]
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.FlowEndpoints",
+    "Method": "GetFlow",
+    "RelativePath": "flows/{applicationId}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Flows"
+    ],
+    "EndpointName": "flowByApplicationId"
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.UnitEndpoints",
+    "Method": "PostUnit",
+    "RelativePath": "units/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "unit",
+        "Type": "Presentation.Models.Unit",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Units"
+    ]
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.UnitEndpoints",
+    "Method": "GetAllUnits",
+    "RelativePath": "units/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Units"
+    ]
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.UnitEndpoints",
+    "Method": "GetUnit",
+    "RelativePath": "units/{unitId}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "unitId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Units"
+    ],
+    "EndpointName": "unitId"
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.UnitEndpoints",
+    "Method": "DeleteUnit",
+    "RelativePath": "units/{unitId}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "unitId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Units"
+    ]
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.UnitEndpoints",
+    "Method": "UpdateUnit",
+    "RelativePath": "units/{unitId}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "unit",
+        "Type": "Presentation.Models.Unit",
+        "IsRequired": true
+      },
+      {
+        "Name": "unitId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Units"
+    ]
   }
 ]

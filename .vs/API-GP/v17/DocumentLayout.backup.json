@@ -3,32 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\validations\\nodesvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\validations\\nodesvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{280520D2-9DF4-49FD-8160-A103D9F8D25A}|BL\\BL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\bl\\services\\flowservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{280520D2-9DF4-49FD-8160-A103D9F8D25A}|BL\\BL.csproj|solutionrelative:bl\\services\\flowservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\repositories\\flowrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\repositories\\flowrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\endpoints\\flowendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\endpoints\\flowendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\endpoints\\unitendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\endpoints\\unitendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\domain\\services\\iflowservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|solutionrelative:domain\\services\\iflowservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{280520D2-9DF4-49FD-8160-A103D9F8D25A}|BL\\BL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\bl\\services\\flowservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{280520D2-9DF4-49FD-8160-A103D9F8D25A}|BL\\BL.csproj|solutionrelative:bl\\services\\flowservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\domain\\repositories\\iflowrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|solutionrelative:domain\\repositories\\iflowrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\domain\\dtos\\normalizednoderesponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|solutionrelative:domain\\dtos\\normalizednoderesponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\domain\\dtos\\nodedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|solutionrelative:domain\\dtos\\nodedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\mapping\\graphmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\mapping\\graphmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\models\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\models\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\db\\entities\\applicationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\db\\entities\\applicationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\domain\\dtos\\graphdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|solutionrelative:domain\\dtos\\graphdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\db\\entities\\nodeentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\db\\entities\\nodeentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\endpoints\\flowendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\endpoints\\flowendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,92 +63,157 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "NodesValidator.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Validations\\NodesValidator.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Validations\\NodesValidator.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Validations\\NodesValidator.cs",
-              "RelativeToolTip": "WebApplication1\\Validations\\NodesValidator.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAmwBMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T19:47:31.956Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UnitEndpoints.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Endpoints\\UnitEndpoints.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Endpoints\\UnitEndpoints.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Endpoints\\UnitEndpoints.cs",
-              "RelativeToolTip": "WebApplication1\\Endpoints\\UnitEndpoints.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T19:29:17.199Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IFlowService.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Services\\IFlowService.cs",
-              "RelativeDocumentMoniker": "Domain\\Services\\IFlowService.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Services\\IFlowService.cs",
-              "RelativeToolTip": "Domain\\Services\\IFlowService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T19:17:24.433Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IFlowRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Repositories\\IFlowRepository.cs",
-              "RelativeDocumentMoniker": "Domain\\Repositories\\IFlowRepository.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Repositories\\IFlowRepository.cs",
-              "RelativeToolTip": "Domain\\Repositories\\IFlowRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T19:14:15.793Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "FlowRepository.cs",
               "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\FlowRepository.cs",
               "RelativeDocumentMoniker": "Infrastructure.SQL\\Repositories\\FlowRepository.cs",
               "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\FlowRepository.cs",
               "RelativeToolTip": "Infrastructure.SQL\\Repositories\\FlowRepository.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAQwBcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAswFgAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T19:00:23.737Z",
+              "WhenOpened": "2025-08-03T08:29:24.644Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FlowService.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\BL\\Services\\FlowService.cs",
-              "RelativeDocumentMoniker": "BL\\Services\\FlowService.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\BL\\Services\\FlowService.cs",
-              "RelativeToolTip": "BL\\Services\\FlowService.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAswCwAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "NodeDto.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\DTOs\\NodeDto.cs",
+              "RelativeDocumentMoniker": "Domain\\DTOs\\NodeDto.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\DTOs\\NodeDto.cs",
+              "RelativeToolTip": "Domain\\DTOs\\NodeDto.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAowA4AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T18:59:38.816Z",
+              "WhenOpened": "2025-08-03T08:34:03.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GraphMapper.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Mapping\\GraphMapper.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Mapping\\GraphMapper.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Mapping\\GraphMapper.cs",
+              "RelativeToolTip": "WebApplication1\\Mapping\\GraphMapper.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAzwBQAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T09:16:38.182Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "IFlowRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Repositories\\IFlowRepository.cs",
+              "RelativeDocumentMoniker": "Domain\\Repositories\\IFlowRepository.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Repositories\\IFlowRepository.cs",
+              "RelativeToolTip": "Domain\\Repositories\\IFlowRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T09:03:04.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FlowService.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\BL\\Services\\FlowService.cs",
+              "RelativeDocumentMoniker": "BL\\Services\\FlowService.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\BL\\Services\\FlowService.cs",
+              "RelativeToolTip": "BL\\Services\\FlowService.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwBMAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T09:03:31.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Node.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Models\\Node.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Models\\Node.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Models\\Node.cs",
+              "RelativeToolTip": "WebApplication1\\Models\\Node.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T09:45:23.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IFlowService.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Services\\IFlowService.cs",
+              "RelativeDocumentMoniker": "Domain\\Services\\IFlowService.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Services\\IFlowService.cs",
+              "RelativeToolTip": "Domain\\Services\\IFlowService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAwAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T09:05:03.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NormalizedNodeResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\DTOs\\NormalizedNodeResponseDto.cs",
+              "RelativeDocumentMoniker": "Domain\\DTOs\\NormalizedNodeResponseDto.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\DTOs\\NormalizedNodeResponseDto.cs",
+              "RelativeToolTip": "Domain\\DTOs\\NormalizedNodeResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T09:42:31.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GraphDto.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\DTOs\\GraphDto.cs",
+              "RelativeDocumentMoniker": "Domain\\DTOs\\GraphDto.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\DTOs\\GraphDto.cs",
+              "RelativeToolTip": "Domain\\DTOs\\GraphDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T08:46:15.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "NodeEntity.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\DB\\Entities\\NodeEntity.cs",
+              "RelativeDocumentMoniker": "Infrastructure.SQL\\DB\\Entities\\NodeEntity.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\DB\\Entities\\NodeEntity.cs",
+              "RelativeToolTip": "Infrastructure.SQL\\DB\\Entities\\NodeEntity.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAowB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T08:36:08.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ApplicationEntity.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\DB\\Entities\\ApplicationEntity.cs",
+              "RelativeDocumentMoniker": "Infrastructure.SQL\\DB\\Entities\\ApplicationEntity.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\DB\\Entities\\ApplicationEntity.cs",
+              "RelativeToolTip": "Infrastructure.SQL\\DB\\Entities\\ApplicationEntity.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAhwA8AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T08:38:40.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "FlowEndpoints.cs",
               "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Endpoints\\FlowEndpoints.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Endpoints\\FlowEndpoints.cs",
               "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Endpoints\\FlowEndpoints.cs",
               "RelativeToolTip": "WebApplication1\\Endpoints\\FlowEndpoints.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAkwBMAAABDAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAgwCQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T17:18:16.476Z",
+              "WhenOpened": "2025-08-03T08:23:26.449Z",
               "EditorCaption": ""
             }
           ]

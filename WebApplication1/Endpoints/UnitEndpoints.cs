@@ -27,24 +27,19 @@ namespace Presentation.Endpoints
         }
 
         public static async Task<IResult>GetUnit(int unitId,
-            [FromServices] IUnitMapper mapper,
             [FromServices]IUnitService unitService)
         {
             var unit = await unitService.Retrieve(unitId);
             if (unit is null)
-                return Results.NotFound();
+                return Results.NotFound();           
 
-            var unitDto = mapper.Map(unit);
-
-            return Results.Ok(unitDto);
+            return Results.Ok(unit);
         }
 
-        public static async Task<IResult> GetAllUnits([FromServices]IUnitService unitService,
-            [FromServices] IUnitMapper mapper)
+        public static async Task<IResult> GetAllUnits([FromServices]IUnitService unitService)
         {
             var units = await unitService.GetAll();
-            var unitDtos = units.Select(mapper.Map);
-            return Results.Ok(unitDtos);
+            return Results.Ok(units);
         }
 
         public static async Task<IResult>DeleteUnit([FromServices] IUnitService unitService, [FromRoute] int unitId)

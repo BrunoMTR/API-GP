@@ -9,8 +9,8 @@ namespace Domain.Services
 {
     public interface IFlowService
     {
-        Task<GraphDto> Retrieve(int applicationId);
-        Task<List<NodeDto>> Create(GraphDto graph);
+        Task<NormalizedNodeResponseDto?> Retrieve(int applicationId);
+        Task<NormalizedNodeResponseDto?> Create(GraphDto graph);
         Task Delete(int applicationId);
 
     }

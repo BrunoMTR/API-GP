@@ -27,16 +27,14 @@ namespace Presentation.Endpoints
         }
 
         public static async Task<IResult> GetFlow(int applicationId,
-            [FromServices] IFlowService flowService,
-            [FromServices] IGraphMapper mapper)
+            [FromServices] IFlowService flowService)
         {
             var graph = await flowService.Retrieve(applicationId);
             if(graph is null)
             {
                 return Results.NotFound();
             }
-            var graphDto = mapper.Map(graph);
-            return Results.Ok(graphDto);
+            return Results.Ok(graph);
         }
     }
 }

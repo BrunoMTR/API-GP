@@ -2,7 +2,6 @@
 using Presentation.Endpoints;
 using Presentation.EndpointsFilters;
 using Presentation.Models;
-using Presentation.Models.Requests;
 using Presentation.Validations;
 
 namespace Presentation.RouteGroups

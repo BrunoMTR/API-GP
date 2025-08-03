@@ -19,7 +19,7 @@ namespace BL.Services
         }
         public async Task<UnitDto> Create(UnitDto unit)
         {
-            var allUnits = await _unitRepository.GetAllByUnits();
+            var allUnits = await _unitRepository.GetAllUnitsAsync();
 
             var duplicate = allUnits.FirstOrDefault(u =>
                 string.Equals(u.Name, unit.Name, StringComparison.OrdinalIgnoreCase) ||
@@ -41,7 +41,7 @@ namespace BL.Services
 
         public async Task<List<UnitDto>> GetAll()
         {
-            return await _unitRepository.GetAllByUnits();
+            return await _unitRepository.GetAllUnitsAsync();
         }
 
         public Task<UnitDto> Retrieve(int unitId)
@@ -55,7 +55,7 @@ namespace BL.Services
             if (existingUnit is null)
                 return null;
 
-            var allUnits = await _unitRepository.GetAllByUnits();
+            var allUnits = await _unitRepository.GetAllUnitsAsync();
 
             var duplicate = allUnits.FirstOrDefault(u =>
                 u.Id != unitId &&

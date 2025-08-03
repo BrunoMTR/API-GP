@@ -21,9 +21,10 @@ namespace Infrastructure.SQL.Repositories
             _demoContext = demoContext;
         }
 
-        public async Task<List<NodeDto>> CreateAsync(GraphDto graph)
+        public async Task<NormalizedNodeResponseDto?> CreateAsync(GraphDto graph)
         {
-            var nodes = graph.Nodes.Select(node => new NodeEntity
+   
+            var nodesToAdd = graph.Nodes.Select(node => new NodeEntity
             {
                 ApplicationId = graph.ApplicationId,
                 OriginId = node.OriginId,
@@ -32,21 +33,68 @@ namespace Infrastructure.SQL.Repositories
                 Direction = node.Direction
             }).ToList();
 
-            _demoContext.Node.AddRange(nodes);
+
+            _demoContext.Node.AddRange(nodesToAdd);
             await _demoContext.SaveChangesAsync();
 
-            var savedNodes = nodes.Select(n => new NodeDto
-            {
-                Id = n.Id, 
-                ApplicationId = n.ApplicationId,
-                OriginId = n.OriginId,
-                DestinationId = n.DestinationId,
-                Approvals = n.Approvals,
-                Direction = n.Direction
-            }).ToList();
+            var savedNodes = await _demoContext.Node
+                .AsNoTracking()
+                .Include(n => n.Application)
+                .Include(n => n.Origin)
+                .Include(n => n.Destination)
+                .Where(n => n.ApplicationId == graph.ApplicationId && nodesToAdd.Select(x => x.Id).Contains(n.Id))
+                .ToListAsync();
 
-            return savedNodes;
+            if (!savedNodes.Any())
+                return null!;
+
+            var application = savedNodes.First().Application;
+
+            var unitDict = new Dictionary<int, UnitDto>();
+            foreach (var node in savedNodes)
+            {
+                void AddUnit(UnitEntity unit)
+                {
+                    if (!unitDict.ContainsKey(unit.Id))
+                    {
+                        unitDict[unit.Id] = new UnitDto
+                        {
+                            Id = unit.Id,
+                            Name = unit.Name,
+                            Abbreviation = unit.Abbreviation,
+                            Email = unit.Email
+                        };
+                    }
+                }
+
+                AddUnit(node.Origin);
+                AddUnit(node.Destination);
+            }
+
+            return new NormalizedNodeResponseDto
+            {
+                Application = new ApplicationDto
+                {
+                    Id = application.Id,
+                    Name = application.Name,
+                    Abbreviation = application.Abbreviation,
+                    Team = application.Team,
+                    TeamEmail = application.TeamEmail,
+                    ApplicationEmail = application.ApplicationEmail
+                },
+                Units = unitDict.Values.ToList(),
+                Nodes = savedNodes.Select(n => new NodeDto
+                {
+                    Id = n.Id,
+                    ApplicationId = n.Application.Id,
+                    OriginId = n.Origin.Id,
+                    DestinationId = n.Destination.Id,
+                    Approvals = n.Approvals,
+                    Direction = n.Direction
+                }).ToList()
+            };
         }
+
 
 
         public async Task DeleteByApplicationIdAsync(int applicationId)
@@ -55,26 +103,68 @@ namespace Infrastructure.SQL.Repositories
                 .Where(x => x.ApplicationId == applicationId)
                 .ExecuteDeleteAsync();
         }
-
-        public async Task<GraphDto> GetByApplicationIdAsync(int applicationId)
+        public async Task<NormalizedNodeResponseDto?> GetByApplicationIdAsync(int applicationId)
         {
-             var nodes = await _demoContext.Node
+            var nodes = await _demoContext.Node
                 .AsNoTracking()
+                .Include(x => x.Application)
+                .Include(x => x.Origin)
+                .Include(x => x.Destination)
                 .Where(x => x.ApplicationId == applicationId)
-                .Select(x => new NodeDto
-                {
-                    Id = x.Id,
-                    OriginId = x.OriginId,
-                    DestinationId = x.DestinationId,
-                    Approvals = x.Approvals,
-                    Direction = x.Direction
-                }).ToListAsync();
+                .ToListAsync();
 
             if (!nodes.Any())
                 return null;
 
-            return new GraphDto { ApplicationId = applicationId, Nodes = nodes };
+            var application = nodes.First().Application;
 
+            var unitDict = new Dictionary<int, UnitDto>();
+
+            foreach (var node in nodes)
+            {
+                void AddUnit(UnitEntity unit)
+                {
+                    if (!unitDict.ContainsKey(unit.Id))
+                    {
+                        unitDict[unit.Id] = new UnitDto
+                        {
+                            Id = unit.Id,
+                            Name = unit.Name,
+                            Abbreviation = unit.Abbreviation,
+                            Email = unit.Email
+                        };
+                    }
+                }
+
+                AddUnit(node.Origin);
+                AddUnit(node.Destination);
+            }
+
+            return new NormalizedNodeResponseDto
+            {
+                Application = new ApplicationDto
+                {
+                    Id = application.Id,
+                    Name = application.Name,
+                    Abbreviation = application.Abbreviation,
+                    Team = application.Team,
+                    TeamEmail = application.TeamEmail,
+                    ApplicationEmail = application.ApplicationEmail
+                },
+                Units = unitDict.Values.ToList(),
+                Nodes = nodes.Select(n => new NodeDto
+                {
+                    Id = n.Id,
+                    ApplicationId = n.Application.Id,
+                    OriginId = n.Origin.Id,
+                    DestinationId = n.Destination.Id,
+                    Approvals = n.Approvals,
+                    Direction = n.Direction
+                }).ToList()
+            };
         }
+
+
+
     }
 }

@@ -2,7 +2,6 @@
 using Presentation.Endpoints;
 using Presentation.EndpointsFilters;
 using Presentation.Models;
-using Presentation.Models.Requests;
 using Presentation.Validations;
 using System.Runtime.CompilerServices;
 
@@ -17,7 +16,7 @@ namespace Presentation.RouteGroups
             var group = app.MapGroup("applications").WithTags("Applications").WithApiVersionSet(versionSet).HasApiVersion(1.0);
 
             group.MapPost("/", ApplicationEndpoints.PostApplication)
-                .AddEndpointFilter<InputValidatorFilter<CreateApplication>>()
+                .AddEndpointFilter<InputValidatorFilter<Application>>()
                 .DisableAntiforgery()
                 .WithOpenApi(operation => new(operation)
                 {
@@ -41,7 +40,7 @@ namespace Presentation.RouteGroups
                 });
 
             group.MapPut("/{id}", ApplicationEndpoints.UpdateApplication)
-                .AddEndpointFilter<InputValidatorFiltersUpdate<UpdateApplication>>()
+                .AddEndpointFilter<InputValidatorFiltersUpdate<Application>>()
                 .DisableAntiforgery()
                 .WithOpenApi(operation => new(operation)
                 {

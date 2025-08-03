@@ -17,10 +17,10 @@ namespace BL.Services
             _flowRepository = flowRepository;
         }
 
-        public async Task<List<NodeDto>> Create(GraphDto graph)
+        public async Task<NormalizedNodeResponseDto?> Create(GraphDto graph)
         {
             var existingGraph = await _flowRepository.GetByApplicationIdAsync(graph.ApplicationId);
-            if (existingGraph is not null && existingGraph.Nodes.Any())
+            if (existingGraph is not null)
             {
                 return null;
             }
@@ -63,7 +63,7 @@ namespace BL.Services
             throw new NotImplementedException();
         }
 
-        public async Task<GraphDto> Retrieve(int applicationId)
+        public async Task<NormalizedNodeResponseDto?> Retrieve(int applicationId)
         {
             return await _flowRepository.GetByApplicationIdAsync(applicationId);
         }

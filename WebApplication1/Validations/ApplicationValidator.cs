@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace Presentation.Validations
 {
-    public class ApplicationValidatorBase<T> : AbstractValidator<T> where T : Application
+    public class ApplicationValidator : AbstractValidator<Application>
     {
-        public ApplicationValidatorBase()
+        public ApplicationValidator()
         {
             RuleFor(x => x.Name)
               .NotEmpty()

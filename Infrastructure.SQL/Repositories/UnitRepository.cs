@@ -43,7 +43,7 @@ namespace Infrastructure.SQL.Repositories
                 .ExecuteDeleteAsync();
         }
 
-        public async Task<List<UnitDto>> GetAllByUnits()
+        public async Task<List<UnitDto>> GetAllUnitsAsync()
         {
             return await _demoContext.Unit.AsNoTracking()
                 .Select(x => new UnitDto

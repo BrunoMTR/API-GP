@@ -7,10 +7,6 @@ namespace Presentation.Models
     /// </summary>
     public class Application
     {
-        /// <summary>
-        /// Unique identifier of the application.
-        /// </summary>
-        public int Id { get; set; }
 
         /// <summary>
         /// Name of the application.

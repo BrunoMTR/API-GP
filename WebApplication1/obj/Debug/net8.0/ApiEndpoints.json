@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "application",
-        "Type": "Presentation.Models.Requests.CreateApplication",
+        "Type": "Presentation.Models.Application",
         "IsRequired": true
       },
       {
@@ -95,7 +95,7 @@
     "Parameters": [
       {
         "Name": "application",
-        "Type": "Presentation.Models.Requests.UpdateApplication",
+        "Type": "Presentation.Models.Application",
         "IsRequired": true
       },
       {

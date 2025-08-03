@@ -10,7 +10,6 @@ namespace Presentation.Mapping
         {
             return application is not null ? new ApplicationDto
             {
-                Id = application.Id,
                 Name = application.Name,
                 Abbreviation = application.Abbreviation,
                 Team = application.Team,
@@ -24,7 +23,6 @@ namespace Presentation.Mapping
         {
             return application is not null ? new Application
             {
-                Id = application.Id,
                 Name = application.Name,
                 Abbreviation = application.Abbreviation,
                 Team = application.Team,

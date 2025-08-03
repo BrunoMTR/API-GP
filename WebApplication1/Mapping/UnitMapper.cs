@@ -10,7 +10,6 @@ namespace Presentation.Mapping
         {
             return unit is not null ? new UnitDto
             {
-                Id = unit.Id,
                 Name = unit.Name,
                 Abbreviation = unit.Abbreviation,
                 Email = unit.Email
@@ -21,7 +20,6 @@ namespace Presentation.Mapping
         {
             return unitDto is not null ? new Unit
             {
-                Id = unitDto.Id,
                 Name = unitDto.Name,
                 Abbreviation = unitDto.Abbreviation,
                 Email = unitDto.Email

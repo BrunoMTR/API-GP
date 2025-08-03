@@ -19,6 +19,14 @@ namespace BL.Services
 
         public async Task<ApplicationDto> Create(ApplicationDto application)
         {
+            var allApplications = await _applicationRepository.GetAllAsync();
+            var duplicated = allApplications.FirstOrDefault(a =>
+            string.Equals(a.Name, application.Name, StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(a.Abbreviation, application.Abbreviation, StringComparison.OrdinalIgnoreCase)
+            );
+            if (duplicated is not null)
+                return null;
+
             return await _applicationRepository.CreateAsync(application);
         }
 
@@ -37,9 +45,25 @@ namespace BL.Services
             return await _applicationRepository.RetrieveAsync(id);
         }
 
-        public async Task<ApplicationDto> Update(ApplicationDto application,int id)
+        public async Task<ApplicationDto?> Update(ApplicationDto application, int applicationId)
         {
-            return await _applicationRepository.UpdateAsync(application, id);
+            var existingApplication = await _applicationRepository.RetrieveAsync(applicationId);
+            if (existingApplication is null)
+                return null;
+
+            var allApplications = await _applicationRepository.GetAllAsync();
+
+            var duplicated = allApplications.FirstOrDefault(a =>
+                a.Id != applicationId && (
+                    string.Equals(a.Name, application.Name, StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(a.Abbreviation, application.Abbreviation, StringComparison.OrdinalIgnoreCase)
+                ));
+
+            if (duplicated is not null)
+                return new ApplicationDto(); 
+
+            return await _applicationRepository.UpdateAsync(application, applicationId);
         }
+
     }
 }

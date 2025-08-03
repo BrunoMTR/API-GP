@@ -9,9 +9,9 @@ namespace Domain.Repositories
 {
     public interface IFlowRepository
     {
-        Task<List<NodeDto>> CreateAsync(GraphDto graph);
+        Task<NormalizedNodeResponseDto?> CreateAsync(GraphDto graph);
 
-        Task<GraphDto> GetByApplicationIdAsync(int applicationId);
+        Task<NormalizedNodeResponseDto?> GetByApplicationIdAsync(int applicationId);
 
         Task DeleteByApplicationIdAsync(int applicationId);
 

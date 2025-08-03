@@ -9,11 +9,6 @@
             Represents an application that contains processes and steps.
             </summary>
         </member>
-        <member name="P:Presentation.Models.Application.Id">
-            <summary>
-            Unique identifier of the application.
-            </summary>
-        </member>
         <member name="P:Presentation.Models.Application.Name">
             <summary>
             Name of the application.

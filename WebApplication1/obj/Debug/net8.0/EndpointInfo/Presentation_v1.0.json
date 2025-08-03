@@ -16,7 +16,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateApplication"
+                "$ref": "#/components/schemas/Application"
               }
             }
           },
@@ -87,7 +87,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateApplication"
+                "$ref": "#/components/schemas/Application"
               }
             }
           },
@@ -294,14 +294,9 @@
   },
   "components": {
     "schemas": {
-      "CreateApplication": {
+      "Application": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Unique identifier of the application.",
-            "format": "int32"
-          },
           "name": {
             "type": "string",
             "description": "Name of the application.",
@@ -328,7 +323,8 @@
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents an application that contains processes and steps."
       },
       "Graph": {
         "type": "object",
@@ -377,10 +373,6 @@
       "Unit": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
           "abbreviation": {
             "type": "string",
             "nullable": true
@@ -391,42 +383,6 @@
           },
           "email": {
             "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UpdateApplication": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Unique identifier of the application.",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the application.",
-            "nullable": true
-          },
-          "abbreviation": {
-            "type": "string",
-            "description": "Abbreviation of the application's name.",
-            "nullable": true
-          },
-          "team": {
-            "type": "string",
-            "description": "Name of the team responsible for the application.",
-            "nullable": true
-          },
-          "teamEmail": {
-            "type": "string",
-            "description": "Contact email of the responsible team.",
-            "nullable": true
-          },
-          "applicationEmail": {
-            "type": "string",
-            "description": "Main email address of the application.",
             "nullable": true
           }
         },

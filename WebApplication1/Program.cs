@@ -16,6 +16,7 @@ using Presentation.Swagger;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,19 @@ builder.Services.AddScoped<IGraphMapper, GraphMapper>();
 builder.Services.AddScoped<IUnitMapper, UnitMapper>();
 builder.Services.AddScoped<IUnitService, UnitService>();
 builder.Services.AddScoped<IUnitRepository, UnitRepository>();
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -59,6 +73,23 @@ builder.Services.AddDbContextPool<DemoContext>(Options => Options.UseSqlServer(D
         SqlCompareOptions.EnableRetryOnFailure(maxRetryCount: 3);
     }));
 
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.Authority = "https://login.microsoftonline.com / 136544d9 - xxxx - xxxx - xxxx - 10accb370679 / v2.0";
+ options.Audience = "257b6c36-xxxx-xxxx-xxxx-6f2cd81cec43";
+    options.TokenValidationParameters.ValidateLifetime = true;
+    options.TokenValidationParameters.ValidateIssuer = true;
+    options.TokenValidationParameters.ClockSkew = TimeSpan.
+   FromMinutes(5);
+});
+
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -85,6 +116,11 @@ app.UseHttpsRedirection();
 app.AddApllicatioGroup();
 app.AddFlowGroup();
 app.AddUnitEndpoints();
+
+app.UseCors("AllowAll");
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();
 

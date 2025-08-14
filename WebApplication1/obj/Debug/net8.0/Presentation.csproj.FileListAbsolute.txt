@@ -186,3 +186,4 @@ C:\Users\Dell\Documents\PF\API-GP\WebApplication1\bin\Debug\net8.0\Asp.Versionin
 C:\Users\Dell\Documents\PF\API-GP\WebApplication1\bin\Debug\net8.0\Asp.Versioning.Mvc.ApiExplorer.dll
 C:\Users\Dell\Documents\PF\API-GP\WebApplication1\bin\Debug\net8.0\Presentation.xml
 C:\Users\Dell\Documents\PF\API-GP\WebApplication1\obj\Debug\net8.0\Presentation.xml
+C:\Users\Dell\Documents\PF\API-GP\WebApplication1\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

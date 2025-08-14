@@ -29,6 +29,15 @@ namespace Presentation.RouteGroups
                     Summary = "Retrieve an application flow by the application ID",
                     Description = "Fetches the flow details associated with the specified unique application identifier."
                 });
+
+
+            group.MapGet("/ui/{applicationId}", FlowEndpoints.GetReactFlow)
+               .WithName("ReactflowByApplicationId")
+               .WithOpenApi(operation => new(operation)
+               {
+                   Summary = "Retrieve an application flow by the application ID",
+                   Description = "Fetches the flow to use with react flow of a specific application."
+               });
         }
     }
 }

@@ -36,5 +36,17 @@ namespace Presentation.Endpoints
             }
             return Results.Ok(graph);
         }
+
+
+        public static async Task<IResult> GetReactFlow(int applicationId,
+           [FromServices] IFlowService flowService)
+        {
+            var flow = await flowService.RetrieveFlow(applicationId);
+            if (flow is null)
+            {
+                return Results.NotFound();
+            }
+            return Results.Ok(flow);
+        }
     }
 }

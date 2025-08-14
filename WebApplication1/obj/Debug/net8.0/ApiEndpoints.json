@@ -212,6 +212,37 @@
     "EndpointName": "flowByApplicationId"
   },
   {
+    "ContainingType": "Presentation.Endpoints.FlowEndpoints",
+    "Method": "GetReactFlow",
+    "RelativePath": "flows/ui/{applicationId}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Flows"
+    ],
+    "EndpointName": "ReactflowByApplicationId"
+  },
+  {
     "ContainingType": "Presentation.Endpoints.UnitEndpoints",
     "Method": "PostUnit",
     "RelativePath": "units/",

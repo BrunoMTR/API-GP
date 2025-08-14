@@ -1,4 +1,5 @@
 ﻿using Domain.DTOs;
+using Domain.DTOs.Flow;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace Domain.Repositories
         Task<NormalizedNodeResponseDto?> GetByApplicationIdAsync(int applicationId);
 
         Task DeleteByApplicationIdAsync(int applicationId);
+
+        Task<ReactFlowDto?> GetFlowByApplicationId(int applicationId);
 
     }
 }

@@ -173,6 +173,32 @@
         }
       }
     },
+    "/flows/ui/{applicationId}": {
+      "get": {
+        "tags": [
+          "Flows"
+        ],
+        "summary": "Retrieve an application flow by the application ID",
+        "description": "Fetches the flow to use with react flow of a specific application.",
+        "operationId": "ReactflowByApplicationId",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/units": {
       "post": {
         "tags": [

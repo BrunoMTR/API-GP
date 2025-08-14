@@ -1,4 +1,5 @@
 ﻿using Domain.DTOs;
+using Domain.DTOs.Flow;
 using Domain.Repositories;
 using Domain.Services;
 using System;
@@ -68,6 +69,9 @@ namespace BL.Services
             return await _flowRepository.GetByApplicationIdAsync(applicationId);
         }
 
-     
+        public async Task<ReactFlowDto?> RetrieveFlow(int applicationId)
+        {
+            return await _flowRepository.GetFlowByApplicationId(applicationId);
+        }
     }
 }

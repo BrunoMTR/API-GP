@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Mapping.Interfaces;
 using Presentation.Models;
+using Presentation.Models.Forms;
 
 
 
@@ -10,19 +11,20 @@ namespace Presentation.Endpoints
 {
     public class ApplicationEndpoints
     {
-        public static async Task<IResult> PostApplication([FromBody] Application application,
-            [FromServices] IApplicationMapper mapper,
+        public static async Task<IResult> PostApplication([FromBody] CreateApplicationFlowRequest request,
+            [FromServices] IApplicationMapper mapperApplication, [FromServices] IGraphMapper mapperGraph,
             [FromServices] IApplicationService applicationService)
         {
-            var applicationDto = mapper.Map(application);
-            var newApplication = await applicationService.Create(applicationDto);
+            var applicationDto = mapperApplication.Map(request.Application);
+            var graphDto = mapperGraph.Map(request.Graph);
+            var newApplication = await applicationService.Create(applicationDto,graphDto);
             if (newApplication is null)
                 return Results.Conflict("Já existe outra aplicação com o mesmo nome ou Abreviatura.");
 
             return Results.CreatedAtRoute(
                 "applicationId",
                 new
-                { id = newApplication.Id },
+                { id = newApplication.Application.Id },
                 newApplication
                 );
         }

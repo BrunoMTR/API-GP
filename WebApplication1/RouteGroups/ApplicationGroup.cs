@@ -2,6 +2,7 @@
 using Presentation.Endpoints;
 using Presentation.EndpointsFilters;
 using Presentation.Models;
+using Presentation.Models.Forms;
 using Presentation.Validations;
 using System.Runtime.CompilerServices;
 
@@ -16,11 +17,11 @@ namespace Presentation.RouteGroups
             var group = app.MapGroup("applications").WithTags("Applications").WithApiVersionSet(versionSet).HasApiVersion(1.0);
 
             group.MapPost("/", ApplicationEndpoints.PostApplication)
-                .AddEndpointFilter<InputValidatorFilter<Application>>()
+                .AddEndpointFilter<InputValidatorFilter<CreateApplicationFlowRequest>>()
                 .DisableAntiforgery()
                 .WithOpenApi(operation => new(operation)
                 {
-                    Summary = "Create a new application",
+                    Summary = "Create a new application and its flow",
                     Description = "Creates a new application entity with the provided information. Validates the input before persisting."
                 });
 

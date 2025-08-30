@@ -22,7 +22,7 @@ namespace Infrastructure.SQL.DB.Entities
 
         public int DestinationId { get; set; }
 
-        public int? Approvals { get; set; }
+        public int Approvals { get; set; }
 
         public string Direction { get; set; }
     }

@@ -11,7 +11,7 @@ namespace Presentation.Validations
             RuleFor(x => x.Name)
               .NotEmpty()
               .WithMessage("Name is required")
-              .MaximumLength(20)
+              .MaximumLength(50)
               .WithMessage("Name length must be 15 caracteres or fewer")
              .Custom((name, context) =>
              {

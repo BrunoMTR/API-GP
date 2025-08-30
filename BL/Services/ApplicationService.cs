@@ -17,18 +17,39 @@ namespace BL.Services
             _applicationRepository = applicationRepository;
         }
 
-        public async Task<ApplicationDto> Create(ApplicationDto application)
+        public async Task<NormalizedNodeResponseDto?> Create(ApplicationDto application, GraphDto graph)
         {
-            var allApplications = await _applicationRepository.GetAllAsync();
-            var duplicated = allApplications.FirstOrDefault(a =>
-            string.Equals(a.Name, application.Name, StringComparison.OrdinalIgnoreCase) ||
-            string.Equals(a.Abbreviation, application.Abbreviation, StringComparison.OrdinalIgnoreCase)
-            );
-            if (duplicated is not null)
-                return null;
+            var extendedNodes = new List<NodeDto>();
+            foreach (var node in graph.Nodes)
+            {
+                extendedNodes.Add(new NodeDto
+                {
+                    OriginId = node.OriginId,
+                    DestinationId = node.DestinationId,
+                    Direction = "AVANÇO",
+                    Approvals = node.Approvals
+                });
 
-            return await _applicationRepository.CreateAsync(application);
+                extendedNodes.Add(new NodeDto
+                {
+                    OriginId = node.DestinationId,
+                    DestinationId = node.OriginId,
+                    Direction = "RECUO",
+                    Approvals = 0
+                });
+            }
+
+            var newGraph = new GraphDto
+            {
+                ApplicationId = application.Id,
+                Nodes = extendedNodes
+            };
+
+            var newApplication = await _applicationRepository.CreateAsync(application, newGraph);
+     
+            return newApplication;
         }
+
 
         public async Task Delete(int id)
         {

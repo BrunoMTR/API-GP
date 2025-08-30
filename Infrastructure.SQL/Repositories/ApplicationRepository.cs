@@ -19,24 +19,6 @@ namespace Infrastructure.SQL.Repositories
             _demoContext = demoContext;
         }
 
-        public async Task<ApplicationDto> CreateAsync(ApplicationDto application)
-        {
-            var applicationEntity = new ApplicationEntity
-            {
-                Id = application.Id,
-                Name = application.Name,
-                Abbreviation = application.Abbreviation,
-                Team = application.Team,
-                TeamEmail = application.TeamEmail,
-                ApplicationEmail = application.ApplicationEmail,
-
-            };
-            await _demoContext.AddAsync(applicationEntity);
-            await _demoContext.SaveChangesAsync();
-            application.Id = applicationEntity.Id;
-            return application;
-        }
-
         public async Task DeleteAsync(int id)
         {
              await _demoContext.Application
@@ -76,15 +58,6 @@ namespace Infrastructure.SQL.Repositories
                 }).FirstOrDefaultAsync();
         }
 
-        public async Task<bool> ExistsByName(string name)
-        {
-            return await _demoContext.Application.AnyAsync(a => a.Name == name);
-        }
-
-        public async Task<bool> ExistsByAbbreviation(string abbreviation)
-        {
-            return await _demoContext.Application.AnyAsync(a => a.Abbreviation == abbreviation);
-        }
 
         public async Task<ApplicationDto> UpdateAsync(ApplicationDto application, int id)
         {
@@ -113,16 +86,97 @@ namespace Infrastructure.SQL.Repositories
             return application;
         }
 
-        public async Task<bool> ExistsByNameExceptId(string name, int id)
+        public async Task<NormalizedNodeResponseDto> CreateAsync(ApplicationDto application, GraphDto graph)
         {
-            return await _demoContext.Application.AnyAsync(a => a.Name == name && a.Id != id);
+            // Criar a aplicação
+            var applicationEntity = new ApplicationEntity
+            {
+                Name = application.Name,
+                Abbreviation = application.Abbreviation,
+                Team = application.Team,
+                TeamEmail = application.TeamEmail,
+                ApplicationEmail = application.ApplicationEmail
+            };
+
+            await _demoContext.Application.AddAsync(applicationEntity);
+            await _demoContext.SaveChangesAsync();
+            application.Id = applicationEntity.Id;
+
+            // Associar o ApplicationId no graph
+            graph.ApplicationId = applicationEntity.Id;
+
+            // Criar os nodes
+            var nodesToAdd = graph.Nodes.Select(node => new NodeEntity
+            {
+                ApplicationId = graph.ApplicationId,
+                OriginId = node.OriginId,
+                DestinationId = node.DestinationId,
+                Approvals = node.Approvals,
+                Direction = node.Direction
+            }).ToList();
+
+            _demoContext.Node.AddRange(nodesToAdd);
+            await _demoContext.SaveChangesAsync();
+
+            // Buscar os nodes salvos com os includes necessários
+            var savedNodes = await _demoContext.Node
+                .AsNoTracking()
+                .Include(n => n.Application)
+                .Include(n => n.Origin)
+                .Include(n => n.Destination)
+                .Where(n => n.ApplicationId == graph.ApplicationId)
+                .ToListAsync();
+
+            if (!savedNodes.Any())
+                return null!;
+
+            var app = savedNodes.First().Application;
+
+            // Montar unidades únicas
+            var unitDict = new Dictionary<int, UnitDto>();
+            foreach (var node in savedNodes)
+            {
+                void AddUnit(UnitEntity unit)
+                {
+                    if (unit != null && !unitDict.ContainsKey(unit.Id))
+                    {
+                        unitDict[unit.Id] = new UnitDto
+                        {
+                            Id = unit.Id,
+                            Name = unit.Name,
+                            Abbreviation = unit.Abbreviation,
+                            Email = unit.Email
+                        };
+                    }
+                }
+
+                AddUnit(node.Origin);
+                AddUnit(node.Destination);
+            }
+
+            // Retornar aplicação + flow
+            return new NormalizedNodeResponseDto
+            {
+                Application = new ApplicationDto
+                {
+                    Id = app.Id,
+                    Name = app.Name,
+                    Abbreviation = app.Abbreviation,
+                    Team = app.Team,
+                    TeamEmail = app.TeamEmail,
+                    ApplicationEmail = app.ApplicationEmail
+                },
+                Units = unitDict.Values.ToList(),
+                Nodes = savedNodes.Select(n => new NodeDto
+                {
+                    Id = n.Id,
+                    ApplicationId = n.Application.Id,
+                    OriginId = n.Origin.Id,
+                    DestinationId = n.Destination.Id,
+                    Approvals = n.Approvals,
+                    Direction = n.Direction
+                }).ToList()
+            };
         }
-
-        public async Task<bool> ExistsByAbbreviationExceptId(string abbreviation, int id)
-        {
-            return await _demoContext.Application.AnyAsync(a => a.Abbreviation == abbreviation && a.Id != id);
-        }
-
-
     }
 }

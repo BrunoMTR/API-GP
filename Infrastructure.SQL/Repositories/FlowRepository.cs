@@ -22,82 +22,6 @@ namespace Infrastructure.SQL.Repositories
             _demoContext = demoContext;
         }
 
-        public async Task<NormalizedNodeResponseDto?> CreateAsync(GraphDto graph)
-        {
-
-            var nodesToAdd = graph.Nodes.Select(node => new NodeEntity
-            {
-                ApplicationId = graph.ApplicationId,
-                OriginId = node.OriginId,
-                DestinationId = node.DestinationId,
-                Approvals = node.Approvals,
-                Direction = node.Direction
-            }).ToList();
-
-
-            _demoContext.Node.AddRange(nodesToAdd);
-            await _demoContext.SaveChangesAsync();
-
-            var savedNodes = await _demoContext.Node
-                .AsNoTracking()
-                .Include(n => n.Application)
-                .Include(n => n.Origin)
-                .Include(n => n.Destination)
-                .Where(n => n.ApplicationId == graph.ApplicationId && nodesToAdd.Select(x => x.Id).Contains(n.Id))
-                .ToListAsync();
-
-            if (!savedNodes.Any())
-                return null!;
-
-            var application = savedNodes.First().Application;
-
-            var unitDict = new Dictionary<int, UnitDto>();
-            foreach (var node in savedNodes)
-            {
-                void AddUnit(UnitEntity unit)
-                {
-                    if (!unitDict.ContainsKey(unit.Id))
-                    {
-                        unitDict[unit.Id] = new UnitDto
-                        {
-                            Id = unit.Id,
-                            Name = unit.Name,
-                            Abbreviation = unit.Abbreviation,
-                            Email = unit.Email
-                        };
-                    }
-                }
-
-                AddUnit(node.Origin);
-                AddUnit(node.Destination);
-            }
-
-            return new NormalizedNodeResponseDto
-            {
-                Application = new ApplicationDto
-                {
-                    Id = application.Id,
-                    Name = application.Name,
-                    Abbreviation = application.Abbreviation,
-                    Team = application.Team,
-                    TeamEmail = application.TeamEmail,
-                    ApplicationEmail = application.ApplicationEmail
-                },
-                Units = unitDict.Values.ToList(),
-                Nodes = savedNodes.Select(n => new NodeDto
-                {
-                    Id = n.Id,
-                    ApplicationId = n.Application.Id,
-                    OriginId = n.Origin.Id,
-                    DestinationId = n.Destination.Id,
-                    Approvals = n.Approvals,
-                    Direction = n.Direction
-                }).ToList()
-            };
-        }
-
-
-
         public async Task DeleteByApplicationIdAsync(int applicationId)
         {
             await _demoContext.Node
@@ -173,8 +97,8 @@ namespace Infrastructure.SQL.Repositories
             var reactFlowDto = new ReactFlowDto();
 
 
-            int yStep = 100;
-            int xStep = 200;
+            int yStep = 50;
+            int xStep = 300;
             var unitPositions = new Dictionary<int, PositionDto>();
             int index = 0;
 
@@ -182,8 +106,8 @@ namespace Infrastructure.SQL.Repositories
             {
                 unitPositions[unit.Id] = new PositionDto
                 {
-                    X = 0,
-                    Y = index * yStep
+                    X = index * xStep,
+                    Y = 0
                 };
                 index++;
             }
@@ -207,7 +131,7 @@ namespace Infrastructure.SQL.Repositories
                     Id = $"e{n.Id}",
                     Source = $"n{n.OriginId}",
                     Target = $"n{n.DestinationId}",
-                    Label = n.Approvals.HasValue ? $"Aprovações: {n.Approvals}" : null
+                    Label = $"Aprovações: {n.Approvals}"
                 })
             .ToList();
 

@@ -10,13 +10,13 @@
         "tags": [
           "Applications"
         ],
-        "summary": "Create a new application",
+        "summary": "Create a new application and its flow",
         "description": "Creates a new application entity with the provided information. Validates the input before persisting.",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Application"
+                "$ref": "#/components/schemas/CreateApplicationFlowRequest"
               }
             }
           },
@@ -123,30 +123,6 @@
         }
       }
     },
-    "/flows": {
-      "post": {
-        "tags": [
-          "Flows"
-        ],
-        "summary": "Create a new application flow",
-        "description": "Creates a new nodes entity with the provided information. Validates the input before persisting.",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Graph"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/flows/{applicationId}": {
       "get": {
         "tags": [
@@ -173,17 +149,65 @@
         }
       }
     },
-    "/flows/ui/{applicationId}": {
+    "/processes": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "summary": "Create a new Process",
+        "description": "Creates a new process entity with the provided information. Validates the input before persisting.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Process"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/processes/{processId}": {
       "get": {
         "tags": [
-          "Flows"
+          "Process"
         ],
-        "summary": "Retrieve an application flow by the application ID",
-        "description": "Fetches the flow to use with react flow of a specific application.",
-        "operationId": "ReactflowByApplicationId",
+        "summary": "Retrieve an process by ID",
+        "description": "Fetches the process details associated with the specified unique identifier.",
+        "operationId": "processId",
         "parameters": [
           {
-            "name": "applicationId",
+            "name": "processId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Process"
+        ],
+        "summary": "Approve a process by ID",
+        "description": "Approves the process associated with the specified unique identifier, advancing its state in the workflow.",
+        "operationId": "processAprove",
+        "parameters": [
+          {
+            "name": "processId",
             "in": "path",
             "required": true,
             "schema": {
@@ -352,13 +376,21 @@
         "additionalProperties": false,
         "description": "Represents an application that contains processes and steps."
       },
+      "CreateApplicationFlowRequest": {
+        "type": "object",
+        "properties": {
+          "application": {
+            "$ref": "#/components/schemas/Application"
+          },
+          "graph": {
+            "$ref": "#/components/schemas/Graph"
+          }
+        },
+        "additionalProperties": false
+      },
       "Graph": {
         "type": "object",
         "properties": {
-          "applicationId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "nodes": {
             "type": "array",
             "items": {
@@ -385,12 +417,25 @@
           "approvals": {
             "type": "integer",
             "description": "Number of approvals required to traverse this edge (null if not applicable).",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "direction": {
             "type": "string",
             "description": "Direction of the transition (e.g., Forward or Backward).",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Process": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdBy": {
+            "type": "string",
             "nullable": true
           }
         },

@@ -8,8 +8,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "application",
-        "Type": "Presentation.Models.Application",
+        "Name": "request",
+        "Type": "Presentation.Models.Forms.CreateApplicationFlowRequest",
         "IsRequired": true
       },
       {
@@ -152,36 +152,6 @@
   },
   {
     "ContainingType": "Presentation.Endpoints.FlowEndpoints",
-    "Method": "PostFlow",
-    "RelativePath": "flows/",
-    "HttpMethod": "POST",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "graph",
-        "Type": "Presentation.Models.Graph",
-        "IsRequired": true
-      },
-      {
-        "Name": "api-version",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ],
-    "Tags": [
-      "Flows"
-    ]
-  },
-  {
-    "ContainingType": "Presentation.Endpoints.FlowEndpoints",
     "Method": "GetFlow",
     "RelativePath": "flows/{applicationId}",
     "HttpMethod": "GET",
@@ -212,15 +182,45 @@
     "EndpointName": "flowByApplicationId"
   },
   {
-    "ContainingType": "Presentation.Endpoints.FlowEndpoints",
-    "Method": "GetReactFlow",
-    "RelativePath": "flows/ui/{applicationId}",
+    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
+    "Method": "PostProcess",
+    "RelativePath": "processes/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "process",
+        "Type": "Presentation.Models.Process",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Process"
+    ]
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
+    "Method": "GetProcess",
+    "RelativePath": "processes/{processId}",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "applicationId",
+        "Name": "processId",
         "Type": "System.Int32",
         "IsRequired": true
       },
@@ -238,9 +238,40 @@
       }
     ],
     "Tags": [
-      "Flows"
+      "Process"
     ],
-    "EndpointName": "ReactflowByApplicationId"
+    "EndpointName": "processId"
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
+    "Method": "PostProcessAprove",
+    "RelativePath": "processes/{processId}",
+    "HttpMethod": "PATCH",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "processId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Process"
+    ],
+    "EndpointName": "processAprove"
   },
   {
     "ContainingType": "Presentation.Endpoints.UnitEndpoints",

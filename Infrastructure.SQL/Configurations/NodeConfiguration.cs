@@ -19,9 +19,6 @@ namespace Infrastructure.SQL.Configurations
                 .IsRequired()
                 .HasMaxLength(20);
 
-            builder.Property(g => g.Approvals)
-                .IsRequired(false);
-
             builder.HasOne(g => g.Application)
                 .WithMany() 
                 .HasForeignKey(g => g.ApplicationId)

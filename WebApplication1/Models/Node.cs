@@ -22,7 +22,7 @@ namespace Presentation.Models
         /// <summary>
         /// Number of approvals required to traverse this edge (null if not applicable).
         /// </summary>
-        public int? Approvals { get; set; }
+        public int Approvals { get; set; }
 
         /// <summary>
         /// Direction of the transition (e.g., Forward or Backward).

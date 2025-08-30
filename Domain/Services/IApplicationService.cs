@@ -13,6 +13,6 @@ namespace Domain.Services
         Task<List<ApplicationDto>> GetAll();
         Task Delete(int id);
         Task<ApplicationDto> Update(ApplicationDto application,int id);
-        Task<ApplicationDto> Create(ApplicationDto application);
+        Task<NormalizedNodeResponseDto> Create(ApplicationDto application, GraphDto graph);
     }
 }

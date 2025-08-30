@@ -14,7 +14,7 @@ namespace Domain.DTOs
         public int ApplicationId { get; set; }
         public int OriginId { get; set; }
         public int DestinationId { get; set; }
-        public int? Approvals { get; set; }
+        public int Approvals { get; set; }
         public string Direction { get; set; }
     }
 }

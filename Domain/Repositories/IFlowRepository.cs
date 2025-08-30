@@ -10,8 +10,6 @@ namespace Domain.Repositories
 {
     public interface IFlowRepository
     {
-        Task<NormalizedNodeResponseDto?> CreateAsync(GraphDto graph);
-
         Task<NormalizedNodeResponseDto?> GetByApplicationIdAsync(int applicationId);
 
         Task DeleteByApplicationIdAsync(int applicationId);

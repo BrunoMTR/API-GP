@@ -10,7 +10,6 @@ namespace Presentation.Mapping
         {
             return new GraphDto
             {
-                ApplicationId = graph.ApplicationId,
                 Nodes = graph.Nodes?.Select(n => new NodeDto
                 {                
                     OriginId = n.OriginId,                  
@@ -21,13 +20,10 @@ namespace Presentation.Mapping
             };
         }
 
-
-
         public Graph Map(GraphDto graphDto)
         {
             return new Graph
             {
-                ApplicationId = graphDto.ApplicationId,
                 Nodes = graphDto.Nodes?.Select(n => new Node
                 {
                     OriginId = n.OriginId,

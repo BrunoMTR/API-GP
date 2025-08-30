@@ -11,7 +11,6 @@ namespace Domain.Services
     public interface IFlowService
     {
         Task<NormalizedNodeResponseDto?> Retrieve(int applicationId);
-        Task<NormalizedNodeResponseDto?> Create(GraphDto graph);
         Task Delete(int applicationId);
 
         Task<ReactFlowDto?> RetrieveFlow(int applicationId);

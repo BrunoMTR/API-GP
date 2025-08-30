@@ -33,6 +33,9 @@ builder.Services.AddScoped<IGraphMapper, GraphMapper>();
 builder.Services.AddScoped<IUnitMapper, UnitMapper>();
 builder.Services.AddScoped<IUnitService, UnitService>();
 builder.Services.AddScoped<IUnitRepository, UnitRepository>();
+builder.Services.AddScoped<IProcessRepository, ProcessRepository>();
+builder.Services.AddScoped<IProcessMapper, ProcessMapper>();
+builder.Services.AddScoped<IProcessService, ProcessService>();
 
 
 builder.Services.AddCors(options =>
@@ -116,6 +119,7 @@ app.UseHttpsRedirection();
 app.AddApllicatioGroup();
 app.AddFlowGroup();
 app.AddUnitEndpoints();
+app.AddProcessEndpoints();
 
 app.UseCors("AllowAll");
 

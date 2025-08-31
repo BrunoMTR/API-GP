@@ -251,8 +251,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "processId",
-        "Type": "System.Int32",
+        "Name": "request",
+        "Type": "Presentation.Models.Request.ApproveProcessRequest",
         "IsRequired": true
       },
       {
@@ -272,6 +272,37 @@
       "Process"
     ],
     "EndpointName": "processAprove"
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
+    "Method": "GetProcessByApplicationId",
+    "RelativePath": "processes/application/{applicationId}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Process"
+    ],
+    "EndpointName": "processesByApplicationId"
   },
   {
     "ContainingType": "Presentation.Endpoints.UnitEndpoints",

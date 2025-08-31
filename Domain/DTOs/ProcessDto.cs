@@ -15,6 +15,8 @@ namespace Domain.DTOs
         public int At { get; set; }
         public int Approvals { get; set; }
         public ProcessStatus Status { get; set; }
+
+        public List<HistoryDto> Histories { get; set; } = new List<HistoryDto>();
     }
 
     public enum ProcessStatus

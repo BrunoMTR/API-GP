@@ -36,6 +36,7 @@ builder.Services.AddScoped<IUnitRepository, UnitRepository>();
 builder.Services.AddScoped<IProcessRepository, ProcessRepository>();
 builder.Services.AddScoped<IProcessMapper, ProcessMapper>();
 builder.Services.AddScoped<IProcessService, ProcessService>();
+builder.Services.AddScoped<IHistoryRepository, HistoryRepository>();
 
 
 builder.Services.AddCors(options =>

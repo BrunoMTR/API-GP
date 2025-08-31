@@ -15,77 +15,99 @@ namespace BL.Services
         private IProcessRepository _processRepository;
 
         private IFlowRepository _flowRepository;
+        private IHistoryRepository _historyRepository;
 
-        public ProcessService(IProcessRepository processRepository, IFlowRepository flowRepository)
+        public ProcessService(IProcessRepository processRepository, IFlowRepository flowRepository, IHistoryRepository historyRepository)
         {
             _processRepository = processRepository;
             _flowRepository = flowRepository;
+            _historyRepository = historyRepository;
         }
 
-        public async Task<ProcessDto> Approve(int processId)
+        public async Task<ProcessDto> Approve(int processId, string updatedBy)
         {
+            // --- Recupera processo ---
             var process = await _processRepository.RetrieveAsync(processId);
             if (process == null)
                 throw new Exception("Process not found.");
 
-            // Aceita apenas Pending ou Initiated
+            if (process.Status == ProcessStatus.Concluded)
+                throw new Exception("Process already concluded.");
+
             if (process.Status != ProcessStatus.Pending && process.Status != ProcessStatus.Initiated)
                 throw new Exception("Only pending or initiated processes can be approved.");
 
+            // --- Recupera fluxo ---
             var flow = await _flowRepository.GetByApplicationIdAsync(process.ApplicationId);
-            if (flow == null || flow.Nodes == null)
+            var nodes = flow?.Nodes;
+            if (flow == null || nodes == null)
                 throw new Exception("Flow not found.");
 
-            // Pega o currentNode apenas com direção "AVANÇO"
-            var currentNode = flow.Nodes
-                .FirstOrDefault(n => n.OriginId == process.At
-                                     && n.Direction.Equals("AVANÇO", StringComparison.OrdinalIgnoreCase));
+            // Nó atual
+            var currentNode = nodes.FirstOrDefault(n =>
+                n.OriginId == process.At &&
+                n.Direction.Equals("AVANÇO", StringComparison.OrdinalIgnoreCase));
 
             if (currentNode == null)
                 throw new Exception("Current node not found in flow or no forward node available.");
 
+            // Nó inicial = aquele cujo OriginId aparece apenas uma vez
+            var initialNode = nodes
+                .GroupBy(n => n.OriginId)
+                .Where(g => g.Count() == 1)
+                .Select(g => g.First())
+                .FirstOrDefault();
+
+            if (initialNode == null)
+                throw new Exception("Initial node not found.");
+
+            // Total de aprovações necessárias para percorrer todo o fluxo (todos AVANÇO)
+            int totalFlowApprovals = nodes
+                .Where(n => n.Direction.Equals("AVANÇO", StringComparison.OrdinalIgnoreCase))
+                .Sum(n => n.Approvals);
+
             int requiredApprovals = currentNode.Approvals;
+            bool willTransition = (process.Approvals + 1) >= requiredApprovals;
+            int nextNodeId = currentNode.DestinationId;
 
-            if (process.Approvals + 1 >= requiredApprovals)
+            // --- Salvar histórico ANTES de atualizar ---
+            var historyDto = new HistoryDto
             {
-                process.Approvals = 0;
+                ApplicationId = process.ApplicationId,
+                ProcessId = process.Id,
+                At = process.At,                   // onde estava
+                UpdatedBy = updatedBy,             // quem aprovou
+                UpdatedAt = DateTime.UtcNow        // quando
+            };
+            await _historyRepository.CreateAsync(historyDto);
 
-                // Avança para o destinationId do currentNode
-                process.At = currentNode.DestinationId;
+            // --- Atualização do processo ---
+            if (willTransition)
+            {
+                // Completa quorum → avança
+                process.Approvals = 0; // zera contagem do nó atual
+                process.At = nextNodeId;
 
-                // Se estava inicializado, passa para Pending
-                if (process.Status == ProcessStatus.Initiated)
-                    process.Status = ProcessStatus.Pending;
-
-                // Identifica o node inicial do fluxo (aquele que não é destino de nenhum node de recuo)
-                var initialNode = flow.Nodes
-                    .Where(n => !flow.Nodes.Any(x => x.DestinationId == n.OriginId
-                                                     && x.Direction.Equals("RECUO", StringComparison.OrdinalIgnoreCase)))
-                    .FirstOrDefault();
-
-                // Se o destinationId do currentNode aponta para o node inicial → concluído
-                if (initialNode != null && currentNode.DestinationId == initialNode.OriginId)
+                // Retornou ao initial node → Concluded
+                if (nextNodeId == initialNode.OriginId)
                 {
                     process.Status = ProcessStatus.Concluded;
-                    process.At = currentNode.DestinationId;
+                    process.Approvals = totalFlowApprovals;
+                }
+                // Saiu do initial node → vira Pending
+                else if (process.Status == ProcessStatus.Initiated)
+                {
+                    process.Status = ProcessStatus.Pending;
                 }
             }
             else
             {
+                // Ainda não completou quorum → só acumula
                 process.Approvals += 1;
-
-                if (process.Status == ProcessStatus.Initiated)
-                    process.Status = ProcessStatus.Pending;
             }
 
-            var updatedProcess = await _processRepository.UpdateAsync(processId, process);
-            return updatedProcess;
+            return await _processRepository.UpdateAsync(processId, process);
         }
-
-
-
-
-
 
 
 

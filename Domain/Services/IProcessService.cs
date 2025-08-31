@@ -9,6 +9,6 @@ namespace Domain.Services
         Task<List<ProcessDto>> GetAllByApplicationId(int applicationId);
         Task<ProcessDto> Create(ProcessDto process);
 
-        public Task<ProcessDto> Approve(int processId);
+        public Task<ProcessDto> Approve(int processId, string updatedBy);
     }
 }

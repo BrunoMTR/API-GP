@@ -10,5 +10,6 @@ namespace Domain.Repositories
     public interface IHistoryRepository
     {
         Task<List<HistoryDto>> GetAllByApplicationIdAsync(int applicationId);
+        Task<HistoryDto> CreateAsync(HistoryDto historyDto);
     }
 }

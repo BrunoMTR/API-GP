@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Presentation.Mapping.Interfaces;
 using Presentation.Models;
 using Presentation.Models.Forms;
+using Presentation.Models.Request;
 
 namespace Presentation.Endpoints
 {
@@ -33,12 +34,22 @@ namespace Presentation.Endpoints
             return Results.Ok(process);
         }
 
-        public static async Task<IResult> PostProcessAprove([FromRoute] int processId,
+        public static async Task<IResult> PostProcessAprove([FromBody] ApproveProcessRequest request,
            [FromServices] IProcessService processService)
         {
-            var updatedProcess = await processService.Approve(processId);
+            var updatedProcess = await processService.Approve(request.ProcessId, request.UpdatedBy);
 
             return Results.Ok(updatedProcess);
+        }
+
+        public static async Task<IResult> GetProcessByApplicationId(int applicationId,
+          [FromServices] IProcessService processService)
+        {
+            var processes = await processService.GetAllByApplicationId(applicationId);
+            if (processes is null)
+                return Results.NotFound();
+
+            return Results.Ok(processes);
         }
 
     }

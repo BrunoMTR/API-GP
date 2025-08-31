@@ -38,6 +38,15 @@ namespace Presentation.RouteGroups
                  });
 
 
+            group.MapGet("/application/{applicationId}", ProcessEndpoints.GetProcessByApplicationId)
+                .WithName("processesByApplicationId")
+                 .WithOpenApi(operation => new(operation)
+                 {
+                     Summary = "Retrieve all processes by Application ID",
+                     Description = "Fetches all processes details associated with the specified unique aplication identifier."
+                 });
+
+
         }
     }
 }

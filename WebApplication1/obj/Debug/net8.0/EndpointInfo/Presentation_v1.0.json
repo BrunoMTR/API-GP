@@ -205,9 +205,34 @@
         "summary": "Approve a process by ID",
         "description": "Approves the process associated with the specified unique identifier, advancing its state in the workflow.",
         "operationId": "processAprove",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApproveProcessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/processes/application/{applicationId}": {
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "summary": "Retrieve all processes by Application ID",
+        "description": "Fetches all processes details associated with the specified unique aplication identifier.",
+        "operationId": "processesByApplicationId",
         "parameters": [
           {
-            "name": "processId",
+            "name": "applicationId",
             "in": "path",
             "required": true,
             "schema": {
@@ -375,6 +400,20 @@
         },
         "additionalProperties": false,
         "description": "Represents an application that contains processes and steps."
+      },
+      "ApproveProcessRequest": {
+        "type": "object",
+        "properties": {
+          "processId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "CreateApplicationFlowRequest": {
         "type": "object",

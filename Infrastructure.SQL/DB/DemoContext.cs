@@ -20,6 +20,7 @@ namespace Infrastructure.SQL.DB
         public DbSet<ApplicationEntity> Application { get; set; }
         public DbSet<NodeEntity> Node { get; set; }
         public DbSet<ProcessEntity> Process { get; set; }
+        public DbSet<HistoryEntity> History { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

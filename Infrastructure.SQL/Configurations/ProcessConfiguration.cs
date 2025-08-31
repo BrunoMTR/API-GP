@@ -47,6 +47,11 @@ namespace Infrastructure.SQL.Configurations
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasIndex(p => p.ApplicationId);
+
+            builder.HasMany(p => p.Histories)
+                    .WithOne()
+                    .HasForeignKey(h => h.ProcessId)
+                    .OnDelete(DeleteBehavior.Cascade);
         }
 
     }

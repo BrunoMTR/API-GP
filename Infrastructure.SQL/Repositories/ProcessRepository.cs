@@ -40,40 +40,109 @@ namespace Infrastructure.SQL.Repositories
             return process;
         }
 
-        public Task<List<ProcessDto>> GetAllAsync()
+        public async Task<List<ProcessDto>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var processes = await _demoContext.Process
+                .Include(p => p.Histories) 
+                .ToListAsync();
+
+            return processes.Select(p => new ProcessDto
+            {
+                Id = p.Id,
+                ApplicationId = p.ApplicationId,
+                At = p.At,
+                Approvals = p.Approvals,
+                Status = p.Status,
+                CreatedAt = p.CreatedAt,
+                CreatedBy = p.CreatedBy,
+                Histories = p.Histories
+                    .Select(h => new HistoryDto
+                    {
+                        Id = h.Id,
+                        ApplicationId = h.ApplicationId,
+                        ProcessId = h.ProcessId,
+                        At = h.At,
+                        UpdatedBy = h.UpdatedBy,
+                        UpdatedAt = h.UpdatedAt
+                    }).ToList()
+            }).ToList();
         }
 
-        public Task<List<ProcessDto>> GetAllByApplicationIdAsync(int applicationId)
+
+        public async Task<List<ProcessDto>> GetAllByApplicationIdAsync(int applicationId)
         {
-            throw new NotImplementedException();
+            var processes = await _demoContext.Process
+                .Where(p => p.ApplicationId == applicationId)
+                .Include(p => p.Histories) 
+                .ToListAsync();
+
+            return processes.Select(p => new ProcessDto
+            {
+                Id = p.Id,
+                ApplicationId = p.ApplicationId,
+                At = p.At,
+                Approvals = p.Approvals,
+                Status = p.Status,
+                CreatedAt = p.CreatedAt,
+                CreatedBy = p.CreatedBy,
+                Histories = p.Histories
+                    .Select(h => new HistoryDto
+                    {
+                        Id = h.Id,
+                        ApplicationId = h.ApplicationId,
+                        ProcessId = h.ProcessId,
+                        At = h.At,
+                        UpdatedBy = h.UpdatedBy,
+                        UpdatedAt = h.UpdatedAt
+                    }).ToList()
+            }).ToList();
         }
+
 
         public async Task<ProcessDto> RetrieveAsync(int id)
         {
-            return await _demoContext.Process.AsNoTracking()
-               .Where(x => x.Id == id)
-               .Select(x => new ProcessDto
-               {
-                  ApplicationId = x.ApplicationId,
-                   Id = x.Id,
-                   CreatedAt = x.CreatedAt,
-                   CreatedBy = x.CreatedBy,
-                   At = x.At,
-                   Approvals = x.Approvals,
-                   Status = x.Status
-
-               }).FirstOrDefaultAsync();
+            return await _demoContext.Process
+                .AsNoTracking()
+                .Where(x => x.Id == id)
+                .Select(x => new ProcessDto
+                {
+                    ApplicationId = x.ApplicationId,
+                    Id = x.Id,
+                    CreatedAt = x.CreatedAt,
+                    CreatedBy = x.CreatedBy,
+                    At = x.At,
+                    Approvals = x.Approvals,
+                    Status = x.Status,
+                    Histories = x.Histories
+                        .Select(h => new HistoryDto
+                        {
+                            Id = h.Id,
+                            ApplicationId = h.ApplicationId,
+                            ProcessId = h.ProcessId,
+                            At = h.At,
+                            UpdatedBy = h.UpdatedBy,
+                            UpdatedAt = h.UpdatedAt
+                        })
+                        .ToList()
+                })
+                .FirstOrDefaultAsync();
         }
+
 
 
         public async Task<ProcessDto> UpdateAsync(int processId, ProcessDto process)
         {
-            var entity = await _demoContext.Process.FindAsync(processId);
+            var entity = await _demoContext.Process
+                .Include(p => p.Histories) // garante que o EF carregue o histórico
+                .FirstOrDefaultAsync(p => p.Id == processId);
+
+            if (entity == null)
+                throw new Exception("Process not found.");
+
             bool hasChanges = entity.At != process.At ||
-                      entity.Approvals != process.Approvals ||
-                      entity.Status != process.Status;
+                              entity.Approvals != process.Approvals ||
+                              entity.Status != process.Status;
+
             if (!hasChanges)
                 return process;
 
@@ -82,15 +151,28 @@ namespace Infrastructure.SQL.Repositories
             entity.Status = process.Status;
 
             _demoContext.Process.Update(entity);
-
             await _demoContext.SaveChangesAsync();
 
             process.Id = entity.Id;
             process.Status = entity.Status;
+
+            // Mapeia corretamente para DTO
+            process.Histories = entity.Histories?
+                .Select(h => new HistoryDto
+                {
+                    Id = h.Id,
+                    ApplicationId = h.ApplicationId,
+                    ProcessId = h.ProcessId,
+                    At = h.At,
+                    UpdatedBy = h.UpdatedBy,
+                    UpdatedAt = h.UpdatedAt
+                }).ToList();
+
             return process;
         }
 
-        
+
+
 
 
 

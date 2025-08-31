@@ -16,5 +16,6 @@ namespace Infrastructure.SQL.DB.Entities
         public int At { get; set; }
         public int Approvals { get; set; }
         public ProcessStatus Status { get; set; }
+        public ICollection<HistoryEntity> Histories { get; set; } = new List<HistoryEntity>();
     }
 }

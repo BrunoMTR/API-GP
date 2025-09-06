@@ -171,6 +171,18 @@
             "description": "OK"
           }
         }
+      },
+      "get": {
+        "tags": [
+          "Process"
+        ],
+        "summary": "Retrieve all processes flow",
+        "description": "Fetches all processes flow states",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/processes/{processId}": {

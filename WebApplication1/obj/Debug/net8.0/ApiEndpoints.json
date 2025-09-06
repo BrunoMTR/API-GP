@@ -213,6 +213,31 @@
   },
   {
     "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
+    "Method": "GetAllProcesses",
+    "RelativePath": "processes/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Process"
+    ]
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
     "Method": "GetProcess",
     "RelativePath": "processes/{processId}",
     "HttpMethod": "GET",

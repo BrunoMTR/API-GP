@@ -4,19 +4,19 @@ using Microsoft.EntityFrameworkCore;
 using Presentation.Mapping;
 using Presentation.Mapping.Interfaces;
 using Presentation.RouteGroups;
-using System.Data.Common;
-using System.Data.SqlTypes;
 using FluentValidation;
 using Infrastructure.SQL.Repositories;
 using Domain.Services;
 using BL.Services;
-using Microsoft.AspNetCore.Builder;
 using Asp.Versioning;
 using Presentation.Swagger;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Serilog;
+using Infrastructure.Logging.Configuration;
+using Presentation.Middlewares;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,6 +38,7 @@ builder.Services.AddScoped<IProcessMapper, ProcessMapper>();
 builder.Services.AddScoped<IProcessService, ProcessService>();
 builder.Services.AddScoped<IHistoryRepository, HistoryRepository>();
 
+builder.Host.UseSerilog(LoggingConfiguration.Configure);
 
 builder.Services.AddCors(options =>
 {
@@ -96,6 +97,10 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+app.UseSerilogRequestLogging();
+app.UseCustomLogging();
+
+
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<DemoContext>();
@@ -123,6 +128,7 @@ app.AddUnitEndpoints();
 app.AddProcessEndpoints();
 
 app.UseCors("AllowAll");
+
 
 app.UseAuthentication();
 app.UseAuthorization();

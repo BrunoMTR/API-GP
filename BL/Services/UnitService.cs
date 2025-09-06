@@ -38,9 +38,14 @@ namespace BL.Services
             await _unitRepository.DeleteAsync(unitId);
         }
 
-        public async Task<List<UnitDto>> GetAll()
+        public async Task<List<UnitDto>> GetAllAsync()
         {
             return await _unitRepository.GetAllUnitsAsync();
+        }
+
+        public async Task<List<int>> GetExistingUnitIdsAsync(List<int> ids)
+        {
+            return await _unitRepository.GetExistingUnitIdsAsync(ids);
         }
 
         public Task<UnitDto> Retrieve(int unitId)

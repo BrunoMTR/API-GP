@@ -12,7 +12,8 @@ namespace Domain.Services
         Task<UnitDto> Retrieve(int unitId);
         Task<UnitDto> Create(UnitDto unit);
         Task Delete(int unitId);
-        Task<List<UnitDto>> GetAll();
+        Task<List<UnitDto>> GetAllAsync();
         Task<UnitDto> Update(int unitId, UnitDto unit);
+        Task<List<int>> GetExistingUnitIdsAsync(List<int> ids);
     }
 }

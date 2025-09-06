@@ -9,5 +9,6 @@ namespace Domain.DTOs.Flow
     public class NodeDataDto
     {
         public string Label { get; set; } = null!;
+        public string? Status { get; set; } = null!;
     }
 }

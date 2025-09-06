@@ -12,6 +12,7 @@ namespace BL.Services
     public class ApplicationService : IApplicationService
     {
         private readonly IApplicationRepository _applicationRepository;
+
         public ApplicationService(IApplicationRepository applicationRepository)
         {
             _applicationRepository = applicationRepository;
@@ -20,8 +21,11 @@ namespace BL.Services
         public async Task<NormalizedNodeResponseDto?> Create(ApplicationDto application, GraphDto graph)
         {
             var extendedNodes = new List<NodeDto>();
-            foreach (var node in graph.Nodes)
+            for (int i = 0; i < graph.Nodes.Count; i++)
             {
+                var node = graph.Nodes[i];
+
+                // Adiciona AVANÇO
                 extendedNodes.Add(new NodeDto
                 {
                     OriginId = node.OriginId,
@@ -30,13 +34,17 @@ namespace BL.Services
                     Approvals = node.Approvals
                 });
 
-                extendedNodes.Add(new NodeDto
+                // Adiciona RECUO apenas se não for o último node
+                if (i < graph.Nodes.Count - 1)
                 {
-                    OriginId = node.DestinationId,
-                    DestinationId = node.OriginId,
-                    Direction = "RECUO",
-                    Approvals = 0
-                });
+                    extendedNodes.Add(new NodeDto
+                    {
+                        OriginId = node.DestinationId,
+                        DestinationId = node.OriginId,
+                        Direction = "RECUO",
+                        Approvals = 0
+                    });
+                }
             }
 
             var newGraph = new GraphDto
@@ -46,9 +54,10 @@ namespace BL.Services
             };
 
             var newApplication = await _applicationRepository.CreateAsync(application, newGraph);
-     
+
             return newApplication;
         }
+
 
 
         public async Task Delete(int id)

@@ -14,5 +14,6 @@ namespace Domain.Repositories
         Task<UnitDto> UpdateAsync(int unitId, UnitDto unit);
         Task<List<UnitDto>> GetAllUnitsAsync();
         Task DeleteAsync(int unitId);
+        Task<List<int>> GetExistingUnitIdsAsync(List<int> ids);
     }
 }

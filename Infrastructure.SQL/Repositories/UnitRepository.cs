@@ -55,6 +55,14 @@ namespace Infrastructure.SQL.Repositories
                 }).ToListAsync();
         }
 
+        public async Task<List<int>> GetExistingUnitIdsAsync(List<int> ids)
+        {
+            return await _demoContext.Unit
+                .Where(u => ids.Contains(u.Id))
+                .Select(u => u.Id)
+                .ToListAsync();
+        }
+
         public async Task<UnitDto> RetrieveAsync(int unitId)
         {
             return await _demoContext.Unit.AsNoTracking()

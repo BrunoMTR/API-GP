@@ -1,4 +1,6 @@
 ﻿using Domain.DTOs;
+using Domain.DTOs.Flow;
+using Domain.DTOs.FlowDTOs;
 using Domain.Repositories;
 using Domain.Services;
 using System;
@@ -145,7 +147,7 @@ namespace BL.Services
             return createdProcess;
         }
 
-        public Task<List<ProcessDto>> GetAll()
+        public Task<List<ProcessFlowDto>> GetAll()
         {
             return _processRepository.GetAllAsync();
         }
@@ -153,6 +155,12 @@ namespace BL.Services
         public Task<List<ProcessDto>> GetAllByApplicationId(int applicationId)
         {
             return _processRepository.GetAllByApplicationIdAsync(applicationId);
+        }
+
+        public async Task<ProcessFlowDto?> GetProcessFlow(int processId)
+        {
+            var flow = await _flowRepository.GetFlowByApplicationId(1);
+            return await _processRepository.GetProcessFlow(processId, flow);
         }
 
         public Task<ProcessDto> Retrieve(int id)

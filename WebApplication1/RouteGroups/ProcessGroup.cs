@@ -29,6 +29,13 @@ namespace Presentation.RouteGroups
                      Description = "Fetches the process details associated with the specified unique identifier."
                  });
 
+            group.MapGet("/", ProcessEndpoints.GetAllProcesses)
+                .WithOpenApi(operation => new(operation)
+                {
+                    Summary = "Retrieve all processes flow",
+                    Description = "Fetches all processes flow states"
+                });
+
             group.MapPatch("/{processId}", ProcessEndpoints.PostProcessAprove)
                 .WithName("processAprove")
                  .WithOpenApi(operation => new(operation)

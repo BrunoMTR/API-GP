@@ -1,13 +1,10 @@
 ﻿using Domain.DTOs;
+using Domain.DTOs.Flow;
+using Domain.DTOs.FlowDTOs;
 using Domain.Repositories;
 using Infrastructure.SQL.DB;
 using Infrastructure.SQL.DB.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.SQL.Repositories
 {
@@ -40,33 +37,71 @@ namespace Infrastructure.SQL.Repositories
             return process;
         }
 
-        public async Task<List<ProcessDto>> GetAllAsync()
+        public async Task<List<ProcessFlowDto>> GetAllAsync()
         {
             var processes = await _demoContext.Process
-                .Include(p => p.Histories) 
+                .Include(p => p.Histories)
                 .ToListAsync();
 
-            return processes.Select(p => new ProcessDto
+            var results = new List<ProcessFlowDto>();
+
+            foreach (var p in processes)
             {
-                Id = p.Id,
-                ApplicationId = p.ApplicationId,
-                At = p.At,
-                Approvals = p.Approvals,
-                Status = p.Status,
-                CreatedAt = p.CreatedAt,
-                CreatedBy = p.CreatedBy,
-                Histories = p.Histories
-                    .Select(h => new HistoryDto
+                // 1. Buscar o fluxo da aplicação associada
+                var flow = await new FlowRepository(_demoContext)
+                    .GetFlowByApplicationId(p.ApplicationId);
+
+                if (flow == null) continue;
+
+                // 2. Calcular nodes visitados
+                var visitedAtValues = p.Histories
+                    .OrderBy(h => h.UpdatedAt)
+                    .Select(h => h.At)
+                    .ToHashSet();
+
+                var currentAt = p.At;
+
+                // 3. Marcar os nodes
+                var nodes = flow.Nodes.Select(n =>
+                {
+                    int nodeId = int.Parse(n.Id.Substring(1)); // n1 -> 1
+                    var status = visitedAtValues.Contains(nodeId) ? "visited" : "pending";
+                    if (nodeId == currentAt) status = "current";
+
+                    return new ReactFlowNodeDto
                     {
-                        Id = h.Id,
-                        ApplicationId = h.ApplicationId,
-                        ProcessId = h.ProcessId,
-                        At = h.At,
-                        UpdatedBy = h.UpdatedBy,
-                        UpdatedAt = h.UpdatedAt
-                    }).ToList()
-            }).ToList();
+                        Id = n.Id,
+                        Position = n.Position,
+                        Type = n.Type,
+                        Data = new NodeDataDto
+                        {
+                            Label = n.Data.Label,
+                            Status = status
+                        }
+                    };
+                }).ToList();
+
+                // 4. Edges iguais ao fluxo original
+                var edges = flow.Edges;
+
+                // 5. Adicionar metadados do processo
+                results.Add(new ProcessFlowDto
+                {
+                    Id = p.Id.ToString(),
+                    CreatedAt = p.CreatedAt,
+                    CreatedBy = p.CreatedBy,
+                    At = p.At.ToString(),
+                    Workflows = p.ApplicationId.ToString(), // podes mudar se tiveres tabela Workflow
+                    Status = p.Status.ToString(),
+                    Nodes = nodes,
+                    Edges = edges
+                });
+            }
+
+            return results;
         }
+
+
 
 
         public async Task<List<ProcessDto>> GetAllByApplicationIdAsync(int applicationId)
@@ -171,6 +206,55 @@ namespace Infrastructure.SQL.Repositories
             return process;
         }
 
+
+
+        public async Task<ProcessFlowDto?> GetProcessFlow(int processId, ReactFlowDto flow)
+        {
+
+            if (flow == null) return null;
+
+            if (flow == null) return null;
+
+            // 2. Pega o processo e histórico
+            var process = await RetrieveAsync(processId);
+            if (process == null) return null;
+
+            var visitedAtValues = process.Histories
+                .OrderBy(h => h.UpdatedAt)
+                .Select(h => h.At)
+                .ToHashSet();
+
+            var currentAt = process.At;
+
+            // 3. Marca nodes como "percorrido", "atual" ou normal
+            var nodes = flow.Nodes.Select(n =>
+            {
+                int nodeId = int.Parse(n.Id.Substring(1)); // n1 -> 1
+                var status = visitedAtValues.Contains(nodeId) ? "visited" : "pending";
+                if (nodeId == currentAt) status = "current";
+
+                return new ReactFlowNodeDto
+                {
+                    Id = n.Id,
+                    Position = n.Position,
+                    Type = n.Type,
+                    Data = new NodeDataDto
+                    {
+                        Label = n.Data.Label,
+                        Status = status // podemos usar no front pra cores
+                    }
+                };
+            }).ToList();
+
+            // 4. Mantém edges do fluxo original
+            var edges = flow.Edges;
+
+            return new ProcessFlowDto
+            {
+                Nodes = nodes,
+                Edges = edges
+            };
+        }
 
 
 

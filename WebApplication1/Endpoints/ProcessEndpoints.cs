@@ -27,11 +27,20 @@ namespace Presentation.Endpoints
         public static async Task<IResult> GetProcess(int processId,
            [FromServices] IProcessService processService)
         {
-            var process = await processService.Retrieve(processId);
+            var process = await processService.GetProcessFlow(processId);
             if (process is null)
                 return Results.NotFound();
 
             return Results.Ok(process);
+        }
+
+        public static async Task<IResult> GetAllProcesses([FromServices] IProcessService processService)
+        {
+            var processes = await processService.GetAll();
+            if (processes is null)
+                return Results.NotFound();
+
+            return Results.Ok(processes);
         }
 
         public static async Task<IResult> PostProcessAprove([FromBody] ApproveProcessRequest request,

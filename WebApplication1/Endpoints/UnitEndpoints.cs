@@ -38,7 +38,7 @@ namespace Presentation.Endpoints
 
         public static async Task<IResult> GetAllUnits([FromServices]IUnitService unitService)
         {
-            var units = await unitService.GetAll();
+            var units = await unitService.GetAllAsync();
             return Results.Ok(units);
         }
 

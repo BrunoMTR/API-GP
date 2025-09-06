@@ -1,4 +1,6 @@
-﻿using Domain.Services;
+﻿using BL.Services;
+using Domain.Services;
+using Infrastructure.SQL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Mapping.Interfaces;
@@ -13,13 +15,31 @@ namespace Presentation.Endpoints
     {
         public static async Task<IResult> PostApplication([FromBody] CreateApplicationFlowRequest request,
             [FromServices] IApplicationMapper mapperApplication, [FromServices] IGraphMapper mapperGraph,
-            [FromServices] IApplicationService applicationService)
+            [FromServices] IApplicationService applicationService,
+            [FromServices] IUnitService unitService)
         {
             var applicationDto = mapperApplication.Map(request.Application);
             var graphDto = mapperGraph.Map(request.Graph);
+
+            var allIds = graphDto.Nodes
+                .SelectMany(n => new[] { n.OriginId, n.DestinationId })
+                .Distinct()
+                .ToList();
+
+            // Pegar IDs que existem no banco
+            var existingIds = await unitService.GetExistingUnitIdsAsync(allIds);
+
+            // Descobrir quais não existem
+            var missingIds = allIds.Except(existingIds).ToList();
+            if (missingIds.Any())
+                return Results.BadRequest($"UnitIds inválidos: {string.Join(", ", missingIds)}");
+
+
             var newApplication = await applicationService.Create(applicationDto,graphDto);
             if (newApplication is null)
                 return Results.Conflict("Já existe outra aplicação com o mesmo nome ou Abreviatura.");
+
+            
 
             return Results.CreatedAtRoute(
                 "applicationId",

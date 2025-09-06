@@ -1,0 +1,490 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Serilog.Sinks.Grafana.Loki</name>
+    </assembly>
+    <members>
+        <member name="T:Serilog.Sinks.Grafana.Loki.DefaultReservedPropertyRenamingStrategy">
+            <summary>
+            <inheritdoc cref="T:Serilog.Sinks.Grafana.Loki.IReservedPropertyRenamingStrategy"/>
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.DefaultReservedPropertyRenamingStrategy.Rename(System.String)">
+            <summary>
+            <inheritdoc cref="M:Serilog.Sinks.Grafana.Loki.IReservedPropertyRenamingStrategy.Rename(System.String)"/>
+            </summary>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.DictionaryComparer`2">
+            <summary>
+            Used to compare if two dictionaries have equal key and values
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient">
+            <summary>
+            Base http client for sending log events to Grafana Loki.
+            Implements method for sending authorization header
+            </summary>
+        </member>
+        <member name="F:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient.HttpClient">
+            <summary>
+            <see cref="F:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient.HttpClient"/> used for requests.
+            </summary>
+        </member>
+        <member name="F:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient.TenantHeader">
+            <summary>
+            Header used for passing tenant ID. See <a href="https://grafana.com/docs/loki/latest/operations/multi-tenancy/">docs</a>.
+            </summary>
+        </member>
+        <member name="F:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient.TenantIdValueRegex">
+            <summary>
+            Regex for Tenant ID validation.
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient"/> class.
+            </summary>
+            <param name="httpClient">
+            <see cref="F:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient.HttpClient"/> be used for HTTP requests.
+            </param>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient.PostAsync(System.String,System.IO.Stream)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient.SetCredentials(Serilog.Sinks.Grafana.Loki.LokiCredentials)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient.SetTenant(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.HttpClients.BaseLokiHttpClient.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.HttpClients.LokiGzipHttpClient">
+            <summary>
+            Http client with gzip compression used for sending log events to Grafana Loki.
+            </summary>
+        </member>
+        <member name="F:Serilog.Sinks.Grafana.Loki.HttpClients.LokiGzipHttpClient.CompressionLevel">
+            <summary>
+            <see cref="F:Serilog.Sinks.Grafana.Loki.HttpClients.LokiGzipHttpClient.CompressionLevel"/> used for compression.
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.HttpClients.LokiGzipHttpClient.#ctor(System.Net.Http.HttpClient,System.IO.Compression.CompressionLevel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Serilog.Sinks.Grafana.Loki.HttpClients.LokiHttpClient"/> class.
+            </summary>
+            <param name="httpClient">
+            <see cref="T:System.Net.Http.HttpClient"/> be used for HTTP requests.
+            </param>
+            <param name="compressionLevel">
+            <see cref="F:Serilog.Sinks.Grafana.Loki.HttpClients.LokiGzipHttpClient.CompressionLevel"/> be used for HTTP requests.
+            </param>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.HttpClients.LokiGzipHttpClient.PostAsync(System.String,System.IO.Stream)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.HttpClients.LokiHttpClient">
+            <summary>
+            Default http client used for sending log events to Grafana Loki.
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.HttpClients.LokiHttpClient.#ctor(System.Net.Http.HttpClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Serilog.Sinks.Grafana.Loki.HttpClients.LokiHttpClient"/> class.
+            </summary>
+            <param name="httpClient">
+            <see cref="T:System.Net.Http.HttpClient"/> be used for HTTP requests.
+            </param>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.HttpClients.LokiHttpClient.PostAsync(System.String,System.IO.Stream)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.ILokiBatchFormatter">
+            <summary>
+            Formats batches of log events into payloads that can be sent over the network.
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.ILokiBatchFormatter.Format(System.Collections.Generic.IReadOnlyCollection{Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent},Serilog.Formatting.ITextFormatter,System.IO.TextWriter)">
+            <summary>
+            Format the log events into a payload.
+            </summary>
+            <param name="lokiLogEvents">
+            The events to format wrapped in <see cref="T:Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent"/>.
+            </param>
+            <param name="formatter">
+            The formatter turning the log events into a textual representation.
+            </param>
+            <param name="output">
+            The payload to send over the network.
+            </param>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.ILokiHttpClient">
+            <summary>
+            Interface responsible for posting HTTP events
+            and handling authorization for Grafana Loki.
+            </summary>
+            <seealso cref="T:Serilog.Sinks.Grafana.Loki.HttpClients.LokiHttpClient"/>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.ILokiHttpClient.PostAsync(System.String,System.IO.Stream)">
+            <summary>
+            Sends a POST request to the specified Uri as an asynchronous operation.
+            </summary>
+            <param name="requestUri">The Uri the request is sent to.</param>
+            <param name="contentStream">The stream containing the content of the request.</param>
+            <returns>The task object representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.ILokiHttpClient.SetCredentials(Serilog.Sinks.Grafana.Loki.LokiCredentials)">
+            <summary>
+            Adds authorization header to all requests.
+            </summary>
+            <param name="credentials">
+                <see cref="T:Serilog.Sinks.Grafana.Loki.LokiCredentials"/> used for authorization.
+            </param>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.ILokiHttpClient.SetTenant(System.String)">
+            <summary>
+            Adds tenant header to all requests. See <a href="https://grafana.com/docs/loki/latest/operations/multi-tenancy/">docs</a>.
+            </summary>
+            <param name="tenant">
+                Tenant ID
+            </param>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.IReservedPropertyRenamingStrategy">
+            <summary>
+            Defines renaming strategy for properties with names equal to sink's reserved keywords.
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.IReservedPropertyRenamingStrategy.Rename(System.String)">
+            <summary>
+            Property rename function
+            By default adds an underscore to the property name.
+            </summary>
+            <param name="originalName">
+            Original name of property.
+            </param>
+            <returns>
+            New property name.
+            </returns>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.LoggerConfigurationLokiExtensions">
+            <summary>
+            Class containing extension methods to <see cref="T:Serilog.LoggerConfiguration"/>, configuring sinks
+            sending log events to Grafana Loki using HTTP.
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.LoggerConfigurationLokiExtensions.GrafanaLoki(Serilog.Configuration.LoggerSinkConfiguration,System.String,System.Collections.Generic.IEnumerable{Serilog.Sinks.Grafana.Loki.LokiLabel},System.Collections.Generic.IEnumerable{System.String},Serilog.Sinks.Grafana.Loki.LokiCredentials,System.String,Serilog.Events.LogEventLevel,System.Int32,System.Nullable{System.Int32},System.Nullable{System.TimeSpan},Serilog.Formatting.ITextFormatter,Serilog.Sinks.Grafana.Loki.ILokiHttpClient,Serilog.Sinks.Grafana.Loki.IReservedPropertyRenamingStrategy,System.Boolean,System.Boolean)">
+            <summary>
+            Adds a non-durable sink that will send log events to Grafana Loki.
+            A non-durable sink will lose data after a system or process restart.
+            </summary>
+            <param name="sinkConfiguration">
+            The logger configuration.
+            </param>
+            <param name="uri">
+            The root URI of Loki.
+            </param>
+            <param name="labels">
+            The global log event labels, which will be user for enriching all requests.
+            </param>
+            <param name="propertiesAsLabels">
+            The list of properties, which would be mapped to the labels.
+            </param>
+            <param name="credentials">
+            Auth <see cref="T:Serilog.Sinks.Grafana.Loki.LokiCredentials"/>.
+            </param>
+            <param name="tenant">
+            Tenant ID See <a href="https://grafana.com/docs/loki/latest/operations/multi-tenancy/">docs</a>.
+            </param>
+            <param name="restrictedToMinimumLevel">
+            The minimum level for events passed through the sink.
+            Default value is <see cref="F:Serilog.Events.LevelAlias.Minimum"/>.
+            </param>
+            <param name="batchPostingLimit">
+            The maximum number of events to post in a single batch. Default value is 1000.
+            </param>
+            <param name="queueLimit">
+            The maximum number of events stored in the queue in memory, waiting to be posted over
+            the network. Default value is infinitely.
+            </param>
+            <param name="period">
+            The time to wait between checking for event batches. Default value is 2 seconds.
+            </param>
+            <param name="textFormatter">
+            The formatter rendering individual log events into text, for example JSON. Default
+            value is <see cref="T:Serilog.Formatting.Display.MessageTemplateTextFormatter"/>.
+            </param>
+            <param name="httpClient">
+            A custom <see cref="T:Serilog.Sinks.Grafana.Loki.ILokiHttpClient"/> implementation. Default value is
+            <see cref="T:Serilog.Sinks.Grafana.Loki.HttpClients.LokiHttpClient"/>.
+            </param>
+            <param name="reservedPropertyRenamingStrategy">
+            Renaming strategy for properties' names equal to reserved keywords.
+            </param>
+            <param name="useInternalTimestamp">
+            Should use internal sink timestamp instead of application one to use as log timestamp.
+            </param>
+            <param name="leavePropertiesIntact">
+            Leaves the list of properties intact after extracting the labels specified in propertiesAsLabels.
+            </param>
+            <returns>Logger configuration, allowing configuration to continue.</returns>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.LokiBatchFormatter">
+            <summary>
+            Formatter serializing batches of log events into a JSON object in the format, recognized by Grafana Loki.
+            <para/>
+            Example:
+            <code>
+            {
+                "streams": [
+                {
+                    "stream": {
+                        "label": "value"
+                        },
+                    "values": [
+                        [ "unix epoch in nanoseconds", "log line" ],
+                        [ "unix epoch in nanoseconds", "log line" ]
+                    ]
+                }
+                ]
+            }
+            </code>
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.LokiBatchFormatter.#ctor(Serilog.Sinks.Grafana.Loki.IReservedPropertyRenamingStrategy,System.Collections.Generic.IEnumerable{Serilog.Sinks.Grafana.Loki.LokiLabel},System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Serilog.Sinks.Grafana.Loki.LokiBatchFormatter"/> class.
+            </summary>
+            <param name="renamingStrategy">
+            Renaming strategy for properties' names equal to reserved keywords.
+            <see cref="T:Serilog.Sinks.Grafana.Loki.IReservedPropertyRenamingStrategy"/>
+            </param>
+            <param name="globalLabels">
+            The list of global <see cref="T:Serilog.Sinks.Grafana.Loki.LokiLabel"/>.
+            </param>
+            <param name="propertiesAsLabels">
+            The list of properties, which would be mapped to the labels.
+            </param>
+            <param name="useInternalTimestamp">
+            Compute internal timestamp
+            </param>
+            <param name="leavePropertiesIntact">
+            Leave the list of properties intact after extracting the labels specified in propertiesAsLabels.
+            </param>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.LokiBatchFormatter.Format(System.Collections.Generic.IReadOnlyCollection{Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent},Serilog.Formatting.ITextFormatter,System.IO.TextWriter)">
+            <summary>
+            Format the log events into a payload.
+            </summary>
+            <param name="lokiLogEvents">
+            The events to format wrapped in <see cref="T:Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent"/>.
+            </param>
+            <param name="formatter">
+            The formatter turning the log events into a textual representation.
+            </param>
+            <param name="output">
+            The payload to send over the network.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Thrown if one of params is null.
+            </exception>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.LokiCredentials">
+            <summary>
+            Credentials used for Grafana Loki authorization
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.LokiCredentials.Login">
+            <summary>
+            Email or username
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.LokiCredentials.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.LokiJsonTextFormatter">
+            <summary>
+            Used to serialize a log event to a json format that loki 2.0 can parse using the json parser ( | json ), more information can be found here https://grafana.com/blog/2020/10/28/loki-2.0-released-transform-logs-as-youre-querying-them-and-set-up-alerts-within-loki/
+            </summary>
+        </member>
+        <member name="F:Serilog.Sinks.Grafana.Loki.LokiJsonTextFormatter.RenamingStrategy">
+            <summary>
+            Renaming strategy for properties names equal to reserved keywords.
+            </summary>
+        </member>
+        <member name="F:Serilog.Sinks.Grafana.Loki.LokiJsonTextFormatter.ValueFormatter">
+            <summary>
+            <see cref="T:Serilog.Formatting.Json.JsonFormatter"/>.
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.LokiJsonTextFormatter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Serilog.Sinks.Grafana.Loki.LokiJsonTextFormatter"/> class.
+            Uses <see cref="T:Serilog.Sinks.Grafana.Loki.DefaultReservedPropertyRenamingStrategy"/>.
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.LokiJsonTextFormatter.#ctor(Serilog.Sinks.Grafana.Loki.IReservedPropertyRenamingStrategy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Serilog.Sinks.Grafana.Loki.LokiJsonTextFormatter"/> class.
+            </summary>
+            <param name="renamingStrategy">
+            Renaming strategy for properties names equal to reserved keywords.
+            <see cref="T:Serilog.Sinks.Grafana.Loki.IReservedPropertyRenamingStrategy"/>
+            </param>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.LokiJsonTextFormatter.Format(Serilog.Events.LogEvent,System.IO.TextWriter)">
+            <summary>
+            Format the log event into the output.
+            </summary>
+            <param name="logEvent">
+            The event to format.
+            </param>
+            <param name="output">
+            The output.
+            </param>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.LokiJsonTextFormatter.GetSanitizedPropertyName(System.String)">
+            <summary>
+            Used to sanitize property name to avoid conflict with reserved keywords.
+            Appends _ to the property name if it matches with reserved keyword.
+            </summary>
+            <param name="propertyName">
+            Name of property to sanitize
+            </param>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.LokiJsonTextFormatter.SerializeException(System.IO.TextWriter,System.Exception,System.Int32)">
+            <summary>
+            Used to serialize exceptions, can be overridden when inheriting to change the format.
+            </summary>
+            <param name="output">
+            The output.
+            </param>
+            <param name="exception">
+            The exception to format.
+            </param>
+            <param name="level">
+            The current nesting level of the exception.
+            </param>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.LokiLabel">
+            <summary>
+            Label used for enriching log entries in Grafana Loki
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.LokiLabel.Key">
+            <summary>
+            Label's name
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.LokiLabel.Value">
+            <summary>
+            Label's value
+            </summary>
+        </member>
+        <member name="T:Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent">
+            <summary>
+            A wrapped log event.
+            Contains <see cref="P:Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent.LogEvent"/> and sink's internal timestamp.
+            <see cref="P:Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent.InternalTimestamp"/> is created when event is emitted to the sink.
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent.#ctor(Serilog.Events.LogEvent)">
+            <summary>
+            Creates <see cref="T:Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent"/> from <see cref="P:Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent.LogEvent"/>.
+            </summary>
+            <param name="logEvent">
+            A log event.
+            </param>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent.InternalTimestamp">
+            <summary>
+            Internal event timestamp, created when event is emitted to the sink.
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent.LogEvent">
+            <summary>
+            A log event.
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiLogEvent.Properties">
+            <summary>
+            Properties associated with the event.
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.LokiBatch">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.LokiStream">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.DictionaryStringString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.IListLokiStream">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.IListIListString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.IListString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.Models.LokiSerializationContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Serilog.Sinks.Grafana.Loki.Utils.LogEventExtensions.RenamePropertyIfPresent(Serilog.Events.LogEvent,System.String,System.Func{System.String,System.String})">
+            <summary>
+            Renames property in the event, if present.
+            Otherwise no action is performed.
+            Calls itself recursively to check if new name is free.
+            If it is taken by other property - renames it according to strategy.
+            </summary>
+            <param name="logEvent">
+            Log Event.
+            </param>
+            <param name="propertyName">
+            Property name to be renamed.
+            </param>
+            <param name="renamingStrategy">
+            Renaming strategy.
+            </param>
+        </member>
+    </members>
+</doc>

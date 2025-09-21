@@ -64,6 +64,59 @@ namespace Infrastructure.SQL.Migrations
                     b.ToTable("Application", "dbo");
                 });
 
+            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.DocumentationEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("At")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("FileSize")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("ProcessId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UploadedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("UploadedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FileName")
+                        .IsUnique();
+
+                    b.HasIndex("ProcessId");
+
+                    b.ToTable("Documentation", "dbo");
+                });
+
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.HistoryEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -206,6 +259,15 @@ namespace Infrastructure.SQL.Migrations
                     b.ToTable("Unit", "dbo");
                 });
 
+            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.DocumentationEntity", b =>
+                {
+                    b.HasOne("Infrastructure.SQL.DB.Entities.ProcessEntity", null)
+                        .WithMany("Documentations")
+                        .HasForeignKey("ProcessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.HistoryEntity", b =>
                 {
                     b.HasOne("Infrastructure.SQL.DB.Entities.ApplicationEntity", null)
@@ -256,21 +318,27 @@ namespace Infrastructure.SQL.Migrations
 
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.ProcessEntity", b =>
                 {
-                    b.HasOne("Infrastructure.SQL.DB.Entities.ApplicationEntity", null)
+                    b.HasOne("Infrastructure.SQL.DB.Entities.ApplicationEntity", "Application")
                         .WithMany()
                         .HasForeignKey("ApplicationId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Infrastructure.SQL.DB.Entities.UnitEntity", null)
+                    b.HasOne("Infrastructure.SQL.DB.Entities.UnitEntity", "Unit")
                         .WithMany()
                         .HasForeignKey("At")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Application");
+
+                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.ProcessEntity", b =>
                 {
+                    b.Navigation("Documentations");
+
                     b.Navigation("Histories");
                 });
 #pragma warning restore 612, 618

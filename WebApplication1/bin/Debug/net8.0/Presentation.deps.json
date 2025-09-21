@@ -14,8 +14,10 @@
           "Domain": "1.0.0",
           "FluentValidation": "11.6.0",
           "FluentValidation.DependencyInjectionExtensions": "11.6.0",
+          "Infrastructure.Channel": "1.0.0",
           "Infrastructure.Logging": "1.0.0",
           "Infrastructure.SQL": "1.0.0",
+          "InfrastructureFileStorage": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.18",
           "Microsoft.AspNetCore.OpenApi": "8.0.13",
           "Microsoft.EntityFrameworkCore": "9.0.6",
@@ -1361,7 +1363,8 @@
       },
       "BL/1.0.0": {
         "dependencies": {
-          "Domain": "1.0.0"
+          "Domain": "1.0.0",
+          "InfrastructureFileStorage": "1.0.0"
         },
         "runtime": {
           "BL.dll": {
@@ -1376,6 +1379,19 @@
         },
         "runtime": {
           "Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Infrastructure.Channel/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "9.0.0",
+          "Serilog": "4.2.0"
+        },
+        "runtime": {
+          "Infrastructure.Channel.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1403,6 +1419,17 @@
         },
         "runtime": {
           "Infrastructure.SQL.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "InfrastructureFileStorage/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.17"
+        },
+        "runtime": {
+          "InfrastructureFileStorage.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -2154,12 +2181,22 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Infrastructure.Channel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Infrastructure.Logging/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "Infrastructure.SQL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "InfrastructureFileStorage/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,45 +1,57 @@
-﻿using Domain.Services;
+﻿using Domain.Channels;
+using Domain.DTOs;
+using Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Mapping.Interfaces;
 using Presentation.Models;
 using Presentation.Models.Forms;
 using Presentation.Models.Request;
+using System.Threading.Channels;
+using Process = Presentation.Models.Process;
 
 namespace Presentation.Endpoints
 {
     public class ProcessEndpoints
     {
-        public static async Task<IResult> PostProcess([FromBody] Process process,
-           [FromServices] IProcessMapper mapper,
-           [FromServices] IProcessService processService)
+        public static async Task<IResult> PostProcess(
+        [FromForm] ProcessForm process,
+        [FromServices] IProcessMapper mapper,
+        [FromServices] IProcessService processService,
+        CancellationToken cancellationToken)
         {
-          var processDto = mapper.Map(process);
-          var newProcess = await processService.Create(processDto);
+            var processModel = new Process
+            {
+                ApplicationId = process.ApplicationId,
+                CreatedBy = process.CreatedBy,
+            };
 
-            return Results.CreatedAtRoute(
-                "processId",
-                new
-                { processId = newProcess.Id },
-                newProcess
-            );
+            var processDto = mapper.Map(processModel);
+
+            var newProcess = await processService.CreateWithFileAsync(processDto, process.File, cancellationToken);
+
+            return Results.Created($"/process/{newProcess.Id}", newProcess);
         }
 
-        public static async Task<IResult> GetProcess(int processId,
-           [FromServices] IProcessService processService)
+
+        public static async Task<IResult> GetAllProcesses(
+            [FromServices] IProcessService processService,
+            [FromQuery] int pageIndex,
+            [FromQuery] int pageSize,
+            [FromQuery] string? search,
+            [FromQuery] string? application,
+            [FromQuery] string? dateFilter
+)
         {
-            var process = await processService.GetProcessFlow(processId);
-            if (process is null)
-                return Results.NotFound();
+            var query = new ProcessQueryParams
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Search = search,
+                Application = application,
+                DateFilter = dateFilter
+            };
 
-            return Results.Ok(process);
-        }
-
-        public static async Task<IResult> GetAllProcesses([FromServices] IProcessService processService)
-        {
-            var processes = await processService.GetAll();
-            if (processes is null)
-                return Results.NotFound();
-
+            var processes = await processService.GetAllAsync(query);
             return Results.Ok(processes);
         }
 
@@ -61,5 +73,24 @@ namespace Presentation.Endpoints
             return Results.Ok(processes);
         }
 
+        public static async Task<IResult> UploadFile(
+            [FromForm] DocumentForm document,    
+            [FromServices] IDocumentationService service,
+            CancellationToken cancellationToken,
+            [FromServices] IDocumentMapper mapper
+            )
+        {
+            if(document.File != null)
+            {
+                await service.UploadFile(mapper.Map(document), cancellationToken);
+                return Results.Created("Uploading document", document.ProcessId);
+            }
+            return Results.BadRequest("Dados recebinos incorretos ou em falta");
+        }
+
+
+
     }
+
 }
+

@@ -2,6 +2,8 @@
 using Presentation.Endpoints;
 using Presentation.EndpointsFilters;
 using Presentation.Models;
+using Presentation.Models.Forms;
+using DocumentForm = Presentation.Models.Forms.DocumentForm;
 
 namespace Presentation.RouteGroups
 {
@@ -13,21 +15,21 @@ namespace Presentation.RouteGroups
             var group = app.MapGroup("processes").WithTags("Process").WithApiVersionSet(versionSet).HasApiVersion(1.0);
 
             group.MapPost("/", ProcessEndpoints.PostProcess)
-                 .AddEndpointFilter<InputValidatorFilter<Process>>()
+                .AddEndpointFilter<InputValidatorFilter<ProcessForm>>()
                 .DisableAntiforgery()
                 .WithOpenApi(operation => new(operation)
                 {
                     Summary = "Create a new Process",
                     Description = "Creates a new process entity with the provided information. Validates the input before persisting."
                 });
-
-            group.MapGet("/{processId}", ProcessEndpoints.GetProcess)
-                .WithName("processId")
-                 .WithOpenApi(operation => new(operation)
-                 {
-                     Summary = "Retrieve an process by ID",
-                     Description = "Fetches the process details associated with the specified unique identifier."
-                 });
+            group.MapPost("/upload",ProcessEndpoints.UploadFile)
+                .AddEndpointFilter<InputValidatorFilter<DocumentForm>>()
+                .DisableAntiforgery()
+                .WithOpenApi(operation => new(operation)
+                {
+                    Summary = "Upload process",
+                    Description = "Upload process"
+                });
 
             group.MapGet("/", ProcessEndpoints.GetAllProcesses)
                 .WithOpenApi(operation => new(operation)
@@ -52,6 +54,14 @@ namespace Presentation.RouteGroups
                      Summary = "Retrieve all processes by Application ID",
                      Description = "Fetches all processes details associated with the specified unique aplication identifier."
                  });
+
+            //group.MapPost("/documentation/upload", ProcessEndpoints.UploadFile)
+            //    .DisableAntiforgery()
+            //    .WithOpenApi(operation => new(operation)
+            //    {
+            //        Summary = "Upload de ficheiro para processamento",
+            //        Description = "Recebe um ficheiro e envia para processamento em background via DocumentationChannel."
+            //    });
 
 
         }

@@ -17,11 +17,16 @@ namespace Domain.DTOs
         public ProcessStatus Status { get; set; }
 
         public List<HistoryDto> Histories { get; set; } = new List<HistoryDto>();
+        public List<DocumentationDto> Documentations { get; set; } = new List<DocumentationDto>();
+
+        public ApplicationDto Application { get; set; }
+        public UnitDto Unit { get; set; }
     }
 
     public enum ProcessStatus
     {
         Initiated,
+        Uploading,
         Pending,
         Concluded,
         Canceled

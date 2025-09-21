@@ -20,6 +20,12 @@ namespace BL.Services
 
         public async Task<NormalizedNodeResponseDto?> Create(ApplicationDto application, GraphDto graph)
         {
+            // Verificar se o grafo original tem ciclo
+            if (!GraphHasCycle(graph.Nodes))
+            {
+                return null; // fluxo inválido, não cria aplicação
+            }
+
             var extendedNodes = new List<NodeDto>();
             for (int i = 0; i < graph.Nodes.Count; i++)
             {
@@ -54,9 +60,38 @@ namespace BL.Services
             };
 
             var newApplication = await _applicationRepository.CreateAsync(application, newGraph);
-
             return newApplication;
         }
+
+        /// <summary>
+        /// Verifica se o grafo contém pelo menos um ciclo
+        /// </summary>
+        private bool GraphHasCycle(List<NodeDto> nodes)
+        {
+            if (!nodes.Any())
+                return false;
+
+            // Mapear origem → destino
+            var next = nodes.ToDictionary(n => n.OriginId, n => n.DestinationId);
+
+            // Começar no primeiro origin
+            int start = nodes.First().OriginId;
+            int current = start;
+
+            var visited = new HashSet<int> { start };
+
+            while (next.ContainsKey(current))
+            {
+                current = next[current];
+                if (current == start) return true; // ciclo fechado
+                if (visited.Contains(current)) break; // visitado mas não voltou ao início → ciclo incompleto
+                visited.Add(current);
+            }
+
+            return false; // não fechou ciclo
+        }
+
+
 
 
 

@@ -57,6 +57,19 @@
         "runtime": {
           "bin/placeholder/Domain.dll": {}
         }
+      },
+      "InfrastructureFileStorage/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.17"
+        },
+        "compile": {
+          "bin/placeholder/InfrastructureFileStorage.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/InfrastructureFileStorage.dll": {}
+        }
       }
     }
   },
@@ -132,11 +145,17 @@
       "type": "project",
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "InfrastructureFileStorage/1.0.0": {
+      "type": "project",
+      "path": "../InfrastructureFileStorage/InfrastructureFileStorage.csproj",
+      "msbuildProject": "../InfrastructureFileStorage/InfrastructureFileStorage.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Domain >= 1.0.0"
+      "Domain >= 1.0.0",
+      "InfrastructureFileStorage >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -173,6 +192,9 @@
           "projectReferences": {
             "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Domain.csproj": {
               "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Domain.csproj"
+            },
+            "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj": {
+              "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj"
             }
           }
         }

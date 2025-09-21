@@ -1,0 +1,110 @@
+2025-09-11 21:07:41.004 +02:00 [Information] Executed DbCommand ("55"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-11 21:07:41.317 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-11 21:07:44.181 +02:00 [Information] Executed DbCommand ("2,858"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-11 21:07:44.420 +02:00 [Information] Executed DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-11 21:07:44.448 +02:00 [Information] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-11 21:07:44.453 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-11 21:07:44.542 +02:00 [Information] Executed DbCommand ("83"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-11 21:07:44.555 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-11 21:07:44.565 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-11 21:07:45.813 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-11 21:07:48.522 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-11 21:07:48.724 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-11 21:07:49.600 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-11 21:07:49.603 +02:00 [Information] Hosting environment: "Development"
+2025-09-11 21:07:49.605 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-11 21:08:00.465 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-11 21:08:12.744 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-11 21:08:12.798 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 1441.0465 ms
+2025-09-11 21:08:12.863 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 12530.4391ms
+2025-09-11 21:08:13.138 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-11 21:08:13.140 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-11 21:08:13.190 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 50.011ms
+2025-09-11 21:08:13.623 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-11 21:08:14.436 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-11 21:08:14.778 +02:00 [Information] CORS policy execution successful.
+2025-09-11 21:08:16.562 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-11 21:08:16.566 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 2894.0611 ms
+2025-09-11 21:08:16.576 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 2951.478ms
+2025-09-11 21:08:16.579 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 3439.4174ms
+2025-09-11 21:08:16.585 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-11 21:08:16.647 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-11 21:08:17.586 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-11 21:08:17.601 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 946.7266 ms
+2025-09-11 21:08:17.617 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 970.2043ms
+2025-09-11 21:13:29.891 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------555913757423542331422896" 508952
+2025-09-11 21:13:30.375 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:13:31.014 +02:00 [Information] Setting HTTP status code 200.
+2025-09-11 21:13:31.038 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-11 21:13:31.081 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:13:31.126 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-11 21:13:31.143 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 848.0939 ms
+2025-09-11 21:13:31.191 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 1311.6202ms
+2025-09-11 21:16:02.376 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------338787417124879665168942" 508952
+2025-09-11 21:16:02.481 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:16:02.537 +02:00 [Information] Setting HTTP status code 200.
+2025-09-11 21:16:02.541 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-11 21:16:02.862 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:16:02.890 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-11 21:16:02.894 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 446.8388 ms
+2025-09-11 21:16:03.011 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 612.4812ms
+2025-09-11 21:17:49.744 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------650745988378305203985415" 508952
+2025-09-11 21:17:49.765 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:17:49.813 +02:00 [Information] Setting HTTP status code 200.
+2025-09-11 21:17:49.817 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-11 21:17:49.820 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:17:49.821 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-11 21:17:49.823 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 60.6996 ms
+2025-09-11 21:17:49.831 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 93.8504ms
+2025-09-11 21:18:37.861 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------357820709770690670716944" 508952
+2025-09-11 21:18:37.872 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:18:37.927 +02:00 [Information] Setting HTTP status code 200.
+2025-09-11 21:18:37.930 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-11 21:18:37.936 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:18:37.938 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-11 21:18:37.944 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 72.7951 ms
+2025-09-11 21:18:37.954 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 90.4496ms
+2025-09-11 21:18:59.500 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------604834869707043665532872" 508952
+2025-09-11 21:18:59.508 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:18:59.562 +02:00 [Information] Setting HTTP status code 200.
+2025-09-11 21:18:59.565 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-11 21:18:59.571 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:18:59.574 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-11 21:18:59.577 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 69.7917 ms
+2025-09-11 21:18:59.581 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 86.4653ms
+2025-09-11 21:19:07.944 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------880145481742671853927019" 508952
+2025-09-11 21:19:07.982 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:19:08.082 +02:00 [Information] Setting HTTP status code 200.
+2025-09-11 21:19:08.084 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-11 21:19:08.088 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:19:08.089 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-11 21:19:08.091 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 109.7376 ms
+2025-09-11 21:19:08.095 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 151.4599ms
+2025-09-11 21:19:43.031 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------355725475553822047018133" 508952
+2025-09-11 21:19:43.396 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:20:46.710 +02:00 [Information] Setting HTTP status code 200.
+2025-09-11 21:20:46.727 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-11 21:20:46.894 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-11 21:21:09.290 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-11 21:21:13.136 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 89870.6791 ms
+2025-09-11 21:21:13.236 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 90269.3642ms

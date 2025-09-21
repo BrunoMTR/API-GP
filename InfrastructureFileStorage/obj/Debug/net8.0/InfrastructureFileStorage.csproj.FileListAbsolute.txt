@@ -1,0 +1,13 @@
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\bin\Debug\net8.0\InfrastructureFileStorage.deps.json
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\bin\Debug\net8.0\InfrastructureFileStorage.dll
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\bin\Debug\net8.0\InfrastructureFileStorage.pdb
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\obj\Debug\net8.0\InfrastructureFileStorage.csproj.AssemblyReference.cache
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\obj\Debug\net8.0\InfrastructureFileStorage.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\obj\Debug\net8.0\InfrastructureFileStorage.AssemblyInfoInputs.cache
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\obj\Debug\net8.0\InfrastructureFileStorage.AssemblyInfo.cs
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\obj\Debug\net8.0\InfrastructureFileStorage.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\obj\Debug\net8.0\InfrastructureFileStorage.sourcelink.json
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\obj\Debug\net8.0\InfrastructureFileStorage.dll
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\obj\Debug\net8.0\refint\InfrastructureFileStorage.dll
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\obj\Debug\net8.0\InfrastructureFileStorage.pdb
+C:\Users\Dell\Documents\PF\API-GP\InfrastructureFileStorage\obj\Debug\net8.0\ref\InfrastructureFileStorage.dll

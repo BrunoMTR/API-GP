@@ -16,6 +16,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Serilog;
 using Infrastructure.Logging.Configuration;
 using Presentation.Middlewares;
+using Domain.Channels;
+using Infrastructure.Channel.Documentation;
+using InfrastructureFileStorage.Interfaces;
+using InfrastructureFileStorage.Services;
 
 
 
@@ -37,6 +41,15 @@ builder.Services.AddScoped<IProcessRepository, ProcessRepository>();
 builder.Services.AddScoped<IProcessMapper, ProcessMapper>();
 builder.Services.AddScoped<IProcessService, ProcessService>();
 builder.Services.AddScoped<IHistoryRepository, HistoryRepository>();
+builder.Services.AddSingleton<IDocumentationChannel, DocumentationChannel>();
+builder.Services.AddHostedService<Infrastructure.Channel.Documentation.DocumentationService>();
+builder.Services.AddScoped<IDocumentationRepository, DocumentationRepository>();
+builder.Services.AddScoped<IFileStorageService, FileStorageService>();
+builder.Services.AddScoped<IDocumentationService, BL.Services.DocumentationService>();
+builder.Services.AddScoped<IDocumentMapper, DocumentMapper>();
+
+
+
 
 builder.Host.UseSerilog(LoggingConfiguration.Configure);
 
@@ -55,7 +68,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddXmlComments();
-   
+
 });
 
 builder.Services.AddApiVersioning(options =>
@@ -86,7 +99,7 @@ builder.Services.AddAuthentication(options =>
 }).AddJwtBearer(options =>
 {
     options.Authority = "https://login.microsoftonline.com / 136544d9 - xxxx - xxxx - xxxx - 10accb370679 / v2.0";
- options.Audience = "257b6c36-xxxx-xxxx-xxxx-6f2cd81cec43";
+    options.Audience = "257b6c36-xxxx-xxxx-xxxx-6f2cd81cec43";
     options.TokenValidationParameters.ValidateLifetime = true;
     options.TokenValidationParameters.ValidateIssuer = true;
     options.TokenValidationParameters.ClockSkew = TimeSpan.
@@ -132,6 +145,13 @@ app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+
+
+
+
+app.Run();
+
 
 app.Run();
 

@@ -1,0 +1,1162 @@
+2025-09-14 08:19:38.981 +02:00 [Information] Executed DbCommand ("58"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 08:19:39.119 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-14 08:19:39.375 +02:00 [Information] Executed DbCommand ("241"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-14 08:19:39.588 +02:00 [Information] Executed DbCommand ("34"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-14 08:19:39.612 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 08:19:39.621 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-14 08:19:39.766 +02:00 [Information] Executed DbCommand ("129"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-14 08:19:39.789 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-14 08:19:39.811 +02:00 [Information] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-14 08:19:40.016 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-14 08:19:41.195 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-14 08:19:41.324 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-14 08:19:42.153 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-14 08:19:42.174 +02:00 [Information] Hosting environment: "Development"
+2025-09-14 08:19:42.237 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-14 08:19:43.144 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-14 08:19:44.103 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-14 08:19:44.148 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 299.3293 ms
+2025-09-14 08:19:44.170 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-14 08:19:44.248 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1149.0537ms
+2025-09-14 08:19:44.279 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 109.6716ms
+2025-09-14 08:19:44.438 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-14 08:19:44.588 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 149.9828ms
+2025-09-14 08:19:45.806 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-14 08:19:45.818 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-14 08:19:45.854 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-14 08:19:45.868 +02:00 [Information] CORS policy execution successful.
+2025-09-14 08:19:45.875 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-14 08:19:46.068 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 227.2285 ms
+2025-09-14 08:19:46.167 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 361.0907ms
+2025-09-14 08:19:46.689 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-14 08:19:46.738 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 889.4459 ms
+2025-09-14 08:19:46.764 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 950.9366ms
+2025-09-14 08:19:46.786 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-14 08:21:08.509 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/processes""?pageIndex=0&pageSize=10&search=&application=all&dateFilter=all" - null null
+2025-09-14 08:21:08.581 +02:00 [Information] CORS policy execution successful.
+2025-09-14 08:21:08.596 +02:00 [Information] Executing endpoint '"HTTP: GET processes/ => GetAllProcesses"'
+2025-09-14 08:21:09.579 +02:00 [Information] Executed DbCommand ("164"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-09-14 08:21:10.194 +02:00 [Information] Executed DbCommand ("188"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-09-14 08:21:10.618 +02:00 [Information] Executed DbCommand ("16"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-09-14 08:21:10.666 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=["@__p_ApplicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail]
+FROM [dbo].[Application] AS [a]
+WHERE [a].[Id] = @__p_ApplicationId_0"
+2025-09-14 08:21:10.704 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=["@__p_At_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM [dbo].[Unit] AS [u]
+WHERE [u].[Id] = @__p_At_0"
+2025-09-14 08:21:10.730 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-09-14 08:21:10.741 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=["@__p_ApplicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail]
+FROM [dbo].[Application] AS [a]
+WHERE [a].[Id] = @__p_ApplicationId_0"
+2025-09-14 08:21:10.753 +02:00 [Information] Executed DbCommand ("6"ms) [Parameters=["@__p_At_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM [dbo].[Unit] AS [u]
+WHERE [u].[Id] = @__p_At_0"
+2025-09-14 08:21:10.771 +02:00 [Information] Executed DbCommand ("11"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-09-14 08:21:10.778 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__p_ApplicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail]
+FROM [dbo].[Application] AS [a]
+WHERE [a].[Id] = @__p_ApplicationId_0"
+2025-09-14 08:21:10.788 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=["@__p_At_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM [dbo].[Unit] AS [u]
+WHERE [u].[Id] = @__p_At_0"
+2025-09-14 08:21:10.795 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-09-14 08:21:10.806 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__p_ApplicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail]
+FROM [dbo].[Application] AS [a]
+WHERE [a].[Id] = @__p_ApplicationId_0"
+2025-09-14 08:21:10.813 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__p_At_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM [dbo].[Unit] AS [u]
+WHERE [u].[Id] = @__p_At_0"
+2025-09-14 08:21:10.825 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-09-14 08:21:10.835 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__p_ApplicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail]
+FROM [dbo].[Application] AS [a]
+WHERE [a].[Id] = @__p_ApplicationId_0"
+2025-09-14 08:21:10.843 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__p_At_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM [dbo].[Unit] AS [u]
+WHERE [u].[Id] = @__p_At_0"
+2025-09-14 08:21:10.856 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-09-14 08:21:10.865 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=["@__p_ApplicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail]
+FROM [dbo].[Application] AS [a]
+WHERE [a].[Id] = @__p_ApplicationId_0"
+2025-09-14 08:21:10.875 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=["@__p_At_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM [dbo].[Unit] AS [u]
+WHERE [u].[Id] = @__p_At_0"
+2025-09-14 08:21:10.928 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-09-14 08:21:10.945 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=["@__p_ApplicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail]
+FROM [dbo].[Application] AS [a]
+WHERE [a].[Id] = @__p_ApplicationId_0"
+2025-09-14 08:21:10.957 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=["@__p_At_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM [dbo].[Unit] AS [u]
+WHERE [u].[Id] = @__p_At_0"
+2025-09-14 08:21:10.972 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-09-14 08:21:10.979 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__p_ApplicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail]
+FROM [dbo].[Application] AS [a]
+WHERE [a].[Id] = @__p_ApplicationId_0"
+2025-09-14 08:21:10.987 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=["@__p_At_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM [dbo].[Unit] AS [u]
+WHERE [u].[Id] = @__p_At_0"
+2025-09-14 08:21:11.000 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-09-14 08:21:11.010 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__p_ApplicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail]
+FROM [dbo].[Application] AS [a]
+WHERE [a].[Id] = @__p_ApplicationId_0"
+2025-09-14 08:21:11.015 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=["@__p_At_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM [dbo].[Unit] AS [u]
+WHERE [u].[Id] = @__p_At_0"
+2025-09-14 08:21:11.025 +02:00 [Information] Executed DbCommand ("6"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-09-14 08:21:11.031 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=["@__p_ApplicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail]
+FROM [dbo].[Application] AS [a]
+WHERE [a].[Id] = @__p_ApplicationId_0"
+2025-09-14 08:21:11.039 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=["@__p_At_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM [dbo].[Unit] AS [u]
+WHERE [u].[Id] = @__p_At_0"
+2025-09-14 08:21:11.051 +02:00 [Information] Setting HTTP status code 200.
+2025-09-14 08:21:11.090 +02:00 [Information] Writing value of type '"List`1"' as Json.
+2025-09-14 08:21:11.120 +02:00 [Information] Executed endpoint '"HTTP: GET processes/ => GetAllProcesses"'
+2025-09-14 08:21:11.127 +02:00 [Information] Request "GET" "/processes" responded 200
+2025-09-14 08:21:11.132 +02:00 [Information] HTTP "GET" "/processes" responded 200 in 2558.2759 ms
+2025-09-14 08:21:11.154 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/processes""?pageIndex=0&pageSize=10&search=&application=all&dateFilter=all" - 200 null "application/json; charset=utf-8" 2649.0563ms
+2025-09-14 14:01:55.301 +02:00 [Information] Executed DbCommand ("70"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 14:01:55.526 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-14 14:01:55.767 +02:00 [Information] Executed DbCommand ("224"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-14 14:01:56.037 +02:00 [Information] Executed DbCommand ("23"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-14 14:01:56.058 +02:00 [Information] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 14:01:56.063 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-14 14:01:56.153 +02:00 [Information] Executed DbCommand ("77"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-14 14:01:56.180 +02:00 [Information] Applying migration '"20250914120133_Documentation"'.
+2025-09-14 14:01:56.322 +02:00 [Information] Executed DbCommand ("84"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [dbo].[Documentation] (
+    [Id] int NOT NULL IDENTITY,
+    [FileName] nvarchar(100) NOT NULL,
+    [FilePath] nvarchar(10) NOT NULL,
+    [FileSize] nvarchar(max) NOT NULL,
+    [FileType] nvarchar(50) NOT NULL,
+    [UploadedAt] datetime2 NOT NULL DEFAULT (GETDATE()),
+    [UploadedBy] nvarchar(50) NOT NULL,
+    [ProcessId] int NOT NULL,
+    [At] int NOT NULL,
+    CONSTRAINT [PK_Documentation] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Documentation_Process_ProcessId] FOREIGN KEY ([ProcessId]) REFERENCES [dbo].[Process] ([Id]) ON DELETE NO ACTION
+);"
+2025-09-14 14:01:56.344 +02:00 [Information] Executed DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE UNIQUE INDEX [IX_Documentation_FileName] ON [dbo].[Documentation] ([FileName]);"
+2025-09-14 14:01:56.357 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_Documentation_ProcessId] ON [dbo].[Documentation] ([ProcessId]);"
+2025-09-14 14:01:56.409 +02:00 [Information] Executed DbCommand ("46"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250914120133_Documentation', N'9.0.6');"
+2025-09-14 14:01:56.432 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-14 14:01:56.623 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-14 14:01:57.664 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-14 14:01:57.793 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-14 14:01:58.071 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-14 14:01:58.107 +02:00 [Information] Hosting environment: "Development"
+2025-09-14 14:01:58.144 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-14 14:01:59.424 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-14 14:02:00.852 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-14 14:02:00.889 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 284.2459 ms
+2025-09-14 14:02:00.933 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1564.916ms
+2025-09-14 14:02:01.193 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-14 14:02:01.195 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-14 14:02:01.263 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 78.2939ms
+2025-09-14 14:02:01.369 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 175.2996ms
+2025-09-14 14:02:01.878 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-14 14:02:02.121 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-14 14:02:02.173 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 234.0080 ms
+2025-09-14 14:02:02.241 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 363.5153ms
+2025-09-14 14:02:03.222 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-14 14:02:03.235 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-14 14:02:03.243 +02:00 [Information] CORS policy execution successful.
+2025-09-14 14:02:03.452 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-14 14:02:03.455 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 225.5426 ms
+2025-09-14 14:02:03.462 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 239.3265ms
+2025-09-14 14:02:03.471 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-14 14:16:59.616 +02:00 [Information] Executed DbCommand ("128"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 14:16:59.769 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-14 14:16:59.902 +02:00 [Information] Executed DbCommand ("123"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-14 14:17:00.070 +02:00 [Information] Executed DbCommand ("24"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-14 14:17:00.087 +02:00 [Information] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 14:17:00.092 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-14 14:17:00.152 +02:00 [Information] Executed DbCommand ("52"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-14 14:17:00.176 +02:00 [Information] Applying migration '"20250914121523_Documentation correction"'.
+2025-09-14 14:17:00.285 +02:00 [Information] Executed DbCommand ("58"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [dbo].[Documentation] DROP CONSTRAINT [FK_Documentation_Process_ProcessId];"
+2025-09-14 14:17:00.304 +02:00 [Information] Executed DbCommand ("12"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""ALTER TABLE [dbo].[Documentation] ADD CONSTRAINT [FK_Documentation_Process_ProcessId] FOREIGN KEY ([ProcessId]) REFERENCES [dbo].[Process] ([Id]) ON DELETE CASCADE;"
+2025-09-14 14:17:00.338 +02:00 [Information] Executed DbCommand ("29"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250914121523_Documentation correction', N'9.0.6');"
+2025-09-14 14:17:00.353 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-14 14:17:00.555 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-14 14:17:01.380 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-14 14:17:01.473 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-14 14:17:01.665 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-14 14:17:01.669 +02:00 [Information] Hosting environment: "Development"
+2025-09-14 14:17:01.671 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-14 14:17:04.154 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-14 14:17:05.057 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-14 14:17:05.070 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 176.9904 ms
+2025-09-14 14:17:05.101 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 971.5866ms
+2025-09-14 14:17:05.149 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-14 14:17:05.220 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 71.558ms
+2025-09-14 14:17:05.422 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-14 14:17:05.743 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 321.0495ms
+2025-09-14 14:17:05.952 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-14 14:17:06.387 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-14 14:17:07.713 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-14 14:17:07.736 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 1461.9857 ms
+2025-09-14 14:17:07.752 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-14 14:17:07.752 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 1800.7159ms
+2025-09-14 14:17:07.759 +02:00 [Information] CORS policy execution successful.
+2025-09-14 14:17:07.971 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-14 14:17:07.988 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 242.5862 ms
+2025-09-14 14:17:07.997 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 284.1906ms
+2025-09-14 14:17:08.006 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-14 15:16:59.287 +02:00 [Information] Executed DbCommand ("58"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:16:59.433 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-14 15:16:59.576 +02:00 [Information] Executed DbCommand ("127"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-14 15:16:59.713 +02:00 [Information] Executed DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-14 15:16:59.739 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:16:59.745 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-14 15:16:59.825 +02:00 [Information] Executed DbCommand ("70"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-14 15:16:59.851 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-14 15:16:59.866 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-14 15:17:00.043 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-14 15:17:00.849 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-14 15:17:00.959 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-14 15:17:01.623 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-14 15:17:01.627 +02:00 [Information] Hosting environment: "Development"
+2025-09-14 15:17:01.632 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-14 15:17:04.537 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-14 15:17:05.272 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-14 15:17:05.542 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-14 15:17:05.611 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 569.2650 ms
+2025-09-14 15:17:05.643 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 99.748ms
+2025-09-14 15:17:05.654 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1134.8114ms
+2025-09-14 15:17:05.722 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-14 15:17:05.874 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 152.3943ms
+2025-09-14 15:17:06.100 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-14 15:17:06.450 +02:00 [Error] Unhandled exception for "GET" "/swagger/v1.0/swagger.json"
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+2025-09-14 15:17:06.651 +02:00 [Error] HTTP "GET" "/swagger/v1.0/swagger.json" responded 500 in 517.2689 ms
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-14 15:17:06.676 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-14 15:17:06.704 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 500 null "text/plain; charset=utf-8" 604.8191ms
+2025-09-14 15:17:06.718 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-14 15:17:06.734 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-14 15:17:06.743 +02:00 [Information] CORS policy execution successful.
+2025-09-14 15:17:07.000 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-14 15:17:07.005 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 276.1349 ms
+2025-09-14 15:17:07.015 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 296.7764ms
+2025-09-14 15:17:07.029 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-14 15:18:59.751 +02:00 [Information] Executed DbCommand ("62"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:18:59.894 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-14 15:18:59.998 +02:00 [Information] Executed DbCommand ("96"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-14 15:19:00.275 +02:00 [Information] Executed DbCommand ("81"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-14 15:19:00.346 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:19:00.361 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-14 15:19:00.459 +02:00 [Information] Executed DbCommand ("82"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-14 15:19:00.493 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-14 15:19:00.509 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-14 15:19:00.714 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-14 15:19:01.709 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-14 15:19:01.781 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-14 15:19:01.950 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-14 15:19:01.954 +02:00 [Information] Hosting environment: "Development"
+2025-09-14 15:19:01.956 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-14 15:19:03.139 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-14 15:19:03.998 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-14 15:19:04.044 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 185.2243 ms
+2025-09-14 15:19:04.084 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 982.6064ms
+2025-09-14 15:19:04.447 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-14 15:19:04.447 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-14 15:19:04.570 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 123.6292ms
+2025-09-14 15:19:04.628 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 180.7508ms
+2025-09-14 15:19:04.756 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-14 15:19:05.039 +02:00 [Error] Unhandled exception for "GET" "/swagger/v1.0/swagger.json"
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+2025-09-14 15:19:05.078 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-14 15:19:05.147 +02:00 [Error] HTTP "GET" "/swagger/v1.0/swagger.json" responded 500 in 358.7874 ms
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-14 15:19:05.159 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-14 15:19:05.170 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-14 15:19:05.175 +02:00 [Information] CORS policy execution successful.
+2025-09-14 15:19:05.204 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 500 null "text/plain; charset=utf-8" 448.2048ms
+2025-09-14 15:19:05.485 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-14 15:19:05.492 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 338.6235 ms
+2025-09-14 15:19:05.505 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 427.248ms
+2025-09-14 15:19:05.519 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-14 15:23:00.266 +02:00 [Information] Executed DbCommand ("46"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:23:00.405 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-14 15:23:00.484 +02:00 [Information] Executed DbCommand ("71"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-14 15:23:00.636 +02:00 [Information] Executed DbCommand ("24"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-14 15:23:00.664 +02:00 [Information] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:23:00.671 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-14 15:23:00.722 +02:00 [Information] Executed DbCommand ("43"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-14 15:23:00.743 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-14 15:23:00.752 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-14 15:23:01.038 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-14 15:23:01.974 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-14 15:23:02.110 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-14 15:23:02.760 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-14 15:23:02.986 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-14 15:23:03.000 +02:00 [Information] Hosting environment: "Development"
+2025-09-14 15:23:03.004 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-14 15:23:03.619 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-14 15:23:03.641 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 167.1257 ms
+2025-09-14 15:23:03.682 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 971.7978ms
+2025-09-14 15:23:04.022 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-14 15:23:04.022 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-14 15:23:04.069 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 45.7851ms
+2025-09-14 15:23:04.235 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 213.8193ms
+2025-09-14 15:23:04.367 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-14 15:23:04.620 +02:00 [Error] Unhandled exception for "GET" "/swagger/v1.0/swagger.json"
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+2025-09-14 15:23:04.803 +02:00 [Error] HTTP "GET" "/swagger/v1.0/swagger.json" responded 500 in 417.0790 ms
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-14 15:23:04.804 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-14 15:23:04.828 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-14 15:23:04.848 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-14 15:23:04.862 +02:00 [Information] CORS policy execution successful.
+2025-09-14 15:23:04.869 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 500 null "text/plain; charset=utf-8" 502.9053ms
+2025-09-14 15:23:05.126 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-14 15:23:05.132 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 294.6151 ms
+2025-09-14 15:23:05.139 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 335.6052ms
+2025-09-14 15:23:05.153 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-14 15:36:51.550 +02:00 [Information] Executed DbCommand ("63"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:36:52.089 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-14 15:36:52.252 +02:00 [Information] Executed DbCommand ("153"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-14 15:36:52.536 +02:00 [Information] Executed DbCommand ("31"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-14 15:36:52.569 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:36:52.582 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-14 15:36:52.701 +02:00 [Information] Executed DbCommand ("107"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-14 15:36:52.750 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-14 15:36:52.782 +02:00 [Information] Executed DbCommand ("29"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-14 15:36:53.172 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-14 15:36:54.564 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-14 15:36:54.676 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-14 15:36:55.196 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-14 15:36:55.205 +02:00 [Information] Hosting environment: "Development"
+2025-09-14 15:36:55.215 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-14 15:36:56.277 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-14 15:36:57.427 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-14 15:36:57.439 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 172.4836 ms
+2025-09-14 15:36:57.454 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1213.1061ms
+2025-09-14 15:36:57.508 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-14 15:36:57.527 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 18.0856ms
+2025-09-14 15:36:57.739 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-14 15:36:58.011 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 270.5633ms
+2025-09-14 15:36:58.167 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-14 15:36:58.252 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-14 15:36:58.328 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 123.1622 ms
+2025-09-14 15:36:58.404 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 237.753ms
+2025-09-14 15:36:59.093 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-14 15:36:59.117 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-14 15:36:59.124 +02:00 [Information] CORS policy execution successful.
+2025-09-14 15:36:59.456 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-14 15:36:59.490 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 387.3064 ms
+2025-09-14 15:36:59.502 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 409.397ms
+2025-09-14 15:36:59.518 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-14 15:37:33.574 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-09-14 15:37:33.603 +02:00 [Information] Executing endpoint '"HTTP: GET applications/ => GetAllApplications"'
+2025-09-14 15:37:34.315 +02:00 [Information] Executed DbCommand ("51"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[Name], [a].[Abbreviation], [a].[Team], [a].[TeamEmail], [a].[ApplicationEmail]
+FROM [dbo].[Application] AS [a]"
+2025-09-14 15:37:34.373 +02:00 [Information] Setting HTTP status code 200.
+2025-09-14 15:37:34.382 +02:00 [Information] Writing value of type '"List`1"' as Json.
+2025-09-14 15:37:34.392 +02:00 [Information] Executed endpoint '"HTTP: GET applications/ => GetAllApplications"'
+2025-09-14 15:37:34.400 +02:00 [Information] Request "GET" "/applications" responded 200
+2025-09-14 15:37:34.403 +02:00 [Information] HTTP "GET" "/applications" responded 200 in 803.9749 ms
+2025-09-14 15:37:34.416 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 200 null "application/json; charset=utf-8" 841.8745ms
+2025-09-14 15:39:12.367 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes""" - "multipart/form-data; boundary=----WebKitFormBoundaryQc4IDX1gmIYiR6GY" 6441313
+2025-09-14 15:39:12.381 +02:00 [Information] CORS policy execution successful.
+2025-09-14 15:39:12.389 +02:00 [Information] Executing endpoint '"HTTP: POST processes/ => PostProcess"'
+2025-09-14 15:39:12.921 +02:00 [Information] Executed endpoint '"HTTP: POST processes/ => PostProcess"'
+2025-09-14 15:39:13.067 +02:00 [Error] Unhandled exception for "POST" "/processes"
+System.InvalidCastException: Unable to cast object of type 'Presentation.Models.Forms.ProcessDocumentRequest' to type 'Presentation.Models.Process'.
+   at Microsoft.AspNetCore.Http.EndpointFilterInvocationContext`5.GetArgument[T](Int32 index)
+   at Presentation.EndpointsFilters.InputValidatorFilter`1.InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteValueTaskOfObject>g__ExecuteAwaited|129_0(ValueTask`1 valueTask, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass104_2.<<HandleRequestBodyAndCompileRequestDelegateForForm>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+2025-09-14 15:39:13.410 +02:00 [Error] HTTP "POST" "/processes" responded 500 in 1030.4238 ms
+System.InvalidCastException: Unable to cast object of type 'Presentation.Models.Forms.ProcessDocumentRequest' to type 'Presentation.Models.Process'.
+   at Microsoft.AspNetCore.Http.EndpointFilterInvocationContext`5.GetArgument[T](Int32 index)
+   at Presentation.EndpointsFilters.InputValidatorFilter`1.InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteValueTaskOfObject>g__ExecuteAwaited|129_0(ValueTask`1 valueTask, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass104_2.<<HandleRequestBodyAndCompileRequestDelegateForForm>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-14 15:39:13.439 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidCastException: Unable to cast object of type 'Presentation.Models.Forms.ProcessDocumentRequest' to type 'Presentation.Models.Process'.
+   at Microsoft.AspNetCore.Http.EndpointFilterInvocationContext`5.GetArgument[T](Int32 index)
+   at Presentation.EndpointsFilters.InputValidatorFilter`1.InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteValueTaskOfObject>g__ExecuteAwaited|129_0(ValueTask`1 valueTask, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass104_2.<<HandleRequestBodyAndCompileRequestDelegateForForm>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-14 15:39:13.493 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes""" - 500 null "text/plain; charset=utf-8" 1126.2164ms
+2025-09-14 15:50:43.784 +02:00 [Information] Executed DbCommand ("69"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:50:43.879 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-14 15:50:44.010 +02:00 [Information] Executed DbCommand ("122"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-14 15:50:44.138 +02:00 [Information] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-14 15:50:44.160 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:50:44.167 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-14 15:50:44.238 +02:00 [Information] Executed DbCommand ("61"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-14 15:50:44.254 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-14 15:50:44.266 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-14 15:50:44.430 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-14 15:50:45.251 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-14 15:50:45.312 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-14 15:50:45.446 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-14 15:50:45.449 +02:00 [Information] Hosting environment: "Development"
+2025-09-14 15:50:45.452 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-14 15:50:47.276 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-14 15:50:48.045 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-14 15:50:48.061 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 156.6672 ms
+2025-09-14 15:50:48.077 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 834.592ms
+2025-09-14 15:50:48.383 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-14 15:50:48.383 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-14 15:50:48.402 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 19.3605ms
+2025-09-14 15:50:48.469 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 86.8597ms
+2025-09-14 15:50:48.653 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-14 15:50:48.720 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-14 15:50:48.785 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 114.9801 ms
+2025-09-14 15:50:48.827 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 154.5818ms
+2025-09-14 15:50:49.171 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-14 15:50:49.186 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-14 15:50:49.192 +02:00 [Information] CORS policy execution successful.
+2025-09-14 15:50:49.390 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-14 15:50:49.394 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 214.4039 ms
+2025-09-14 15:50:49.400 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 229.4871ms
+2025-09-14 15:50:49.409 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-14 15:51:21.066 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes""" - "multipart/form-data; boundary=----WebKitFormBoundaryq5FGYeFLu19CgGMf" 9687351
+2025-09-14 15:51:21.086 +02:00 [Information] CORS policy execution successful.
+2025-09-14 15:51:21.092 +02:00 [Information] Executing endpoint '"HTTP: POST processes/ => PostProcess"'
+2025-09-14 15:54:44.728 +02:00 [Information] Executed DbCommand ("56"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:54:44.882 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-14 15:54:45.022 +02:00 [Information] Executed DbCommand ("131"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-14 15:54:45.310 +02:00 [Information] Executed DbCommand ("32"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-14 15:54:45.361 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 15:54:45.377 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-14 15:54:45.473 +02:00 [Information] Executed DbCommand ("65"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-14 15:54:45.509 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-14 15:54:45.523 +02:00 [Information] Executed DbCommand ("11"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-14 15:54:45.714 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-14 15:54:46.810 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-14 15:54:46.906 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-14 15:54:47.350 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-14 15:54:47.367 +02:00 [Information] Hosting environment: "Development"
+2025-09-14 15:54:47.379 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-14 15:54:47.905 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-14 15:54:49.613 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-14 15:54:49.648 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 634.2466 ms
+2025-09-14 15:54:49.677 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1801.1589ms
+2025-09-14 15:54:50.039 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-14 15:54:50.044 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-14 15:54:50.054 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 16.7254ms
+2025-09-14 15:54:50.146 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 102.6365ms
+2025-09-14 15:54:50.567 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-14 15:54:50.629 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-14 15:54:50.636 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 55.7097 ms
+2025-09-14 15:54:50.642 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 75.4022ms
+2025-09-14 15:54:50.673 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-14 15:54:50.694 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-14 15:54:50.701 +02:00 [Information] CORS policy execution successful.
+2025-09-14 15:54:50.893 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-14 15:54:50.899 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 207.9844 ms
+2025-09-14 15:54:50.908 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 234.6904ms
+2025-09-14 15:54:50.919 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-14 15:55:41.084 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes""" - "multipart/form-data; boundary=----WebKitFormBoundaryP05YIJUcjMxf5sfN" 9687351
+2025-09-14 15:55:41.117 +02:00 [Information] CORS policy execution successful.
+2025-09-14 15:55:41.125 +02:00 [Information] Executing endpoint '"HTTP: POST processes/ => PostProcess"'
+2025-09-14 15:56:18.711 +02:00 [Information] Executed endpoint '"HTTP: POST processes/ => PostProcess"'
+2025-09-14 15:56:23.158 +02:00 [Error] Unhandled exception for "POST" "/processes"
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method59(Closure, ProcessDocumentRequest)
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass1_0.<Create>b__0(T x) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 43
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass4_0.<ValidateAsync>b__0() in /_/src/FluentValidation/Internal/PropertyRule.cs:line 119
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Internal.PropertyRule`2.ValidateAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 143
+   at FluentValidation.AbstractValidator`1.ValidateInternalAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 241
+   at FluentValidation.AbstractValidator`1.ValidateAsync(ValidationContext`1 context, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 220
+   at Presentation.EndpointsFilters.InputValidatorFilter`1.InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\EndpointsFilters\InputValidatiorFilters.cs:line 18
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteValueTaskOfObject>g__ExecuteAwaited|129_0(ValueTask`1 valueTask, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass104_2.<<HandleRequestBodyAndCompileRequestDelegateForForm>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+2025-09-14 15:56:29.163 +02:00 [Error] HTTP "POST" "/processes" responded 500 in 48046.5838 ms
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method59(Closure, ProcessDocumentRequest)
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass1_0.<Create>b__0(T x) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 43
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass4_0.<ValidateAsync>b__0() in /_/src/FluentValidation/Internal/PropertyRule.cs:line 119
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Internal.PropertyRule`2.ValidateAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 143
+   at FluentValidation.AbstractValidator`1.ValidateInternalAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 241
+   at FluentValidation.AbstractValidator`1.ValidateAsync(ValidationContext`1 context, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 220
+   at Presentation.EndpointsFilters.InputValidatorFilter`1.InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\EndpointsFilters\InputValidatiorFilters.cs:line 18
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteValueTaskOfObject>g__ExecuteAwaited|129_0(ValueTask`1 valueTask, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass104_2.<<HandleRequestBodyAndCompileRequestDelegateForForm>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-14 15:56:29.178 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method59(Closure, ProcessDocumentRequest)
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass1_0.<Create>b__0(T x) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 43
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass4_0.<ValidateAsync>b__0() in /_/src/FluentValidation/Internal/PropertyRule.cs:line 119
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Internal.PropertyRule`2.ValidateAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 143
+   at FluentValidation.AbstractValidator`1.ValidateInternalAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 241
+   at FluentValidation.AbstractValidator`1.ValidateAsync(ValidationContext`1 context, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 220
+   at Presentation.EndpointsFilters.InputValidatorFilter`1.InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\EndpointsFilters\InputValidatiorFilters.cs:line 18
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteValueTaskOfObject>g__ExecuteAwaited|129_0(ValueTask`1 valueTask, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass104_2.<<HandleRequestBodyAndCompileRequestDelegateForForm>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-14 15:56:29.208 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes""" - 500 null "text/plain; charset=utf-8" 48124.5503ms
+2025-09-14 16:00:55.528 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes""" - "multipart/form-data; boundary=----WebKitFormBoundaryBfRBi8Ehahm3B0vk" 9687351
+2025-09-14 16:00:55.624 +02:00 [Information] CORS policy execution successful.
+2025-09-14 16:00:55.656 +02:00 [Information] Executing endpoint '"HTTP: POST processes/ => PostProcess"'
+2025-09-14 16:01:21.607 +02:00 [Information] Executed endpoint '"HTTP: POST processes/ => PostProcess"'
+2025-09-14 16:01:24.459 +02:00 [Error] Unhandled exception for "POST" "/processes"
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method59(Closure, ProcessDocumentRequest)
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass1_0.<Create>b__0(T x) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 43
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass4_0.<ValidateAsync>b__0() in /_/src/FluentValidation/Internal/PropertyRule.cs:line 119
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Internal.PropertyRule`2.ValidateAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 143
+   at FluentValidation.AbstractValidator`1.ValidateInternalAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 241
+   at FluentValidation.AbstractValidator`1.ValidateAsync(ValidationContext`1 context, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 220
+   at Presentation.EndpointsFilters.InputValidatorFilter`1.InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\EndpointsFilters\InputValidatiorFilters.cs:line 18
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteValueTaskOfObject>g__ExecuteAwaited|129_0(ValueTask`1 valueTask, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass104_2.<<HandleRequestBodyAndCompileRequestDelegateForForm>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+2025-09-14 16:01:27.099 +02:00 [Error] HTTP "POST" "/processes" responded 500 in 31494.1154 ms
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method59(Closure, ProcessDocumentRequest)
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass1_0.<Create>b__0(T x) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 43
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass4_0.<ValidateAsync>b__0() in /_/src/FluentValidation/Internal/PropertyRule.cs:line 119
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Internal.PropertyRule`2.ValidateAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 143
+   at FluentValidation.AbstractValidator`1.ValidateInternalAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 241
+   at FluentValidation.AbstractValidator`1.ValidateAsync(ValidationContext`1 context, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 220
+   at Presentation.EndpointsFilters.InputValidatorFilter`1.InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\EndpointsFilters\InputValidatiorFilters.cs:line 18
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteValueTaskOfObject>g__ExecuteAwaited|129_0(ValueTask`1 valueTask, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass104_2.<<HandleRequestBodyAndCompileRequestDelegateForForm>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-14 16:01:27.121 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method59(Closure, ProcessDocumentRequest)
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass1_0.<Create>b__0(T x) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 43
+   at FluentValidation.Internal.PropertyRule`2.<>c__DisplayClass4_0.<ValidateAsync>b__0() in /_/src/FluentValidation/Internal/PropertyRule.cs:line 119
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.CreateValue()
+   at FluentValidation.Internal.PropertyRule`2.ValidateAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/Internal/PropertyRule.cs:line 143
+   at FluentValidation.AbstractValidator`1.ValidateInternalAsync(ValidationContext`1 context, Boolean useAsync, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 241
+   at FluentValidation.AbstractValidator`1.ValidateAsync(ValidationContext`1 context, CancellationToken cancellation) in /_/src/FluentValidation/AbstractValidator.cs:line 220
+   at Presentation.EndpointsFilters.InputValidatorFilter`1.InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\EndpointsFilters\InputValidatiorFilters.cs:line 18
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteValueTaskOfObject>g__ExecuteAwaited|129_0(ValueTask`1 valueTask, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass104_2.<<HandleRequestBodyAndCompileRequestDelegateForForm>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-14 16:01:27.166 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes""" - 500 null "text/plain; charset=utf-8" 31657.29ms
+2025-09-14 16:25:55.423 +02:00 [Information] Executed DbCommand ("77"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 16:25:55.566 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-14 16:25:55.732 +02:00 [Information] Executed DbCommand ("156"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-14 16:25:55.923 +02:00 [Information] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-14 16:25:55.951 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 16:25:55.961 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-14 16:25:56.068 +02:00 [Information] Executed DbCommand ("95"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-14 16:25:56.095 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-14 16:25:56.108 +02:00 [Information] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-14 16:25:56.306 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-14 16:25:57.108 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-14 16:25:57.197 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-14 16:25:57.823 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-14 16:25:57.844 +02:00 [Information] Hosting environment: "Development"
+2025-09-14 16:25:57.847 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-14 16:25:58.551 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-14 16:26:01.429 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-14 16:26:01.450 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 153.4938 ms
+2025-09-14 16:26:01.502 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 2986.8364ms
+2025-09-14 16:26:01.591 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-14 16:26:01.610 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 18.9406ms
+2025-09-14 16:26:01.730 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-14 16:26:01.856 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 126.3149ms
+2025-09-14 16:26:02.074 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-14 16:26:02.351 +02:00 [Error] Unhandled exception for "GET" "/swagger/v1.0/swagger.json"
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+2025-09-14 16:26:02.549 +02:00 [Error] HTTP "GET" "/swagger/v1.0/swagger.json" responded 500 in 450.8526 ms
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-14 16:26:02.551 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-14 16:26:02.594 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOpenApiOperationFromMetadata(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperation(ApiDescription apiDescription, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Presentation.Middlewares.LoggingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Dell\Documents\PF\API-GP\WebApplication1\Middlewares\LoggingMiddleware.cs:line 23
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-14 16:26:02.605 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-14 16:26:02.618 +02:00 [Information] CORS policy execution successful.
+2025-09-14 16:26:02.623 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 500 null "text/plain; charset=utf-8" 554.0299ms
+2025-09-14 16:26:02.850 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-14 16:26:02.856 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 257.2503 ms
+2025-09-14 16:26:02.862 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 311.5842ms
+2025-09-14 16:26:02.872 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-14 16:27:06.506 +02:00 [Information] Executed DbCommand ("58"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 16:27:06.628 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-14 16:27:06.729 +02:00 [Information] Executed DbCommand ("94"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-14 16:27:06.877 +02:00 [Information] Executed DbCommand ("23"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-14 16:27:06.896 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-14 16:27:06.902 +02:00 [Information] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-14 16:27:06.965 +02:00 [Information] Executed DbCommand ("56"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-14 16:27:06.984 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-14 16:27:07.008 +02:00 [Information] Executed DbCommand ("20"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-14 16:27:07.173 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-14 16:27:07.920 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-14 16:27:07.977 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-14 16:27:08.764 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-14 16:27:08.769 +02:00 [Information] Hosting environment: "Development"
+2025-09-14 16:27:08.771 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-14 16:27:09.567 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-14 16:27:10.779 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-14 16:27:10.803 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 215.9482 ms
+2025-09-14 16:27:10.823 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1332.3079ms
+2025-09-14 16:27:11.217 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-14 16:27:11.217 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-14 16:27:11.235 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 18.4702ms
+2025-09-14 16:27:11.329 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 113.173ms
+2025-09-14 16:27:12.706 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-14 16:27:12.712 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-14 16:27:12.726 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-14 16:27:12.733 +02:00 [Information] CORS policy execution successful.
+2025-09-14 16:27:12.746 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-14 16:27:12.783 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 65.1025 ms
+2025-09-14 16:27:12.819 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 112.7833ms
+2025-09-14 16:27:13.049 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-14 16:27:13.059 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 337.3366 ms
+2025-09-14 16:27:13.089 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 376.7914ms
+2025-09-14 16:27:13.124 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404

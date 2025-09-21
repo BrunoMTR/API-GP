@@ -1,0 +1,641 @@
+2025-09-13 07:58:28.653 +02:00 [Information] Executed DbCommand ("62"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 07:58:28.849 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-13 07:58:29.009 +02:00 [Information] Executed DbCommand ("153"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-13 07:58:29.251 +02:00 [Information] Executed DbCommand ("30"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-13 07:58:29.277 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 07:58:29.287 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-13 07:58:29.375 +02:00 [Information] Executed DbCommand ("78"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-13 07:58:29.407 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-13 07:58:29.435 +02:00 [Information] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-13 07:58:35.753 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-13 07:58:36.538 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-13 07:58:36.618 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-13 07:58:36.819 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-13 07:58:36.834 +02:00 [Information] Hosting environment: "Development"
+2025-09-13 07:58:36.836 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-13 07:58:39.038 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-13 07:58:39.916 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-13 07:58:39.945 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 243.0657 ms
+2025-09-13 07:58:39.993 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 983.2989ms
+2025-09-13 07:58:40.065 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-13 07:58:40.129 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 63.4162ms
+2025-09-13 07:58:40.407 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-13 07:58:40.673 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 265.187ms
+2025-09-13 07:58:40.816 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-13 07:58:40.856 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-13 07:58:40.863 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 37.8504 ms
+2025-09-13 07:58:40.907 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 90.95ms
+2025-09-13 07:58:41.535 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-13 07:58:41.547 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-13 07:58:41.551 +02:00 [Information] CORS policy execution successful.
+2025-09-13 07:58:41.807 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-13 07:58:41.811 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 269.2868 ms
+2025-09-13 07:58:41.819 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 283.7515ms
+2025-09-13 07:58:41.830 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-13 07:59:11.097 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------868745032676552287339087" 508952
+2025-09-13 07:59:11.134 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 07:59:19.696 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 07:59:19.699 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 07:59:19.710 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 07:59:19.714 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 07:59:19.718 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 8589.1150 ms
+2025-09-13 07:59:19.724 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 8626.9446ms
+2025-09-13 08:06:12.258 +02:00 [Information] Executed DbCommand ("85"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 08:06:12.475 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-13 08:06:12.710 +02:00 [Information] Executed DbCommand ("221"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-13 08:06:12.963 +02:00 [Information] Executed DbCommand ("35"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-13 08:06:12.997 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 08:06:13.004 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-13 08:06:13.172 +02:00 [Information] Executed DbCommand ("156"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-13 08:06:13.217 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-13 08:06:13.238 +02:00 [Information] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-13 08:06:22.084 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-13 08:06:27.666 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-13 08:06:27.735 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-13 08:06:27.881 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-13 08:06:27.884 +02:00 [Information] Hosting environment: "Development"
+2025-09-13 08:06:27.886 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-13 08:06:29.170 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-13 08:06:29.791 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-13 08:06:29.804 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 156.2231 ms
+2025-09-13 08:06:29.820 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 677.0635ms
+2025-09-13 08:06:29.846 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-13 08:06:29.872 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 26.3987ms
+2025-09-13 08:06:30.018 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-13 08:06:30.094 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 75.8538ms
+2025-09-13 08:06:30.297 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-13 08:06:30.491 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-13 08:06:30.620 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 311.5165 ms
+2025-09-13 08:06:30.632 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 335.0149ms
+2025-09-13 08:06:31.086 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-13 08:06:31.103 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-13 08:06:31.113 +02:00 [Information] CORS policy execution successful.
+2025-09-13 08:06:31.302 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-13 08:06:31.307 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 209.4066 ms
+2025-09-13 08:06:31.315 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 228.8332ms
+2025-09-13 08:06:31.332 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-13 08:07:00.548 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------328705389356159750660258" 508952
+2025-09-13 08:07:00.570 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 08:07:04.256 +02:00 [Information] Processando ficheiro...
+2025-09-13 08:07:05.405 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 08:07:05.409 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 08:07:05.420 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 08:07:05.425 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 08:07:05.431 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 4864.6523 ms
+2025-09-13 08:07:05.437 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 4889.5062ms
+2025-09-13 08:16:35.935 +02:00 [Information] Executed DbCommand ("44"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 08:16:36.065 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-13 08:16:36.113 +02:00 [Information] Executed DbCommand ("41"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-13 08:16:36.270 +02:00 [Information] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-13 08:16:36.291 +02:00 [Information] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 08:16:36.297 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-13 08:16:36.341 +02:00 [Information] Executed DbCommand ("37"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-13 08:16:36.357 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-13 08:16:36.365 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-13 08:16:40.369 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-13 08:16:43.138 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-13 08:16:43.215 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-13 08:16:43.527 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-13 08:16:43.533 +02:00 [Information] Hosting environment: "Development"
+2025-09-13 08:16:43.537 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-13 08:16:44.821 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-13 08:16:46.087 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-13 08:16:46.202 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-13 08:16:46.222 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 525.9771 ms
+2025-09-13 08:16:46.233 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 29.4288ms
+2025-09-13 08:16:46.246 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1458.4254ms
+2025-09-13 08:16:46.532 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-13 08:16:46.868 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 336.437ms
+2025-09-13 08:16:47.092 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-13 08:16:47.229 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-13 08:16:47.235 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 101.6439 ms
+2025-09-13 08:16:47.250 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 158.1013ms
+2025-09-13 08:16:48.020 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-13 08:16:48.070 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-13 08:16:48.082 +02:00 [Information] CORS policy execution successful.
+2025-09-13 08:16:48.298 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-13 08:16:48.303 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 239.7410 ms
+2025-09-13 08:16:48.336 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 315.9173ms
+2025-09-13 08:16:48.345 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-13 08:18:25.926 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------591189788213175082687050" 9687236
+2025-09-13 08:18:26.457 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 08:19:08.722 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 08:19:08.766 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 08:19:08.814 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 08:19:08.823 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 08:19:08.837 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 42414.7535 ms
+2025-09-13 08:19:08.861 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 42939.0326ms
+2025-09-13 08:19:09.014 +02:00 [Error] BackgroundService failed
+System.ObjectDisposedException: Cannot access a closed file.
+   at System.IO.FileStream.get_Position()
+   at Microsoft.AspNetCore.Http.ReferenceReadStream.VerifyPosition()
+   at Microsoft.AspNetCore.Http.ReferenceReadStream.ReadAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at Infrastructure.Channel.Documentation.DocumentationService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\Documentation\DocumentationService.cs:line 48
+   at Infrastructure.Channel.Documentation.DocumentationService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\Documentation\DocumentationService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2025-09-13 08:19:09.152 +02:00 [Fatal] The HostOptions.BackgroundServiceExceptionBehavior is configured to StopHost. A BackgroundService has thrown an unhandled exception, and the IHost instance is stopping. To avoid this behavior, configure this to Ignore; however the BackgroundService will not be restarted.
+System.ObjectDisposedException: Cannot access a closed file.
+   at System.IO.FileStream.get_Position()
+   at Microsoft.AspNetCore.Http.ReferenceReadStream.VerifyPosition()
+   at Microsoft.AspNetCore.Http.ReferenceReadStream.ReadAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at Infrastructure.Channel.Documentation.DocumentationService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\Documentation\DocumentationService.cs:line 48
+   at Infrastructure.Channel.Documentation.DocumentationService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\Documentation\DocumentationService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2025-09-13 08:19:09.159 +02:00 [Information] Application is shutting down...
+2025-09-13 08:20:20.142 +02:00 [Information] Executed DbCommand ("60"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 08:20:20.304 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-13 08:20:20.425 +02:00 [Information] Executed DbCommand ("109"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-13 08:20:20.551 +02:00 [Information] Executed DbCommand ("20"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-13 08:20:20.570 +02:00 [Information] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 08:20:20.576 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-13 08:20:20.628 +02:00 [Information] Executed DbCommand ("45"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-13 08:20:20.641 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-13 08:20:20.650 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-13 08:20:20.803 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-13 08:20:21.572 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-13 08:20:21.637 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-13 08:20:21.925 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-13 08:20:22.026 +02:00 [Information] Hosting environment: "Development"
+2025-09-13 08:20:22.037 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-13 08:20:23.010 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-13 08:20:24.128 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-13 08:20:24.188 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 293.3059 ms
+2025-09-13 08:20:24.238 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1253.7337ms
+2025-09-13 08:20:24.554 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-13 08:20:24.619 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-13 08:20:24.631 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 77.1446ms
+2025-09-13 08:20:24.885 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 266.4606ms
+2025-09-13 08:20:25.364 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-13 08:20:25.542 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-13 08:20:25.615 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 147.7871 ms
+2025-09-13 08:20:25.623 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 258.9576ms
+2025-09-13 08:20:25.859 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-13 08:20:26.009 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-13 08:20:26.023 +02:00 [Information] CORS policy execution successful.
+2025-09-13 08:20:26.261 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-13 08:20:26.267 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 266.0276 ms
+2025-09-13 08:20:26.284 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 425.4425ms
+2025-09-13 08:20:26.327 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-13 08:21:00.629 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------568495534471027106549042" 9687236
+2025-09-13 08:21:00.670 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 08:21:01.154 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 08:21:01.157 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 08:21:01.174 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 08:21:01.188 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 08:21:01.192 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 525.0376 ms
+2025-09-13 08:21:01.204 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 574.7675ms
+2025-09-13 08:21:01.280 +02:00 [Error] BackgroundService failed
+System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'System.String'.
+   at Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.ReadAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.ReferenceReadStream.ReadAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at Infrastructure.Channel.Documentation.DocumentationService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\Documentation\DocumentationService.cs:line 48
+   at Infrastructure.Channel.Documentation.DocumentationService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\Documentation\DocumentationService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2025-09-13 08:21:01.346 +02:00 [Fatal] The HostOptions.BackgroundServiceExceptionBehavior is configured to StopHost. A BackgroundService has thrown an unhandled exception, and the IHost instance is stopping. To avoid this behavior, configure this to Ignore; however the BackgroundService will not be restarted.
+System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'System.String'.
+   at Microsoft.AspNetCore.WebUtilities.FileBufferingReadStream.ReadAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.ReferenceReadStream.ReadAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at Infrastructure.Channel.Documentation.DocumentationService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\Documentation\DocumentationService.cs:line 48
+   at Infrastructure.Channel.Documentation.DocumentationService.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\Documentation\DocumentationService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2025-09-13 08:21:01.356 +02:00 [Information] Application is shutting down...
+2025-09-13 08:52:07.559 +02:00 [Information] Executed DbCommand ("65"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 08:52:07.706 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-13 08:52:07.916 +02:00 [Information] Executed DbCommand ("199"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-13 08:52:08.117 +02:00 [Information] Executed DbCommand ("22"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-13 08:52:08.144 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 08:52:08.151 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-13 08:52:08.214 +02:00 [Information] Executed DbCommand ("51"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-13 08:52:08.231 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-13 08:52:08.241 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-13 08:52:08.396 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-13 08:52:09.161 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-13 08:52:09.216 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-13 08:52:09.642 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-13 08:52:09.645 +02:00 [Information] Hosting environment: "Development"
+2025-09-13 08:52:09.648 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-13 08:52:10.692 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-13 08:52:12.005 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-13 08:52:12.022 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 266.7272 ms
+2025-09-13 08:52:12.062 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1399.6965ms
+2025-09-13 08:52:12.214 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-13 08:52:12.274 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 59.5421ms
+2025-09-13 08:52:12.328 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-13 08:52:12.438 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 110.2526ms
+2025-09-13 08:52:12.619 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-13 08:52:12.678 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-13 08:52:12.697 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 59.8864 ms
+2025-09-13 08:52:12.711 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 91.4753ms
+2025-09-13 08:52:13.073 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-13 08:52:13.087 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-13 08:52:13.094 +02:00 [Information] CORS policy execution successful.
+2025-09-13 08:52:13.315 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-13 08:52:13.320 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 238.7956 ms
+2025-09-13 08:52:13.327 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 253.6876ms
+2025-09-13 08:52:13.339 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-13 08:52:27.699 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------755895546520336231248318" 9687236
+2025-09-13 08:52:27.727 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 08:52:28.382 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 08:52:28.384 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 08:52:28.397 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 08:52:28.402 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 08:52:28.407 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 688.1721 ms
+2025-09-13 08:52:28.416 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 716.9556ms
+2025-09-13 08:53:50.110 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------427376669967322370166415" 9687236
+2025-09-13 08:53:50.148 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 08:53:50.488 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 08:53:50.491 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 08:53:50.493 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 08:53:50.494 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 08:53:50.498 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 355.4607 ms
+2025-09-13 08:53:50.503 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 398.3641ms
+2025-09-13 10:09:21.065 +02:00 [Information] Executed DbCommand ("87"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 10:09:21.233 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-13 10:09:21.365 +02:00 [Information] Executed DbCommand ("119"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-13 10:09:21.505 +02:00 [Information] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-13 10:09:21.525 +02:00 [Information] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 10:09:21.530 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-13 10:09:21.614 +02:00 [Information] Executed DbCommand ("77"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-13 10:09:21.630 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-13 10:09:21.640 +02:00 [Information] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-13 10:09:21.813 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-13 10:09:22.552 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-13 10:09:22.615 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-13 10:09:22.866 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-13 10:09:22.966 +02:00 [Information] Hosting environment: "Development"
+2025-09-13 10:09:22.989 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-13 10:09:23.861 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-13 10:09:26.123 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-13 10:09:26.139 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 179.3915 ms
+2025-09-13 10:09:26.155 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 2330.8306ms
+2025-09-13 10:09:26.226 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-13 10:09:26.321 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 110.1254ms
+2025-09-13 10:09:26.433 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-13 10:09:26.591 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 157.9252ms
+2025-09-13 10:09:26.776 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-13 10:09:26.842 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-13 10:09:26.854 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 61.7078 ms
+2025-09-13 10:09:26.866 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 91.0306ms
+2025-09-13 10:09:27.272 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-13 10:09:27.284 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-13 10:09:27.291 +02:00 [Information] CORS policy execution successful.
+2025-09-13 10:09:27.464 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-13 10:09:27.468 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 188.5391 ms
+2025-09-13 10:09:27.474 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 202.8287ms
+2025-09-13 10:09:27.481 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-13 10:10:42.052 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------049791158383325944935760" 9687236
+2025-09-13 10:10:42.101 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:10:42.747 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 10:10:42.750 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 10:10:42.758 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:10:42.764 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 10:10:42.767 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 676.2856 ms
+2025-09-13 10:10:42.772 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 721.4414ms
+2025-09-13 10:12:14.605 +02:00 [Information] Executed DbCommand ("74"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 10:12:14.717 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-13 10:12:14.826 +02:00 [Information] Executed DbCommand ("94"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-13 10:12:14.987 +02:00 [Information] Executed DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-13 10:12:15.007 +02:00 [Information] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 10:12:15.013 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-13 10:12:15.068 +02:00 [Information] Executed DbCommand ("46"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-13 10:12:15.087 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-13 10:12:15.095 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-13 10:12:15.264 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-13 10:12:16.310 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-13 10:12:16.686 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-13 10:12:17.081 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-13 10:12:17.114 +02:00 [Information] Hosting environment: "Development"
+2025-09-13 10:12:17.118 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-13 10:12:19.780 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-13 10:12:20.370 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-13 10:12:20.391 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 166.1943 ms
+2025-09-13 10:12:20.410 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 663.0174ms
+2025-09-13 10:12:20.477 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-13 10:12:20.605 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 127.7157ms
+2025-09-13 10:12:20.698 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-13 10:12:20.901 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 202.2496ms
+2025-09-13 10:12:21.098 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-13 10:12:21.198 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-13 10:12:21.316 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 198.5943 ms
+2025-09-13 10:12:21.340 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 242.5937ms
+2025-09-13 10:12:22.356 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-13 10:12:22.373 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-13 10:12:22.378 +02:00 [Information] CORS policy execution successful.
+2025-09-13 10:12:22.609 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-13 10:12:22.613 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 249.5315 ms
+2025-09-13 10:12:22.621 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 265.2427ms
+2025-09-13 10:12:22.635 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-13 10:12:47.766 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------566759627327745092536074" 9687236
+2025-09-13 10:12:47.801 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:12:48.575 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 10:12:48.581 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 10:12:48.596 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:12:48.641 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 10:12:48.655 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 861.0207 ms
+2025-09-13 10:12:48.703 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 936.0928ms
+2025-09-13 10:13:27.129 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------450197614562047381172481" 9687236
+2025-09-13 10:13:27.175 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:13:27.544 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 10:13:27.547 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 10:13:27.549 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:13:27.550 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 10:13:27.552 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 380.2619 ms
+2025-09-13 10:13:27.557 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 430.8612ms
+2025-09-13 10:15:08.528 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------159175595873775880291938" 9687236
+2025-09-13 10:15:08.535 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:15:08.911 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 10:15:08.914 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 10:15:08.916 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:15:08.917 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 10:15:08.931 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 397.1471 ms
+2025-09-13 10:15:08.935 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 407.9579ms
+2025-09-13 10:15:24.723 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------075358634587503711013471" 9687236
+2025-09-13 10:15:24.730 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:15:25.082 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 10:15:25.098 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 10:15:25.216 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:15:25.219 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 10:15:25.226 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 496.3256 ms
+2025-09-13 10:15:25.232 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 509.3461ms
+2025-09-13 10:21:45.970 +02:00 [Information] Executed DbCommand ("29"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 10:21:46.093 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-13 10:21:46.203 +02:00 [Information] Executed DbCommand ("102"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-13 10:21:46.377 +02:00 [Information] Executed DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-13 10:21:46.399 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 10:21:46.405 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-13 10:21:46.460 +02:00 [Information] Executed DbCommand ("45"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-13 10:21:46.476 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-13 10:21:46.494 +02:00 [Information] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-13 10:21:46.666 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-13 10:21:47.578 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-13 10:21:47.689 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-13 10:21:48.518 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-13 10:21:48.528 +02:00 [Information] Hosting environment: "Development"
+2025-09-13 10:21:48.539 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-13 10:21:48.677 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-13 10:21:49.416 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-13 10:21:49.485 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-13 10:21:49.517 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 266.7385 ms
+2025-09-13 10:21:49.568 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 77.3498ms
+2025-09-13 10:21:49.583 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 940.6374ms
+2025-09-13 10:21:49.697 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-13 10:21:49.824 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 127.4439ms
+2025-09-13 10:21:51.429 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-13 10:21:51.431 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-13 10:21:51.488 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-13 10:21:51.490 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-13 10:21:51.496 +02:00 [Information] CORS policy execution successful.
+2025-09-13 10:21:51.502 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 58.9119 ms
+2025-09-13 10:21:51.515 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 86.1056ms
+2025-09-13 10:21:54.478 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-13 10:21:54.481 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 3005.8543 ms
+2025-09-13 10:21:54.487 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 3056.2858ms
+2025-09-13 10:21:54.496 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-13 10:22:31.518 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------649474680420401458057541" 9687236
+2025-09-13 10:22:31.548 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:22:32.480 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 10:22:32.484 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 10:22:32.492 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:22:32.495 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 10:22:32.499 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 957.0784 ms
+2025-09-13 10:22:32.505 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 987.6314ms
+2025-09-13 10:24:30.748 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------221046027060472087323248" 9744284
+2025-09-13 10:24:30.796 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:24:31.120 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 10:24:31.123 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 10:24:31.128 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:24:31.130 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 10:24:31.132 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 347.6886 ms
+2025-09-13 10:24:31.136 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 392.0288ms
+2025-09-13 10:28:50.280 +02:00 [Information] Executed DbCommand ("75"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 10:28:50.408 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-13 10:28:50.617 +02:00 [Information] Executed DbCommand ("193"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-09-13 10:28:50.880 +02:00 [Information] Executed DbCommand ("70"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-09-13 10:28:50.940 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-09-13 10:28:50.947 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-09-13 10:28:51.018 +02:00 [Information] Executed DbCommand ("59"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-09-13 10:28:51.036 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-09-13 10:28:51.048 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-09-13 10:28:51.180 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-13 10:28:51.912 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-09-13 10:28:52.009 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-13 10:28:52.819 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-09-13 10:28:52.999 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-09-13 10:28:53.003 +02:00 [Information] Hosting environment: "Development"
+2025-09-13 10:28:53.007 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-09-13 10:28:53.478 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-09-13 10:28:53.535 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 211.2915 ms
+2025-09-13 10:28:53.625 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 832.472ms
+2025-09-13 10:28:53.903 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-09-13 10:28:53.904 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-09-13 10:28:53.922 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 21.3909ms
+2025-09-13 10:28:54.013 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 108.7931ms
+2025-09-13 10:28:54.138 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-09-13 10:28:54.182 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-09-13 10:28:54.196 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 48.7090 ms
+2025-09-13 10:28:54.224 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 79.1551ms
+2025-09-13 10:28:54.429 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-09-13 10:28:54.509 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-09-13 10:28:54.516 +02:00 [Information] CORS policy execution successful.
+2025-09-13 10:28:54.712 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-09-13 10:28:54.715 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 213.3124 ms
+2025-09-13 10:28:54.723 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 293.5222ms
+2025-09-13 10:28:54.733 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-09-13 10:29:11.833 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------153235135075567185393785" 9744284
+2025-09-13 10:29:11.867 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:29:23.358 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 10:29:23.363 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 10:29:23.396 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:29:23.412 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 10:29:23.420 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 11560.6965 ms
+2025-09-13 10:29:23.442 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 11609.225ms
+2025-09-13 10:30:21.265 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - "multipart/form-data; boundary=--------------------------720778990011183681643471" 6071806
+2025-09-13 10:30:21.314 +02:00 [Information] Executing endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:30:21.543 +02:00 [Information] Setting HTTP status code 200.
+2025-09-13 10:30:21.552 +02:00 [Information] Writing value of type '"String"' as Json.
+2025-09-13 10:30:21.555 +02:00 [Information] Executed endpoint '"HTTP: POST processes/documentation/upload => UploadFile"'
+2025-09-13 10:30:21.557 +02:00 [Information] Request "POST" "/processes/documentation/upload" responded 200
+2025-09-13 10:30:21.560 +02:00 [Information] HTTP "POST" "/processes/documentation/upload" responded 200 in 269.5303 ms
+2025-09-13 10:30:21.574 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/processes/documentation/upload""" - 200 null "application/json; charset=utf-8" 311.2175ms

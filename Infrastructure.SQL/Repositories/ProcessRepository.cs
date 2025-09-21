@@ -27,8 +27,9 @@ namespace Infrastructure.SQL.Repositories
                 CreatedAt = process.CreatedAt,
                 CreatedBy = process.CreatedBy,
                 Approvals = process.Approvals,
-                Status =  ProcessStatus.Initiated,
-                At = process.At
+                Status = process.Status,
+                At = process.At,
+
             };
 
             await _demoContext.AddAsync(processEntity);
@@ -37,23 +38,66 @@ namespace Infrastructure.SQL.Repositories
             return process;
         }
 
-        public async Task<List<ProcessFlowDto>> GetAllAsync()
+
+
+
+
+        public async Task<List<ProcessFlowDto>> GetAllAsync(ProcessQueryParams query)
         {
-            var processes = await _demoContext.Process
+            var processesQuery = _demoContext.Process
                 .Include(p => p.Histories)
-                .ToListAsync();
+                .Include(p => p.Application)
+                .Include(p => p.Unit)
+                .AsQueryable();
+
+            // 🔎 Filtros
+            if (!string.IsNullOrEmpty(query.Search))
+            {
+                var search = query.Search.ToLower();
+                processesQuery = processesQuery.Where(p =>
+                    p.Id.ToString().ToLower().Contains(search) ||
+                    p.CreatedBy.ToLower().Contains(search) ||
+                    p.Unit.Name.ToLower().Contains(search) ||
+                    p.Application.Name.ToLower().Contains(search));
+            }
+
+            if (!string.IsNullOrEmpty(query.Application) && query.Application != "all")
+            {
+                processesQuery = processesQuery.Where(p => p.Application.Name == query.Application);
+            }
+
+            if (!string.IsNullOrEmpty(query.DateFilter) && query.DateFilter != "all")
+            {
+                var now = DateTime.UtcNow;
+                if (query.DateFilter == "last7")
+                {
+                    processesQuery = processesQuery.Where(p => p.CreatedAt >= now.AddDays(-7));
+                }
+                else if (query.DateFilter == "last30")
+                {
+                    processesQuery = processesQuery.Where(p => p.CreatedAt >= now.AddDays(-30));
+                }
+            }
+
+            // 🔢 Total de processos antes da paginação
+            var totalCount = await processesQuery.CountAsync();
+
+            // 📄 Paginação
+            processesQuery = processesQuery
+                .OrderByDescending(p => p.CreatedAt)
+                .Skip(query.PageIndex * query.PageSize)
+                .Take(query.PageSize);
+
+            var processes = await processesQuery.ToListAsync();
 
             var results = new List<ProcessFlowDto>();
-
             foreach (var p in processes)
             {
-                // 1. Buscar o fluxo da aplicação associada
                 var flow = await new FlowRepository(_demoContext)
                     .GetFlowByApplicationId(p.ApplicationId);
 
                 if (flow == null) continue;
 
-                // 2. Calcular nodes visitados
                 var visitedAtValues = p.Histories
                     .OrderBy(h => h.UpdatedAt)
                     .Select(h => h.At)
@@ -61,10 +105,9 @@ namespace Infrastructure.SQL.Repositories
 
                 var currentAt = p.At;
 
-                // 3. Marcar os nodes
                 var nodes = flow.Nodes.Select(n =>
                 {
-                    int nodeId = int.Parse(n.Id.Substring(1)); // n1 -> 1
+                    int nodeId = int.Parse(n.Id.Substring(1));
                     var status = visitedAtValues.Contains(nodeId) ? "visited" : "pending";
                     if (nodeId == currentAt) status = "current";
 
@@ -81,20 +124,37 @@ namespace Infrastructure.SQL.Repositories
                     };
                 }).ToList();
 
-                // 4. Edges iguais ao fluxo original
-                var edges = flow.Edges;
+                var application = await _demoContext.Application
+                    .FirstOrDefaultAsync(a => a.Id == p.ApplicationId);
 
-                // 5. Adicionar metadados do processo
+                var unit = await _demoContext.Unit
+                    .FirstOrDefaultAsync(u => u.Id == p.At);
+
                 results.Add(new ProcessFlowDto
                 {
-                    Id = p.Id.ToString(),
+                    Id = p.Id,
                     CreatedAt = p.CreatedAt,
                     CreatedBy = p.CreatedBy,
-                    At = p.At.ToString(),
-                    Workflows = p.ApplicationId.ToString(), // podes mudar se tiveres tabela Workflow
-                    Status = p.Status.ToString(),
+                    Unit = new UnitDto
+                    {
+                        Id = unit.Id,
+                        Name = unit.Name,
+                        Abbreviation = unit.Abbreviation,
+                        Email = unit.Email
+                    },
+                    Application = new ApplicationDto
+                    {
+                        Id = application.Id,
+                        Name = application.Name,
+                        Abbreviation = application.Abbreviation,
+                        Team = application.Team,
+                        TeamEmail = application.TeamEmail,
+                        ApplicationEmail = application.ApplicationEmail
+                    },
+                    Status = p.Status,
                     Nodes = nodes,
-                    Edges = edges
+                    Edges = flow.Edges,
+                    ProcessCount = totalCount
                 });
             }
 
@@ -104,11 +164,12 @@ namespace Infrastructure.SQL.Repositories
 
 
 
+
         public async Task<List<ProcessDto>> GetAllByApplicationIdAsync(int applicationId)
         {
             var processes = await _demoContext.Process
                 .Where(p => p.ApplicationId == applicationId)
-                .Include(p => p.Histories) 
+                .Include(p => p.Histories)
                 .ToListAsync();
 
             return processes.Select(p => new ProcessDto

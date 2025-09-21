@@ -10,8 +10,10 @@ namespace Infrastructure.SQL.Configurations
         {
             builder.ToTable("Process", "dbo");
 
+            // Chave primária
             builder.HasKey(p => p.Id);
 
+            // Propriedades básicas
             builder.Property(p => p.ApplicationId)
                    .IsRequired();
 
@@ -34,25 +36,31 @@ namespace Infrastructure.SQL.Configurations
                    .IsRequired()
                    .HasDefaultValue(Domain.DTOs.ProcessStatus.Initiated);
 
-            // Relacionamento com Application
-            builder.HasOne<ApplicationEntity>()
+            // Relacionamento com Application (propriedade de navegação)
+            builder.HasOne(p => p.Application)
                    .WithMany()
                    .HasForeignKey(p => p.ApplicationId)
                    .OnDelete(DeleteBehavior.Restrict);
 
-            // Relacionamento com Unit (At)
-            builder.HasOne<UnitEntity>()
+            // Relacionamento com Unit (propriedade de navegação)
+            builder.HasOne(p => p.Unit)
                    .WithMany()
                    .HasForeignKey(p => p.At)
                    .OnDelete(DeleteBehavior.Restrict);
 
+            // Índices
             builder.HasIndex(p => p.ApplicationId);
 
+            // Relacionamento com Histories
             builder.HasMany(p => p.Histories)
+                   .WithOne()
+                   .HasForeignKey(h => h.ProcessId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(p => p.Documentations)
                     .WithOne()
                     .HasForeignKey(h => h.ProcessId)
                     .OnDelete(DeleteBehavior.Cascade);
         }
-
     }
 }

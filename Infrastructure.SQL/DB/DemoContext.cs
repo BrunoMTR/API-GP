@@ -21,6 +21,7 @@ namespace Infrastructure.SQL.DB
         public DbSet<NodeEntity> Node { get; set; }
         public DbSet<ProcessEntity> Process { get; set; }
         public DbSet<HistoryEntity> History { get; set; }
+        public DbSet<DocumentationEntity> Documentation { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

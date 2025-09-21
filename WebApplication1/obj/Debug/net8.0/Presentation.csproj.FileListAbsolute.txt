@@ -205,3 +205,7 @@ C:\Users\Dell\Documents\PF\API-GP\WebApplication1\obj\Debug\net8.0\Presentation.
 C:\Users\Dell\Documents\PF\API-GP\WebApplication1\obj\Debug\net8.0\Presentation.pdb
 C:\Users\Dell\Documents\PF\API-GP\WebApplication1\obj\Debug\net8.0\Presentation.genruntimeconfig.cache
 C:\Users\Dell\Documents\PF\API-GP\WebApplication1\obj\Debug\net8.0\ref\Presentation.dll
+C:\Users\Dell\Documents\PF\API-GP\WebApplication1\bin\Debug\net8.0\Infrastructure.Channel.dll
+C:\Users\Dell\Documents\PF\API-GP\WebApplication1\bin\Debug\net8.0\Infrastructure.Channel.pdb
+C:\Users\Dell\Documents\PF\API-GP\WebApplication1\bin\Debug\net8.0\InfrastructureFileStorage.dll
+C:\Users\Dell\Documents\PF\API-GP\WebApplication1\bin\Debug\net8.0\InfrastructureFileStorage.pdb

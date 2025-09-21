@@ -1,10 +1,14 @@
-﻿using Domain.DTOs;
+﻿using Domain.Channels;
+using Domain.DTOs;
 using Domain.DTOs.Flow;
 using Domain.DTOs.FlowDTOs;
 using Domain.Repositories;
 using Domain.Services;
+using InfrastructureFileStorage.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,13 +22,20 @@ namespace BL.Services
 
         private IFlowRepository _flowRepository;
         private IHistoryRepository _historyRepository;
+        private IApplicationRepository _applicationRepository;
+        private IDocumentationChannel _documentationChannel;
+        private readonly IFileStorageService _fileStorage;
 
-        public ProcessService(IProcessRepository processRepository, IFlowRepository flowRepository, IHistoryRepository historyRepository)
+        public ProcessService(IProcessRepository processRepository, IFlowRepository flowRepository, IHistoryRepository historyRepository, IApplicationRepository applicationRepository, IDocumentationChannel documentationChannel, IFileStorageService fileStorage)
         {
             _processRepository = processRepository;
             _flowRepository = flowRepository;
             _historyRepository = historyRepository;
+            _applicationRepository = applicationRepository;
+            _documentationChannel = documentationChannel;
+            _fileStorage = fileStorage;
         }
+
 
         public async Task<ProcessDto> Approve(int processId, string updatedBy)
         {
@@ -113,7 +124,7 @@ namespace BL.Services
 
 
 
-        public async Task<ProcessDto> Create(ProcessDto process)
+        public async Task<ProcessDto> Create(ProcessDto process, bool uploading)
         {
             // Buscar nodes do fluxo da aplicação
             var normalizedNodes = await _flowRepository.GetByApplicationIdAsync(process.ApplicationId);
@@ -139,7 +150,33 @@ namespace BL.Services
             if (initialNode == 0)
                 throw new Exception("Cannot determine the initial node for this application.");
 
-            process.At = initialNode;
+            // Encontrar a relação de avanço a partir do initialNode
+            var initialEdge = nodes.FirstOrDefault(n =>
+                n.OriginId == initialNode &&
+                n.Direction.Equals("AVANÇO", StringComparison.OrdinalIgnoreCase));
+
+            if (initialEdge == null)
+                throw new Exception("Initial node has no outgoing 'AVANÇO' edge.");
+
+            // --- Definição de At e Status ---
+
+            if (initialEdge.Approvals == 0)
+            {
+                // Sem approvals → salta logo
+                process.At = initialEdge.DestinationId;
+                process.Status = ProcessStatus.Pending;
+            }
+            else
+            {
+                // Precisa approvals → fica no inicial
+                process.At = initialNode;
+                process.Status = ProcessStatus.Initiated;
+            }
+
+            if (uploading)
+            {
+                process.Status = ProcessStatus.Uploading;
+            }
 
             // Criar o processo
             var createdProcess = await _processRepository.CreateAsync(process);
@@ -147,9 +184,9 @@ namespace BL.Services
             return createdProcess;
         }
 
-        public Task<List<ProcessFlowDto>> GetAll()
+        public Task<List<ProcessFlowDto>> GetAllAsync(ProcessQueryParams query)
         {
-            return _processRepository.GetAllAsync();
+            return _processRepository.GetAllAsync(query);
         }
 
         public Task<List<ProcessDto>> GetAllByApplicationId(int applicationId)
@@ -163,9 +200,54 @@ namespace BL.Services
             return await _processRepository.GetProcessFlow(processId, flow);
         }
 
-        public Task<ProcessDto> Retrieve(int id)
+        public async Task<ProcessDto> CreateWithFileAsync(
+        ProcessDto process,
+        IFormFile? file,
+        CancellationToken cancellationToken)
         {
-            return _processRepository.RetrieveAsync(id);
+            // 1. Criação do processo
+
+            // 2. Só continua se recebeu ficheiro
+            if (file is null)
+            {
+                var createdProcessWithoutFile = await Create(process, false);
+                return createdProcessWithoutFile;
+            }
+
+            var createdProcessWithFile = await Create(process, true);
+
+            // 3. Buscar a aplicação
+            var application = await _applicationRepository.RetrieveAsync(process.ApplicationId);
+            if (application is null)
+                throw new Exception($"Application {process.ApplicationId} not found.");
+
+            // 4. Criar mensagem
+            var message = new DocumentMessageDto
+            {
+                ProcessId = createdProcessWithFile.Id,
+                ApplicationName = application.Abbreviation,
+                TempFilePath = string.Empty,
+                UploadedBy = process.CreatedBy,
+                At = process.At
+
+            };
+
+            // 5. Tratar upload
+            await HandleFileUploadAsync(message, file, cancellationToken);
+
+            return createdProcessWithFile;
+        }
+
+
+        public async Task HandleFileUploadAsync(DocumentMessageDto message, IFormFile file, CancellationToken cancellationToken)
+        {
+
+            var tempFilePath = await _fileStorage.SaveTempFileAsync(file, cancellationToken);
+
+            message.TempFilePath = tempFilePath;
+
+            await _documentationChannel.SubmitAsync(message, cancellationToken);
+
         }
     }
 }

@@ -191,7 +191,7 @@
     "Parameters": [
       {
         "Name": "process",
-        "Type": "Presentation.Models.Process",
+        "Type": "Presentation.Models.Forms.ProcessForm",
         "IsRequired": true
       },
       {
@@ -220,34 +220,29 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "api-version",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ],
-    "Tags": [
-      "Process"
-    ]
-  },
-  {
-    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
-    "Method": "GetProcess",
-    "RelativePath": "processes/{processId}",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "processId",
+        "Name": "pageIndex",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "application",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "dateFilter",
+        "Type": "System.String",
+        "IsRequired": false
       },
       {
         "Name": "api-version",
@@ -264,8 +259,7 @@
     ],
     "Tags": [
       "Process"
-    ],
-    "EndpointName": "processId"
+    ]
   },
   {
     "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
@@ -328,6 +322,36 @@
       "Process"
     ],
     "EndpointName": "processesByApplicationId"
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
+    "Method": "UploadFile",
+    "RelativePath": "processes/upload",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "document",
+        "Type": "Presentation.Models.Forms.DocumentForm",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Process"
+    ]
   },
   {
     "ContainingType": "Presentation.Endpoints.UnitEndpoints",

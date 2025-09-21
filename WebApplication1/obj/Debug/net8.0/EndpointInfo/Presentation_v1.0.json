@@ -158,9 +158,14 @@
         "description": "Creates a new process entity with the provided information. Validates the input before persisting.",
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Process"
+                "$ref": "#/components/schemas/ProcessForm"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessForm"
               }
             }
           },
@@ -178,29 +183,44 @@
         ],
         "summary": "Retrieve all processes flow",
         "description": "Fetches all processes flow states",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/processes/{processId}": {
-      "get": {
-        "tags": [
-          "Process"
-        ],
-        "summary": "Retrieve an process by ID",
-        "description": "Fetches the process details associated with the specified unique identifier.",
-        "operationId": "processId",
         "parameters": [
           {
-            "name": "processId",
-            "in": "path",
+            "name": "pageIndex",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "application",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateFilter",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -209,7 +229,38 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/processes/upload": {
+      "post": {
+        "tags": [
+          "Process"
+        ],
+        "summary": "Upload process",
+        "description": "Upload process",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentForm"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentForm"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/processes/{processId}": {
       "patch": {
         "tags": [
           "Process"
@@ -439,6 +490,25 @@
         },
         "additionalProperties": false
       },
+      "DocumentForm": {
+        "type": "object",
+        "properties": {
+          "processId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uploadedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Graph": {
         "type": "object",
         "properties": {
@@ -478,7 +548,7 @@
         },
         "additionalProperties": false
       },
-      "Process": {
+      "ProcessForm": {
         "type": "object",
         "properties": {
           "applicationId": {
@@ -487,6 +557,11 @@
           },
           "createdBy": {
             "type": "string",
+            "nullable": true
+          },
+          "file": {
+            "type": "string",
+            "format": "binary",
             "nullable": true
           }
         },

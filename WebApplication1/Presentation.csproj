@@ -35,13 +35,16 @@
 
   <ItemGroup>
     <Folder Include="Channels\" />
+    <Folder Include="tempUploads\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure.Channel\Infrastructure.Channel.csproj" />
     <ProjectReference Include="..\Infrastructure.Logging\Infrastructure.Logging.csproj" />
     <ProjectReference Include="..\Infrastructure.SQL\Infrastructure.SQL.csproj" />
+    <ProjectReference Include="..\InfrastructureFileStorage\InfrastructureFileStorage.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,13 +10,14 @@ namespace Domain.DTOs.FlowDTOs
     public class ProcessFlowDto
     {
 
-        public string Id { get; set; }
+        public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
-        public string At { get; set; }
-        public string Workflows { get; set; }
-        public string Status { get; set; }
+        public ProcessStatus Status { get; set; }
+        public ApplicationDto Application { get; set; } = new();
+        public UnitDto Unit { get; set; } = new();
         public List<ReactFlowNodeDto> Nodes { get; set; } = new();
         public List<ReactFlowEdgeDto> Edges { get; set; } = new();
+        public int ProcessCount { get; set; }
     }
 }

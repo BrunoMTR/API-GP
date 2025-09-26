@@ -15,6 +15,7 @@ namespace Infrastructure.SQL.DB.Entities
         public string? Team { get; set; }
         public string? TeamEmail { get; set; }
         public string? ApplicationEmail { get; set; }
+        ICollection<ProcessEntity> Processes { get; set; }
 
     }
 }

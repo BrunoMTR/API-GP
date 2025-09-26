@@ -21,14 +21,8 @@ namespace Infrastructure.SQL.Repositories
         {
             _demoContext = demoContext;
         }
-
-        public async Task DeleteByApplicationIdAsync(int applicationId)
-        {
-            await _demoContext.Node
-                .Where(x => x.ApplicationId == applicationId)
-                .ExecuteDeleteAsync();
-        }
-        public async Task<NormalizedNodeResponseDto?> GetByApplicationIdAsync(int applicationId)
+    
+        public async Task<NormalizedNodeResponseDto> GetByApplicationAsync(int applicationId)
         {
             var nodes = await _demoContext.Node
                 .AsNoTracking()
@@ -87,56 +81,7 @@ namespace Infrastructure.SQL.Repositories
                     Direction = n.Direction
                 }).ToList()
             };
-        }
-
-        public async Task<ReactFlowDto?> GetFlowByApplicationId(int applicationId)
-        {
-            var graph = await GetByApplicationIdAsync(applicationId);
-            if (graph is null) return null;
-
-            var reactFlowDto = new ReactFlowDto();
-
-
-            int yStep = 50;
-            int xStep = 300;
-            var unitPositions = new Dictionary<int, PositionDto>();
-            int index = 0;
-
-            foreach (var unit in graph.Units)
-            {
-                unitPositions[unit.Id] = new PositionDto
-                {
-                    X = index * xStep,
-                    Y = 0
-                };
-                index++;
-            }
-
-
-            reactFlowDto.Nodes = graph.Units.Select(u => new ReactFlowNodeDto
-            {
-                Id = $"n{u.Id}",
-                Position = unitPositions[u.Id],
-                Type = "department",
-                Data = new NodeDataDto
-                {
-                    Label = u.Name
-                }
-            }).ToList();
-
-            reactFlowDto.Edges = graph.Nodes
-                .Where(n => n.Direction == "AVANÇO")
-                .Select(n => new ReactFlowEdgeDto
-                {
-                    Id = $"e{n.Id}",
-                    Source = $"n{n.OriginId}",
-                    Target = $"n{n.DestinationId}",
-                    Label = $"Aprovações: {n.Approvals}"
-                })
-            .ToList();
-
-            return reactFlowDto;
-        }
+        }     
 
     }
 }

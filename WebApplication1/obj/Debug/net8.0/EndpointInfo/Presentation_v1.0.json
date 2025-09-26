@@ -210,10 +210,11 @@
             }
           },
           {
-            "name": "application",
+            "name": "applicationId",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int32"
             }
           },
           {
@@ -236,8 +237,8 @@
         "tags": [
           "Process"
         ],
-        "summary": "Upload process",
-        "description": "Upload process",
+        "summary": "Upload de file for background processing",
+        "description": "Recive a file and sends for background validation and upload",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -278,32 +279,6 @@
           },
           "required": true
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/processes/application/{applicationId}": {
-      "get": {
-        "tags": [
-          "Process"
-        ],
-        "summary": "Retrieve all processes by Application ID",
-        "description": "Fetches all processes details associated with the specified unique aplication identifier.",
-        "operationId": "processesByApplicationId",
-        "parameters": [
-          {
-            "name": "applicationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"

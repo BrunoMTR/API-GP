@@ -10,11 +10,7 @@ namespace Domain.Repositories
 {
     public interface IFlowRepository
     {
-        Task<NormalizedNodeResponseDto?> GetByApplicationIdAsync(int applicationId);
-
-        Task DeleteByApplicationIdAsync(int applicationId);
-
-        Task<ReactFlowDto?> GetFlowByApplicationId(int applicationId);
+        Task<NormalizedNodeResponseDto> GetByApplicationAsync(int applicationId);
 
     }
 }

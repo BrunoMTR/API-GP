@@ -1,5 +1,6 @@
 ﻿using Domain.DTOs;
 using Domain.DTOs.Flow;
+using Domain.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,6 @@ namespace Domain.Services
 {
     public interface IFlowService
     {
-        Task<NormalizedNodeResponseDto?> Retrieve(int applicationId);
-        Task Delete(int applicationId);
-
-        Task<ReactFlowDto?> RetrieveFlow(int applicationId);
-
+        Task<Response<ReactFlowDto>> RetrieveAsync(int applicationId);
     }
 }

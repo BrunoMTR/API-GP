@@ -20,6 +20,7 @@ using Domain.Channels;
 using Infrastructure.Channel.Documentation;
 using InfrastructureFileStorage.Interfaces;
 using InfrastructureFileStorage.Services;
+using BL.Handlers;
 
 
 
@@ -47,6 +48,7 @@ builder.Services.AddScoped<IDocumentationRepository, DocumentationRepository>();
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<IDocumentationService, BL.Services.DocumentationService>();
 builder.Services.AddScoped<IDocumentMapper, DocumentMapper>();
+builder.Services.AddScoped<DocumentationHandler>();
 
 
 

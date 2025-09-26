@@ -213,7 +213,7 @@
   },
   {
     "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
-    "Method": "GetAllProcesses",
+    "Method": "GetProcesses",
     "RelativePath": "processes/",
     "HttpMethod": "GET",
     "IsController": false,
@@ -235,8 +235,8 @@
         "IsRequired": false
       },
       {
-        "Name": "application",
-        "Type": "System.String",
+        "Name": "applicationId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
@@ -263,7 +263,7 @@
   },
   {
     "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
-    "Method": "PostProcessAprove",
+    "Method": "PostAproveProcess",
     "RelativePath": "processes/{processId}",
     "HttpMethod": "PATCH",
     "IsController": false,
@@ -294,38 +294,7 @@
   },
   {
     "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
-    "Method": "GetProcessByApplicationId",
-    "RelativePath": "processes/application/{applicationId}",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "applicationId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "api-version",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ],
-    "Tags": [
-      "Process"
-    ],
-    "EndpointName": "processesByApplicationId"
-  },
-  {
-    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
-    "Method": "UploadFile",
+    "Method": "PostProcessDocumentation",
     "RelativePath": "processes/upload",
     "HttpMethod": "POST",
     "IsController": false,

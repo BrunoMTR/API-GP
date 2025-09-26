@@ -5,6 +5,7 @@ using Domain.Repositories;
 using Infrastructure.SQL.DB;
 using Infrastructure.SQL.DB.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Update;
 
 namespace Infrastructure.SQL.Repositories
 {
@@ -16,7 +17,6 @@ namespace Infrastructure.SQL.Repositories
         {
             _demoContext = demoContext;
         }
-
 
         public async Task<ProcessDto> CreateAsync(ProcessDto process)
         {
@@ -38,11 +38,7 @@ namespace Infrastructure.SQL.Repositories
             return process;
         }
 
-
-
-
-
-        public async Task<List<ProcessFlowDto>> GetAllAsync(ProcessQueryParams query)
+        public async Task<List<ProcessDto>> GetAllAsync(Query query)
         {
             var processesQuery = _demoContext.Process
                 .Include(p => p.Histories)
@@ -50,20 +46,20 @@ namespace Infrastructure.SQL.Repositories
                 .Include(p => p.Unit)
                 .AsQueryable();
 
-            // 🔎 Filtros
             if (!string.IsNullOrEmpty(query.Search))
             {
                 var search = query.Search.ToLower();
                 processesQuery = processesQuery.Where(p =>
-                    p.Id.ToString().ToLower().Contains(search) ||
-                    p.CreatedBy.ToLower().Contains(search) ||
-                    p.Unit.Name.ToLower().Contains(search) ||
-                    p.Application.Name.ToLower().Contains(search));
+                    p.Id.ToString().Contains(search) ||
+                    (p.CreatedBy != null && p.CreatedBy.ToLower().Contains(search)) ||
+                    (p.Unit != null && p.Unit.Name != null && p.Unit.Name.ToLower().Contains(search)) ||
+                    (p.Application != null && p.Application.Name != null && p.Application.Name.ToLower().Contains(search))
+                );
             }
 
-            if (!string.IsNullOrEmpty(query.Application) && query.Application != "all")
+            if (query.ApplicationId.HasValue && query.ApplicationId.Value > 0)
             {
-                processesQuery = processesQuery.Where(p => p.Application.Name == query.Application);
+                processesQuery = processesQuery.Where(p => p.ApplicationId == query.ApplicationId.Value);
             }
 
             if (!string.IsNullOrEmpty(query.DateFilter) && query.DateFilter != "all")
@@ -79,109 +75,22 @@ namespace Infrastructure.SQL.Repositories
                 }
             }
 
-            // 🔢 Total de processos antes da paginação
-            var totalCount = await processesQuery.CountAsync();
-
-            // 📄 Paginação
             processesQuery = processesQuery
                 .OrderByDescending(p => p.CreatedAt)
                 .Skip(query.PageIndex * query.PageSize)
                 .Take(query.PageSize);
 
             var processes = await processesQuery.ToListAsync();
-
-            var results = new List<ProcessFlowDto>();
-            foreach (var p in processes)
-            {
-                var flow = await new FlowRepository(_demoContext)
-                    .GetFlowByApplicationId(p.ApplicationId);
-
-                if (flow == null) continue;
-
-                var visitedAtValues = p.Histories
-                    .OrderBy(h => h.UpdatedAt)
-                    .Select(h => h.At)
-                    .ToHashSet();
-
-                var currentAt = p.At;
-
-                var nodes = flow.Nodes.Select(n =>
-                {
-                    int nodeId = int.Parse(n.Id.Substring(1));
-                    var status = visitedAtValues.Contains(nodeId) ? "visited" : "pending";
-                    if (nodeId == currentAt) status = "current";
-
-                    return new ReactFlowNodeDto
-                    {
-                        Id = n.Id,
-                        Position = n.Position,
-                        Type = n.Type,
-                        Data = new NodeDataDto
-                        {
-                            Label = n.Data.Label,
-                            Status = status
-                        }
-                    };
-                }).ToList();
-
-                var application = await _demoContext.Application
-                    .FirstOrDefaultAsync(a => a.Id == p.ApplicationId);
-
-                var unit = await _demoContext.Unit
-                    .FirstOrDefaultAsync(u => u.Id == p.At);
-
-                results.Add(new ProcessFlowDto
-                {
-                    Id = p.Id,
-                    CreatedAt = p.CreatedAt,
-                    CreatedBy = p.CreatedBy,
-                    Unit = new UnitDto
-                    {
-                        Id = unit.Id,
-                        Name = unit.Name,
-                        Abbreviation = unit.Abbreviation,
-                        Email = unit.Email
-                    },
-                    Application = new ApplicationDto
-                    {
-                        Id = application.Id,
-                        Name = application.Name,
-                        Abbreviation = application.Abbreviation,
-                        Team = application.Team,
-                        TeamEmail = application.TeamEmail,
-                        ApplicationEmail = application.ApplicationEmail
-                    },
-                    Status = p.Status,
-                    Nodes = nodes,
-                    Edges = flow.Edges,
-                    ProcessCount = totalCount
-                });
-            }
-
-            return results;
-        }
-
-
-
-
-
-        public async Task<List<ProcessDto>> GetAllByApplicationIdAsync(int applicationId)
-        {
-            var processes = await _demoContext.Process
-                .Where(p => p.ApplicationId == applicationId)
-                .Include(p => p.Histories)
-                .ToListAsync();
-
-            return processes.Select(p => new ProcessDto
+            var results = processes.Select(p => new ProcessDto
             {
                 Id = p.Id,
                 ApplicationId = p.ApplicationId,
+                CreatedAt = p.CreatedAt,
+                CreatedBy = p.CreatedBy,
                 At = p.At,
                 Approvals = p.Approvals,
                 Status = p.Status,
-                CreatedAt = p.CreatedAt,
-                CreatedBy = p.CreatedBy,
-                Histories = p.Histories
+                Histories = p.Histories?
                     .Select(h => new HistoryDto
                     {
                         Id = h.Id,
@@ -190,10 +99,23 @@ namespace Infrastructure.SQL.Repositories
                         At = h.At,
                         UpdatedBy = h.UpdatedBy,
                         UpdatedAt = h.UpdatedAt
-                    }).ToList()
+                    }).ToList(),
+                Application = p.Application != null ? new ApplicationDto
+                {
+                    Id = p.Application.Id,
+                    Name = p.Application.Name,
+                    Abbreviation = p.Application.Abbreviation
+                } : null,
+                Unit = p.Unit != null ? new UnitDto
+                {
+                    Id = p.Unit.Id,
+                    Name = p.Unit.Name,
+                    Abbreviation = p.Unit.Abbreviation,
+                    Email = p.Unit.Email
+                } : null
             }).ToList();
+            return results;
         }
-
 
         public async Task<ProcessDto> RetrieveAsync(int id)
         {
@@ -224,12 +146,10 @@ namespace Infrastructure.SQL.Repositories
                 .FirstOrDefaultAsync();
         }
 
-
-
         public async Task<ProcessDto> UpdateAsync(int processId, ProcessDto process)
         {
             var entity = await _demoContext.Process
-                .Include(p => p.Histories) // garante que o EF carregue o histórico
+                .Include(p => p.Histories) 
                 .FirstOrDefaultAsync(p => p.Id == processId);
 
             if (entity == null)
@@ -252,7 +172,6 @@ namespace Infrastructure.SQL.Repositories
             process.Id = entity.Id;
             process.Status = entity.Status;
 
-            // Mapeia corretamente para DTO
             process.Histories = entity.Histories?
                 .Select(h => new HistoryDto
                 {
@@ -269,53 +188,7 @@ namespace Infrastructure.SQL.Repositories
 
 
 
-        public async Task<ProcessFlowDto?> GetProcessFlow(int processId, ReactFlowDto flow)
-        {
-
-            if (flow == null) return null;
-
-            if (flow == null) return null;
-
-            // 2. Pega o processo e histórico
-            var process = await RetrieveAsync(processId);
-            if (process == null) return null;
-
-            var visitedAtValues = process.Histories
-                .OrderBy(h => h.UpdatedAt)
-                .Select(h => h.At)
-                .ToHashSet();
-
-            var currentAt = process.At;
-
-            // 3. Marca nodes como "percorrido", "atual" ou normal
-            var nodes = flow.Nodes.Select(n =>
-            {
-                int nodeId = int.Parse(n.Id.Substring(1)); // n1 -> 1
-                var status = visitedAtValues.Contains(nodeId) ? "visited" : "pending";
-                if (nodeId == currentAt) status = "current";
-
-                return new ReactFlowNodeDto
-                {
-                    Id = n.Id,
-                    Position = n.Position,
-                    Type = n.Type,
-                    Data = new NodeDataDto
-                    {
-                        Label = n.Data.Label,
-                        Status = status // podemos usar no front pra cores
-                    }
-                };
-            }).ToList();
-
-            // 4. Mantém edges do fluxo original
-            var edges = flow.Edges;
-
-            return new ProcessFlowDto
-            {
-                Nodes = nodes,
-                Edges = edges
-            };
-        }
+       
 
 
 

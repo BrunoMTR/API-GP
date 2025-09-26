@@ -58,7 +58,6 @@ namespace Infrastructure.SQL.Repositories
                 }).FirstOrDefaultAsync();
         }
 
-
         public async Task<ApplicationDto> UpdateAsync(ApplicationDto application, int id)
         {
             var entity = await _demoContext.Application.FindAsync(id);

@@ -1,5 +1,6 @@
 ﻿using Domain.Channels;
 using Domain.DTOs;
+using Domain.Results;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Domain.Services
 {
     public interface IDocumentationService
     {
-        Task UploadFile(DocumentFormDto document, CancellationToken cancellationToken);
+        Task<Response<bool>> UploadAsync(DocumentFormDto document, CancellationToken cancellationToken);
 
     }
 }

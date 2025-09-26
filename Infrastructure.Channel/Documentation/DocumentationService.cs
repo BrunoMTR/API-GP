@@ -94,7 +94,7 @@ namespace Infrastructure.Channel.Documentation
                     if (process != null && process.Status == ProcessStatus.Uploading)
                     {
                         // Recupera o fluxo desta aplicação
-                        var flow = await flowRepository.GetByApplicationIdAsync(process.ApplicationId);
+                        var flow = await flowRepository.GetByApplicationAsync(process.ApplicationId);
                         var nodes = flow?.Nodes;
 
                         if (nodes != null && nodes.Any())

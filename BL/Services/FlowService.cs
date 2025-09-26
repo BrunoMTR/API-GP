@@ -1,6 +1,8 @@
-﻿using Domain.DTOs;
+﻿using BL.Utils;
+using Domain.DTOs;
 using Domain.DTOs.Flow;
 using Domain.Repositories;
+using Domain.Results;
 using Domain.Services;
 using System;
 using System.Collections.Generic;
@@ -18,20 +20,17 @@ namespace BL.Services
             _flowRepository = flowRepository;
         }
 
-
-        public Task Delete(int applicationId)
+        public async Task<Response<ReactFlowDto>> RetrieveAsync(int applicationId)
         {
-            throw new NotImplementedException();
-        }
+            var nodes = await _flowRepository.GetByApplicationAsync(applicationId);
+            if (nodes is null)
+                return Response<ReactFlowDto>.Fail("No nodes found for the given application ID.");
 
-        public async Task<NormalizedNodeResponseDto?> Retrieve(int applicationId)
-        {
-            return await _flowRepository.GetByApplicationIdAsync(applicationId);
-        }
+            var flow = GraphUtil.MapToFlow(nodes);
+            if (flow is null)
+                return Response<ReactFlowDto>.Fail("Failed to map nodes to flow.");
 
-        public async Task<ReactFlowDto?> RetrieveFlow(int applicationId)
-        {
-            return await _flowRepository.GetFlowByApplicationId(applicationId);
+            return Response<ReactFlowDto>.Ok(flow);
         }
     }
 }

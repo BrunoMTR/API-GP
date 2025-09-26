@@ -35,6 +35,9 @@
               "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Domain.csproj": {
                 "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\Domain.csproj"
               },
+              "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Infrastructure.SQL.csproj": {
+                "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Infrastructure.SQL.csproj"
+              },
               "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj": {
                 "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj"
               }

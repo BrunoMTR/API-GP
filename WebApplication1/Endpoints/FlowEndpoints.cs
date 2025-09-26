@@ -12,11 +12,10 @@ namespace Presentation.Endpoints
         public static async Task<IResult> GetFlow(int applicationId,
            [FromServices] IFlowService flowService)
         {
-            var flow = await flowService.RetrieveFlow(applicationId);
-            if (flow is null)
-            {
+            var flow = await flowService.RetrieveAsync(applicationId);
+            if(!flow.Success)
                 return Results.NotFound();
-            }
+
             return Results.Ok(flow);
         }
     }

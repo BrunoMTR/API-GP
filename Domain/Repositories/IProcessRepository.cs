@@ -12,12 +12,11 @@ namespace Domain.Repositories
     public interface IProcessRepository
     {
         Task<ProcessDto> RetrieveAsync(int id);
-        Task<List<ProcessFlowDto>> GetAllAsync(ProcessQueryParams query);
-        Task<List<ProcessDto>> GetAllByApplicationIdAsync(int applicationId);
+        Task<List<ProcessDto>> GetAllAsync(Query query);
         Task<ProcessDto> CreateAsync(ProcessDto process);
         Task<ProcessDto> UpdateAsync(int processId, ProcessDto process);
 
-        Task<ProcessFlowDto?> GetProcessFlow(int processId, ReactFlowDto flow);
+       
 
     }
 }

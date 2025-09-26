@@ -1,6 +1,8 @@
-﻿using Domain.Channels;
+﻿using BL.Handlers;
+using Domain.Channels;
 using Domain.DTOs;
 using Domain.Repositories;
+using Domain.Results;
 using Domain.Services;
 using InfrastructureFileStorage.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -16,41 +18,42 @@ namespace BL.Services
         private readonly IProcessRepository _processRepository;
         private readonly IDocumentationChannel _documentationChannel;
         private readonly IApplicationRepository _applictionRepository;
+        private readonly DocumentationHandler _documentationHandler;
 
         public DocumentationService(
             IFileStorageService fileStorage,
             IProcessRepository processRepository,
             IDocumentationRepository documentationRepository,
             IDocumentationChannel documentationChannel,
-            IApplicationRepository applictionRepository)
+            IApplicationRepository applictionRepository,
+            DocumentationHandler documentationHandler
+            )
         {
             _processRepository = processRepository;
             _fileStorage = fileStorage;
             _documentationChannel = documentationChannel;
             _applictionRepository = applictionRepository;
+            _documentationHandler = documentationHandler;
         }
 
-        public async Task UploadFile(
+        public async Task<Response<bool>> UploadAsync(
             DocumentFormDto document,
             CancellationToken cancellationToken)
         {
             if (document.File == null)
-                throw new ArgumentNullException(nameof(document.File), "Nenhum ficheiro foi enviado.");
+                return Response<bool>.Fail("No file was provided.");
 
-            // 1. Recuperar o processo
             var process = await _processRepository.RetrieveAsync(document.ProcessId);
             if (process == null)
-                throw new Exception($"Processo {document.ProcessId} não encontrado.");
+                return Response<bool>.Fail($"Process {document.ProcessId} not found.");
 
-            if(process.Status == ProcessStatus.Concluded)
-                throw new Exception($"Processo {document.ProcessId} concluído.");
-
+            if (process.Status == ProcessStatus.Concluded)
+                return Response<bool>.Fail($"Process {document.ProcessId} is already concluded.");
 
             var application = await _applictionRepository.RetrieveAsync(process.ApplicationId);
+            if (application == null)
+                return Response<bool>.Fail($"Application {process.ApplicationId} not found.");
 
-            if(application == null)
-                throw new Exception($"Application {process.ApplicationId} não encontrada.");
-            // 2. Criar mensagem para o canal
             var message = new DocumentMessageDto
             {
                 ProcessId = document.ProcessId,
@@ -60,19 +63,16 @@ namespace BL.Services
                 At = process.At
             };
 
-            // 3. Tratar upload físico + enviar ao canal
-            await HandleFileUploadAsync(message, document.File, cancellationToken);
-
-    
+            try
+            {
+                await _documentationHandler.QueueFileAsync(message, document.File, cancellationToken);
+                return Response<bool>.Ok(true, "File successfully queued for processing.");
+            }
+            catch (Exception ex)
+            {
+                return Response<bool>.Fail($"Error while queuing file: {ex.Message}");
+            }
         }
 
-        public async Task HandleFileUploadAsync(DocumentMessageDto message, IFormFile file, CancellationToken cancellationToken)
-        {
-            var tempFilePath = await _fileStorage.SaveTempFileAsync(file, cancellationToken);
-            message.TempFilePath = tempFilePath;
-
-            if (_documentationChannel != null)
-                await _documentationChannel.SubmitAsync(message, cancellationToken);
-        }
     }
 }

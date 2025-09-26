@@ -1,253 +1,238 @@
-﻿using Domain.Channels;
+﻿using BL.Handlers;
+using BL.Utils;
 using Domain.DTOs;
-using Domain.DTOs.Flow;
 using Domain.DTOs.FlowDTOs;
 using Domain.Repositories;
+using Domain.Results;
 using Domain.Services;
-using InfrastructureFileStorage.Interfaces;
+using Infrastructure.SQL.DB;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace BL.Services
 {
     public class ProcessService : IProcessService
     {
         private IProcessRepository _processRepository;
-
         private IFlowRepository _flowRepository;
         private IHistoryRepository _historyRepository;
         private IApplicationRepository _applicationRepository;
-        private IDocumentationChannel _documentationChannel;
-        private readonly IFileStorageService _fileStorage;
+        private readonly DemoContext _demoContext;
+        private readonly DocumentationHandler _documentationHandler;
 
-        public ProcessService(IProcessRepository processRepository, IFlowRepository flowRepository, IHistoryRepository historyRepository, IApplicationRepository applicationRepository, IDocumentationChannel documentationChannel, IFileStorageService fileStorage)
+        public ProcessService(IProcessRepository processRepository,
+            IFlowRepository flowRepository,
+            IHistoryRepository historyRepository,
+            IApplicationRepository applicationRepository,
+            DocumentationHandler documentationHandler,
+            DemoContext demoContext)
         {
             _processRepository = processRepository;
             _flowRepository = flowRepository;
             _historyRepository = historyRepository;
             _applicationRepository = applicationRepository;
-            _documentationChannel = documentationChannel;
-            _fileStorage = fileStorage;
+            _demoContext = demoContext;
+            _documentationHandler = documentationHandler;
         }
 
 
-        public async Task<ProcessDto> Approve(int processId, string updatedBy)
+        public async Task<Response<ProcessDto>> ApproveAsync(int processId, string updatedBy)
         {
-            // --- Recupera processo ---
             var process = await _processRepository.RetrieveAsync(processId);
+
             if (process == null)
-                throw new Exception("Process not found.");
+                return Response<ProcessDto>.Fail("Process not found.");
 
             if (process.Status == ProcessStatus.Concluded)
-                throw new Exception("Process already concluded.");
+                return Response<ProcessDto>.Fail("Process already concluded.");
 
-            if (process.Status != ProcessStatus.Pending && process.Status != ProcessStatus.Initiated)
-                throw new Exception("Only pending or initiated processes can be approved.");
+            if (process.Status == ProcessStatus.Uploading)
+                return Response<ProcessDto>.Fail("Uploading documentation linked to the specified process.");
 
-            // --- Recupera fluxo ---
-            var flow = await _flowRepository.GetByApplicationIdAsync(process.ApplicationId);
+            var flow = await _flowRepository.GetByApplicationAsync(process.ApplicationId);
             var nodes = flow?.Nodes;
+
             if (flow == null || nodes == null)
-                throw new Exception("Flow not found.");
+                return Response<ProcessDto>.Fail("No flow found for the application associated with this process.");
 
-            // Nó atual
-            var currentNode = nodes.FirstOrDefault(n =>
-                n.OriginId == process.At &&
-                n.Direction.Equals("AVANÇO", StringComparison.OrdinalIgnoreCase));
-
+            var currentNode = GraphUtil.GetCurrentNode(nodes, process.At);
             if (currentNode == null)
-                throw new Exception("Current node not found in flow or no forward node available.");
+                return Response<ProcessDto>.Fail("Current node not found in flow or no forward node available.");
 
-            // Nó inicial = aquele cujo OriginId aparece apenas uma vez
-            var initialNode = nodes
-                .GroupBy(n => n.OriginId)
-                .Where(g => g.Count() == 1)
-                .Select(g => g.First())
-                .FirstOrDefault();
-
+            var initialNode = GraphUtil.GetInitialNode(nodes);
             if (initialNode == null)
-                throw new Exception("Initial node not found.");
+                return Response<ProcessDto>.Fail("Initial node not found.");
 
-            // Total de aprovações necessárias para percorrer todo o fluxo (todos AVANÇO)
-            int totalFlowApprovals = nodes
-                .Where(n => n.Direction.Equals("AVANÇO", StringComparison.OrdinalIgnoreCase))
-                .Sum(n => n.Approvals);
+            int totalRequiredApprovals = GraphUtil.GetTotalRequiredApprovals(nodes);
+            bool willTransition = GraphUtil.HasReachedApprovalQuorum(currentNode, process.Approvals);
+            int nextNodeId = GraphUtil.GetNextNodeId(currentNode);
 
-            int requiredApprovals = currentNode.Approvals;
-            bool willTransition = (process.Approvals + 1) >= requiredApprovals;
-            int nextNodeId = currentNode.DestinationId;
+            var strategy = _demoContext.Database.CreateExecutionStrategy();
 
-            // --- Salvar histórico ANTES de atualizar ---
-            var historyDto = new HistoryDto
+            return await strategy.ExecuteAsync(async () =>
             {
-                ApplicationId = process.ApplicationId,
-                ProcessId = process.Id,
-                At = process.At,                   // onde estava
-                UpdatedBy = updatedBy,             // quem aprovou
-                UpdatedAt = DateTime.UtcNow        // quando
-            };
-            await _historyRepository.CreateAsync(historyDto);
+                await using var transaction = await _demoContext.Database.BeginTransactionAsync();
 
-            // --- Atualização do processo ---
-            if (willTransition)
-            {
-                // Completa quorum → avança
-                process.Approvals = 0; // zera contagem do nó atual
-                process.At = nextNodeId;
-
-                // Retornou ao initial node → Concluded
-                if (nextNodeId == initialNode.OriginId)
+                try
                 {
-                    process.Status = ProcessStatus.Concluded;
-                    process.Approvals = totalFlowApprovals;
-                }
-                // Saiu do initial node → vira Pending
-                else if (process.Status == ProcessStatus.Initiated)
-                {
-                    process.Status = ProcessStatus.Pending;
-                }
-            }
-            else
-            {
-                // Ainda não completou quorum → só acumula
-                process.Approvals += 1;
-            }
+                    var historyDto = new HistoryDto
+                    {
+                        ApplicationId = process.ApplicationId,
+                        ProcessId = process.Id,
+                        At = process.At,
+                        UpdatedBy = updatedBy,
+                        UpdatedAt = DateTime.UtcNow
+                    };
+                    await _historyRepository.CreateAsync(historyDto);
 
-            return await _processRepository.UpdateAsync(processId, process);
+                    if (willTransition)
+                    {
+                        process.Approvals = 0;
+                        process.At = nextNodeId;
+
+                        if (nextNodeId == initialNode.OriginId)
+                        {
+                            process.Status = ProcessStatus.Concluded;
+                            process.Approvals = totalRequiredApprovals;
+                        }
+                        else if (process.Status == ProcessStatus.Initiated)
+                        {
+                            process.Status = ProcessStatus.Pending;
+                        }
+                    }
+                    else
+                    {
+                        process.Approvals += 1;
+                    }
+
+                    var result = await _processRepository.UpdateAsync(processId, process);
+
+                    await transaction.CommitAsync();
+                    return Response<ProcessDto>.Ok(result, "Process approved successfully.");
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    return Response<ProcessDto>.Fail($"Error while approving process: {ex.Message}");
+                }
+            });
         }
 
-
-
-        public async Task<ProcessDto> Create(ProcessDto process, bool uploading)
+        public async Task<Response<ProcessDto>> CreateAsync(ProcessDto process,
+            IFormFile? file,
+            CancellationToken cancellationToken)
         {
-            // Buscar nodes do fluxo da aplicação
-            var normalizedNodes = await _flowRepository.GetByApplicationIdAsync(process.ApplicationId);
+            var flow = await _flowRepository.GetByApplicationAsync(process.ApplicationId);
 
-            if (normalizedNodes == null || !normalizedNodes.Nodes.Any())
-                throw new Exception("No application found.");
+            if (flow == null || flow.Nodes == null || !flow.Nodes.Any())
+                return Response<ProcessDto>.Fail("No flow found for the application.");
 
-            var nodes = normalizedNodes.Nodes;
+            var nodes = flow.Nodes;
 
-            // Identificar OriginIds que aparecem com direção "RECUO"
-            var originIdsWithRecuo = nodes
-                .Where(n => n.Direction.Equals("RECUO", StringComparison.OrdinalIgnoreCase))
-                .Select(n => n.OriginId)
-                .Distinct()
-                .ToHashSet();
+            var initialNode = GraphUtil.GetInitialNode(nodes);
+            if (initialNode == null)
+                return Response<ProcessDto>.Fail("Initial node not found.");
 
-            // O nó inicial é o OriginId que só aparece com direção "AVANÇO"
-            var initialNode = nodes
-                .Where(n => n.Direction.Equals("AVANÇO", StringComparison.OrdinalIgnoreCase))
-                .Select(n => n.OriginId)
-                .FirstOrDefault(id => !originIdsWithRecuo.Contains(id));
-
-            if (initialNode == 0)
-                throw new Exception("Cannot determine the initial node for this application.");
-
-            // Encontrar a relação de avanço a partir do initialNode
-            var initialEdge = nodes.FirstOrDefault(n =>
-                n.OriginId == initialNode &&
-                n.Direction.Equals("AVANÇO", StringComparison.OrdinalIgnoreCase));
-
+            var initialEdge = GraphUtil.GetInitialEdge(nodes, initialNode.OriginId);
             if (initialEdge == null)
-                throw new Exception("Initial node has no outgoing 'AVANÇO' edge.");
+                return Response<ProcessDto>.Fail("Initial node has no outgoing 'AVANÇO' edge.");
 
-            // --- Definição de At e Status ---
+            var strategy = _demoContext.Database.CreateExecutionStrategy();
 
-            if (initialEdge.Approvals == 0)
+            return await strategy.ExecuteAsync(async () =>
             {
-                // Sem approvals → salta logo
-                process.At = initialEdge.DestinationId;
-                process.Status = ProcessStatus.Pending;
+                await using var transaction = await _demoContext.Database.BeginTransactionAsync();
+                try
+                {
+                    if (initialEdge.Approvals == 0)
+                    {
+                        process.At = initialEdge.DestinationId;
+                        process.Status = ProcessStatus.Pending;
+                    }
+                    else
+                    {
+                        process.At = initialNode.OriginId;
+                        process.Status = ProcessStatus.Initiated;
+                    }
+
+                    if (file != null)
+                        process.Status = ProcessStatus.Uploading;
+
+
+                    var result = await _processRepository.CreateAsync(process);
+
+                    if (initialEdge.Approvals == 0)
+                    {
+                        var historyDto = new HistoryDto
+                        {
+                            ApplicationId = result.ApplicationId,
+                            ProcessId = result.Id,
+                            At = initialNode.OriginId,
+                            UpdatedBy = process.CreatedBy,
+                            UpdatedAt = DateTime.UtcNow
+                        };
+                        await _historyRepository.CreateAsync(historyDto);
+                    }
+
+                    await transaction.CommitAsync();
+
+                    if (file != null)
+                    {
+                        var application = await _applicationRepository.RetrieveAsync(process.ApplicationId);
+                        if (application == null)
+                            return Response<ProcessDto>.Fail("Application not found.");
+
+                        var message = new DocumentMessageDto
+                        {
+                            ProcessId = result.Id,
+                            ApplicationName = application.Abbreviation,
+                            TempFilePath = string.Empty,
+                            UploadedBy = process.CreatedBy,
+                            At = process.At
+                        };
+
+                        await _documentationHandler.QueueFileAsync(message, file, cancellationToken);
+                    }
+
+                    return Response<ProcessDto>.Ok(result, "Process created successfully.");
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    return Response<ProcessDto>.Fail($"Error while creating process: {ex.Message}");
+                }
+            });
+        }
+
+        public async Task<Response<List<ProcessFlowDto>>> GetAllAsync(Query query)
+        {
+            var processes = await _processRepository.GetAllAsync(query);
+            var totalCount = processes.Count;
+
+            var results = new List<ProcessFlowDto>();
+
+            foreach (var process in processes)
+            {
+                var normalizedNodes = await _flowRepository.GetByApplicationAsync(process.Application.Id);
+                if(normalizedNodes == null)
+                    return Response<List<ProcessFlowDto>>.Fail("No flow found for one of the applications.");
+
+                var flow = GraphUtil.MapToFlow(normalizedNodes);
+                if (flow == null) continue;
+
+                results.Add(GraphUtil.MapToHistory(process, flow, totalCount));
             }
-            else
-            {
-                // Precisa approvals → fica no inicial
-                process.At = initialNode;
-                process.Status = ProcessStatus.Initiated;
-            }
 
-            if (uploading)
-            {
-                process.Status = ProcessStatus.Uploading;
-            }
-
-            // Criar o processo
-            var createdProcess = await _processRepository.CreateAsync(process);
-
-            return createdProcess;
-        }
-
-        public Task<List<ProcessFlowDto>> GetAllAsync(ProcessQueryParams query)
-        {
-            return _processRepository.GetAllAsync(query);
-        }
-
-        public Task<List<ProcessDto>> GetAllByApplicationId(int applicationId)
-        {
-            return _processRepository.GetAllByApplicationIdAsync(applicationId);
-        }
-
-        public async Task<ProcessFlowDto?> GetProcessFlow(int processId)
-        {
-            var flow = await _flowRepository.GetFlowByApplicationId(1);
-            return await _processRepository.GetProcessFlow(processId, flow);
-        }
-
-        public async Task<ProcessDto> CreateWithFileAsync(
-        ProcessDto process,
-        IFormFile? file,
-        CancellationToken cancellationToken)
-        {
-            // 1. Criação do processo
-
-            // 2. Só continua se recebeu ficheiro
-            if (file is null)
-            {
-                var createdProcessWithoutFile = await Create(process, false);
-                return createdProcessWithoutFile;
-            }
-
-            var createdProcessWithFile = await Create(process, true);
-
-            // 3. Buscar a aplicação
-            var application = await _applicationRepository.RetrieveAsync(process.ApplicationId);
-            if (application is null)
-                throw new Exception($"Application {process.ApplicationId} not found.");
-
-            // 4. Criar mensagem
-            var message = new DocumentMessageDto
-            {
-                ProcessId = createdProcessWithFile.Id,
-                ApplicationName = application.Abbreviation,
-                TempFilePath = string.Empty,
-                UploadedBy = process.CreatedBy,
-                At = process.At
-
-            };
-
-            // 5. Tratar upload
-            await HandleFileUploadAsync(message, file, cancellationToken);
-
-            return createdProcessWithFile;
+            return Response<List<ProcessFlowDto>>.Ok(
+                results,
+                results.Any() ? "Processes retrieved successfully." : "No processes found."
+            );
         }
 
 
-        public async Task HandleFileUploadAsync(DocumentMessageDto message, IFormFile file, CancellationToken cancellationToken)
-        {
 
-            var tempFilePath = await _fileStorage.SaveTempFileAsync(file, cancellationToken);
 
-            message.TempFilePath = tempFilePath;
 
-            await _documentationChannel.SubmitAsync(message, cancellationToken);
-
-        }
     }
 }

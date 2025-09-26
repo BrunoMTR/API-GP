@@ -12,5 +12,6 @@ namespace Infrastructure.SQL.DB.Entities
         public string? Abbreviation { get; set; }
         public string Name { get; set; }
         public string? Email { get; set; }
+        ICollection<ProcessEntity> Processes { get; set; }
     }
 }

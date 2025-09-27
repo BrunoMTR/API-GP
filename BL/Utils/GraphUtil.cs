@@ -197,6 +197,68 @@ namespace BL.Utils
                 ProcessCount = totalCount
             };
         }
+
+        /// <summary>
+        /// Verify if the graph has a cicle
+        /// </summary>
+        public static bool HasCycle(List<NodeDto> nodes)
+        {
+            if (!nodes.Any())
+                return false;
+
+            var next = nodes.ToDictionary(n => n.OriginId, n => n.DestinationId);
+
+            int start = nodes.First().OriginId;
+            int current = start;
+
+            var visited = new HashSet<int> { start };
+
+            while (next.ContainsKey(current))
+            {
+                current = next[current];
+                if (current == start) return true;
+                if (visited.Contains(current)) break;
+                visited.Add(current);
+            }
+
+            return false;
+        }
+        /// <summary>
+        /// Add backward edges to the graph
+        /// </summary>
+        public static GraphDto ExtendGraph(ApplicationDto application, GraphDto graph)
+        {
+            var extendedNodes = new List<NodeDto>();
+            for (int i = 0; i < graph.Nodes.Count; i++)
+            {
+                var node = graph.Nodes[i];
+
+                extendedNodes.Add(new NodeDto
+                {
+                    OriginId = node.OriginId,
+                    DestinationId = node.DestinationId,
+                    Direction = "AVANÇO",
+                    Approvals = node.Approvals
+                });
+
+                if (i < graph.Nodes.Count - 1)
+                {
+                    extendedNodes.Add(new NodeDto
+                    {
+                        OriginId = node.DestinationId,
+                        DestinationId = node.OriginId,
+                        Direction = "RECUO",
+                        Approvals = 0
+                    });
+                }
+            }
+
+            return new GraphDto
+            {
+                ApplicationId = application.Id,
+                Nodes = extendedNodes
+            };
+        }
     }
 }
 

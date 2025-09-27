@@ -20,5 +20,6 @@ namespace Infrastructure.SQL.DB.Entities
         public ICollection<DocumentationEntity> Documentations { get; set; } = new List<DocumentationEntity>();
         public ApplicationEntity Application { get; set; }
         public UnitEntity Unit { get; set; }
+        
     }
 }

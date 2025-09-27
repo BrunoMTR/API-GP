@@ -11,5 +11,6 @@ namespace Domain.Repositories
     {
         Task<List<HistoryDto>> GetAllByApplicationIdAsync(int applicationId);
         Task<HistoryDto> CreateAsync(HistoryDto historyDto);
+        Task MarkAsNotifiedAsync(int historyId);
     }
 }

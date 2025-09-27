@@ -1,120 +1,80 @@
-﻿using Domain.DTOs;
+﻿using BL.Utils;
+using Domain.DTOs;
 using Domain.Repositories;
+using Domain.Results;
 using Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BL.Services
 {
     public class ApplicationService : IApplicationService
     {
         private readonly IApplicationRepository _applicationRepository;
+        private readonly IUnitRepository _unitRepository;
 
-        public ApplicationService(IApplicationRepository applicationRepository)
+        public ApplicationService(IApplicationRepository applicationRepository, IUnitRepository unitRepository)
         {
             _applicationRepository = applicationRepository;
+            _unitRepository = unitRepository;
         }
 
-        public async Task<NormalizedNodeResponseDto?> Create(ApplicationDto application, GraphDto graph)
+        public async Task<Response<ApplicationDto>> CreateAsync(
+            ApplicationDto application,
+            GraphDto graph)
         {
-            // Verificar se o grafo original tem ciclo
-            if (!GraphHasCycle(graph.Nodes))
-            {
-                return null; // fluxo inválido, não cria aplicação
-            }
+            // Validar unidades
+            var allIds = graph.Nodes
+                .SelectMany(n => new[] { n.OriginId, n.DestinationId })
+                .Distinct()
+                .ToList();
 
-            var extendedNodes = new List<NodeDto>();
-            for (int i = 0; i < graph.Nodes.Count; i++)
-            {
-                var node = graph.Nodes[i];
+            var existingIds = await _unitRepository.GetExistingUnitIdsAsync(allIds);
+            var missingIds = allIds.Except(existingIds).ToList();
 
-                // Adiciona AVANÇO
-                extendedNodes.Add(new NodeDto
-                {
-                    OriginId = node.OriginId,
-                    DestinationId = node.DestinationId,
-                    Direction = "AVANÇO",
-                    Approvals = node.Approvals
-                });
+            if (missingIds.Any())
+                return Response<ApplicationDto>.Fail($"UnitIds inválidos: {string.Join(", ", missingIds)}");
 
-                // Adiciona RECUO apenas se não for o último node
-                if (i < graph.Nodes.Count - 1)
-                {
-                    extendedNodes.Add(new NodeDto
-                    {
-                        OriginId = node.DestinationId,
-                        DestinationId = node.OriginId,
-                        Direction = "RECUO",
-                        Approvals = 0
-                    });
-                }
-            }
+           
+            if (!GraphUtil.HasCycle(graph.Nodes))
+                return Response<ApplicationDto>.Fail("The graph must contain at least one cycle.");
 
-            var newGraph = new GraphDto
-            {
-                ApplicationId = application.Id,
-                Nodes = extendedNodes
-            };
+            var newGraph = GraphUtil.ExtendGraph(application, graph);
 
+            
             var newApplication = await _applicationRepository.CreateAsync(application, newGraph);
-            return newApplication;
+            if (newApplication is null)
+                return Response<ApplicationDto>.Fail("An error occurred while creating the application.");
+
+            return Response<ApplicationDto>.Ok(newApplication);
         }
 
-        /// <summary>
-        /// Verifica se o grafo contém pelo menos um ciclo
-        /// </summary>
-        private bool GraphHasCycle(List<NodeDto> nodes)
+        public async Task<Response<bool>> DeleteAsync(int id)
         {
-            if (!nodes.Any())
-                return false;
-
-            // Mapear origem → destino
-            var next = nodes.ToDictionary(n => n.OriginId, n => n.DestinationId);
-
-            // Começar no primeiro origin
-            int start = nodes.First().OriginId;
-            int current = start;
-
-            var visited = new HashSet<int> { start };
-
-            while (next.ContainsKey(current))
-            {
-                current = next[current];
-                if (current == start) return true; // ciclo fechado
-                if (visited.Contains(current)) break; // visitado mas não voltou ao início → ciclo incompleto
-                visited.Add(current);
-            }
-
-            return false; // não fechou ciclo
+            var deleted = await _applicationRepository.DeleteAsync(id);
+            if (!deleted)
+                return Response<bool>.Fail("Application not found");
+            return Response<bool>.Ok(true, "Application deleted");
         }
 
-
-
-
-
-        public async Task Delete(int id)
-        {
-             await _applicationRepository.DeleteAsync(id);
-        }
-
-        public async Task<List<ApplicationDto>> GetAll()
+        public async Task<List<ApplicationDto>> GetAllAsync()
         {
             return await _applicationRepository.GetAllAsync();
         }
 
-        public async Task<ApplicationDto> Retrieve(int id)
+        public async Task<Response<ApplicationDto>> RetrieveAsync(int id)
         {
-            return await _applicationRepository.RetrieveAsync(id);
+            var application = await _applicationRepository.RetrieveAsync(id);
+            if(application is null)
+                return Response<ApplicationDto>.Fail("Application not found");
+
+            return Response<ApplicationDto>.Ok(application);
         }
 
-        public async Task<ApplicationDto?> Update(ApplicationDto application, int applicationId)
+        public async Task<Response<ApplicationDto>> UpdateAsync(ApplicationDto application, int applicationId)
         {
             var existingApplication = await _applicationRepository.RetrieveAsync(applicationId);
             if (existingApplication is null)
-                return null;
+                return Response<ApplicationDto>.Fail("Application not found");
 
             var allApplications = await _applicationRepository.GetAllAsync();
 
@@ -125,9 +85,14 @@ namespace BL.Services
                 ));
 
             if (duplicated is not null)
-                return new ApplicationDto(); 
+                return Response<ApplicationDto>.Fail("Other application with the data entered");
 
-            return await _applicationRepository.UpdateAsync(application, applicationId);
+            var updatedApplication = await _applicationRepository.UpdateAsync(application, applicationId);
+            if (updatedApplication is null)
+                return Response<ApplicationDto>.Fail("Error Updating application");
+
+            return Response<ApplicationDto>.Ok(updatedApplication, "Application updated");
+
         }
 
     }

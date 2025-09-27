@@ -15,6 +15,7 @@ namespace Infrastructure.SQL.DB.Entities
         public int At { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public bool Notified { get; set; }
         ProcessEntity Process { get; set; }
     }
 }

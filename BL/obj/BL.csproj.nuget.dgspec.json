@@ -38,8 +38,8 @@
               "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Infrastructure.SQL.csproj": {
                 "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Infrastructure.SQL.csproj"
               },
-              "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj": {
-                "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj"
+              "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\Infrastructure.Storage.csproj": {
+                "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\Infrastructure.Storage.csproj"
               }
             }
           }
@@ -231,12 +231,12 @@
         }
       }
     },
-    "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj": {
+    "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\Infrastructure.Storage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj",
-        "projectName": "InfrastructureFileStorage",
-        "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\Infrastructure.Storage.csproj",
+        "projectName": "Infrastructure.Storage",
+        "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\Infrastructure.Storage.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\obj\\",
         "projectStyle": "PackageReference",

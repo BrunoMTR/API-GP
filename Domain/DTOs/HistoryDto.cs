@@ -14,6 +14,7 @@ namespace Domain.DTOs
         public int At { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public bool Notified { get; set; } = false;
 
     }
 }

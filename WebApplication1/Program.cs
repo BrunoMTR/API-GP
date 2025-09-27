@@ -21,6 +21,7 @@ using Infrastructure.Channel.Documentation;
 using InfrastructureFileStorage.Interfaces;
 using InfrastructureFileStorage.Services;
 using BL.Handlers;
+using Infrastructure.Notifications.Email;
 
 
 
@@ -49,6 +50,10 @@ builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<IDocumentationService, BL.Services.DocumentationService>();
 builder.Services.AddScoped<IDocumentMapper, DocumentMapper>();
 builder.Services.AddScoped<DocumentationHandler>();
+
+builder.Services.AddHostedService<EmailService>();
+builder.Services.AddSingleton<IEmailChannel, EmailChannel>();
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 
 
 

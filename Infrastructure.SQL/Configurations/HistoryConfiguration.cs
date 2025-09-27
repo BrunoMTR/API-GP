@@ -19,6 +19,9 @@ namespace Infrastructure.SQL.Configurations
                    .IsRequired()
                    .HasMaxLength(50);
 
+            builder.Property(h => h.Notified)
+                   .IsRequired();
+
             builder.Property(h => h.UpdatedAt)
                    .IsRequired();
 

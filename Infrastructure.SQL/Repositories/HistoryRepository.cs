@@ -30,6 +30,7 @@ namespace Infrastructure.SQL.Repositories
                 At = historyDto.At,
                 UpdatedBy = historyDto.UpdatedBy,
                 UpdatedAt = historyDto.UpdatedAt,
+                Notified = historyDto.Notified
             };
 
             await _demoContext.AddAsync(historyEntity);
@@ -50,9 +51,23 @@ namespace Infrastructure.SQL.Repositories
                     ProcessId = x.ProcessId,
                     At = x.At,
                     UpdatedAt = x.UpdatedAt,
-                    UpdatedBy = x.UpdatedBy
+                    UpdatedBy = x.UpdatedBy,
+                    Notified = x.Notified
+
 
                 }).ToListAsync();
+        }
+
+        public async Task MarkAsNotifiedAsync(int historyId)
+        {
+            var historyEntity = await _demoContext.History
+                .FirstOrDefaultAsync(h => h.Id == historyId);
+
+            if (historyEntity != null)
+            {
+                historyEntity.Notified = true;
+                await _demoContext.SaveChangesAsync();
+            }
         }
     }
 

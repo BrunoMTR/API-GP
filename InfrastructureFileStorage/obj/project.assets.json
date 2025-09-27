@@ -128,9 +128,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj",
-      "projectName": "InfrastructureFileStorage",
-      "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj",
+      "projectUniqueName": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\Infrastructure.Storage.csproj",
+      "projectName": "Infrastructure.Storage",
+      "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\Infrastructure.Storage.csproj",
       "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\obj\\",
       "projectStyle": "PackageReference",

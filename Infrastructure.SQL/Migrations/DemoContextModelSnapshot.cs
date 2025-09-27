@@ -131,6 +131,9 @@ namespace Infrastructure.SQL.Migrations
                     b.Property<int>("At")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Notified")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ProcessId")
                         .HasColumnType("int");
 
@@ -187,6 +190,51 @@ namespace Infrastructure.SQL.Migrations
                     b.HasIndex("OriginId");
 
                     b.ToTable("Node", (string)null);
+                });
+
+            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.NotificationEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("At")
+                        .HasMaxLength(50)
+                        .HasColumnType("datetime2");
+
+                    b.PrimitiveCollection<string>("Bcc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.PrimitiveCollection<string>("Cc")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("ProcessId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("To")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProcessId");
+
+                    b.ToTable("Notification", "dbo");
                 });
 
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.ProcessEntity", b =>
@@ -314,6 +362,15 @@ namespace Infrastructure.SQL.Migrations
                     b.Navigation("Destination");
 
                     b.Navigation("Origin");
+                });
+
+            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.NotificationEntity", b =>
+                {
+                    b.HasOne("Infrastructure.SQL.DB.Entities.ProcessEntity", null)
+                        .WithMany()
+                        .HasForeignKey("ProcessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.ProcessEntity", b =>

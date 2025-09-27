@@ -104,7 +104,10 @@ namespace Infrastructure.SQL.Repositories
                 {
                     Id = p.Application.Id,
                     Name = p.Application.Name,
-                    Abbreviation = p.Application.Abbreviation
+                    Abbreviation = p.Application.Abbreviation,
+                    ApplicationEmail = p.Application.ApplicationEmail,
+                    Team = p.Application.Team,
+                    TeamEmail = p.Application.TeamEmail
                 } : null,
                 Unit = p.Unit != null ? new UnitDto
                 {

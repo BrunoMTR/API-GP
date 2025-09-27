@@ -9,11 +9,11 @@ namespace Domain.Repositories
 {
     public interface IApplicationRepository
     {
-        Task<ApplicationDto> RetrieveAsync(int id);
+        Task<ApplicationDto?> RetrieveAsync(int id);
         Task<List<ApplicationDto>> GetAllAsync();
         Task<ApplicationDto> UpdateAsync(ApplicationDto application, int id);
-        Task DeleteAsync(int id);
-        Task<NormalizedNodeResponseDto> CreateAsync(ApplicationDto application, GraphDto graph);
+        Task<bool> DeleteAsync(int id);
+        Task<ApplicationDto> CreateAsync(ApplicationDto application, GraphDto graph);
 
 
     }

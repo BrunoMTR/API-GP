@@ -1048,17 +1048,17 @@
           "bin/placeholder/Infrastructure.SQL.dll": {}
         }
       },
-      "InfrastructureFileStorage/1.0.0": {
+      "Infrastructure.Storage/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Features": "5.0.17"
         },
         "compile": {
-          "bin/placeholder/InfrastructureFileStorage.dll": {}
+          "bin/placeholder/Infrastructure.Storage.dll": {}
         },
         "runtime": {
-          "bin/placeholder/InfrastructureFileStorage.dll": {}
+          "bin/placeholder/Infrastructure.Storage.dll": {}
         }
       }
     }
@@ -2875,17 +2875,17 @@
       "path": "../Infrastructure.SQL/Infrastructure.SQL.csproj",
       "msbuildProject": "../Infrastructure.SQL/Infrastructure.SQL.csproj"
     },
-    "InfrastructureFileStorage/1.0.0": {
+    "Infrastructure.Storage/1.0.0": {
       "type": "project",
-      "path": "../InfrastructureFileStorage/InfrastructureFileStorage.csproj",
-      "msbuildProject": "../InfrastructureFileStorage/InfrastructureFileStorage.csproj"
+      "path": "../InfrastructureFileStorage/Infrastructure.Storage.csproj",
+      "msbuildProject": "../InfrastructureFileStorage/Infrastructure.Storage.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Domain >= 1.0.0",
       "Infrastructure.SQL >= 1.0.0",
-      "InfrastructureFileStorage >= 1.0.0"
+      "Infrastructure.Storage >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2926,8 +2926,8 @@
             "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Infrastructure.SQL.csproj": {
               "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Infrastructure.SQL.csproj"
             },
-            "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj": {
-              "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\InfrastructureFileStorage.csproj"
+            "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\Infrastructure.Storage.csproj": {
+              "projectPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\InfrastructureFileStorage\\Infrastructure.Storage.csproj"
             }
           }
         }

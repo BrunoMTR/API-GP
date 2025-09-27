@@ -10,7 +10,7 @@
         "dependencies": {
           "Domain": "1.0.0",
           "Infrastructure.SQL": "1.0.0",
-          "InfrastructureFileStorage": "1.0.0"
+          "Infrastructure.Storage": "1.0.0"
         },
         "runtime": {
           "BL.dll": {}
@@ -651,12 +651,12 @@
           }
         }
       },
-      "InfrastructureFileStorage/1.0.0": {
+      "Infrastructure.Storage/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Features": "5.0.17"
         },
         "runtime": {
-          "InfrastructureFileStorage.dll": {
+          "Infrastructure.Storage.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1079,7 +1079,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "InfrastructureFileStorage/1.0.0": {
+    "Infrastructure.Storage/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

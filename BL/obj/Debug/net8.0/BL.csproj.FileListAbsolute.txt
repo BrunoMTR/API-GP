@@ -14,7 +14,7 @@ C:\Users\Dell\Documents\PF\API-GP\BL\obj\Debug\net8.0\BL.dll
 C:\Users\Dell\Documents\PF\API-GP\BL\obj\Debug\net8.0\refint\BL.dll
 C:\Users\Dell\Documents\PF\API-GP\BL\obj\Debug\net8.0\BL.pdb
 C:\Users\Dell\Documents\PF\API-GP\BL\obj\Debug\net8.0\ref\BL.dll
-C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\InfrastructureFileStorage.dll
-C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\InfrastructureFileStorage.pdb
 C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.SQL.dll
 C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.SQL.pdb
+C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.Storage.dll
+C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.Storage.pdb

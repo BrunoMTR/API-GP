@@ -261,19 +261,59 @@
         }
       }
     },
-    "/processes/{processId}": {
+    "/processes/approve": {
       "patch": {
         "tags": [
           "Process"
         ],
         "summary": "Approve a process by ID",
         "description": "Approves the process associated with the specified unique identifier, advancing its state in the workflow.",
-        "operationId": "processAprove",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AproveProcessRequest"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/AproveProcessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/processes/{processId}/cancel": {
+      "patch": {
+        "tags": [
+          "Process"
+        ],
+        "summary": "Cancel a process by ID",
+        "description": "Cancels the process associated with the specified unique identifier, halting its progress in the workflow.",
+        "operationId": "processCancel",
+        "parameters": [
+          {
+            "name": "processId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ApproveProcessRequest"
+                "type": "string"
               }
             }
           },
@@ -439,7 +479,7 @@
         "additionalProperties": false,
         "description": "Represents an application that contains processes and steps."
       },
-      "ApproveProcessRequest": {
+      "AproveProcessRequest": {
         "type": "object",
         "properties": {
           "processId": {
@@ -448,6 +488,15 @@
           },
           "updatedBy": {
             "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "file": {
+            "type": "string",
+            "format": "binary",
             "nullable": true
           }
         },
@@ -531,6 +580,10 @@
             "format": "int32"
           },
           "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
             "type": "string",
             "nullable": true
           },

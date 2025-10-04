@@ -194,7 +194,7 @@ namespace BL.Utils
                 Status = process.Status,
                 Nodes = nodes,
                 Edges = flow.Edges,
-                ProcessCount = totalCount
+                
             };
         }
 

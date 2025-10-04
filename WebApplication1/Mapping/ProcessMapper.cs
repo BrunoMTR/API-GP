@@ -15,6 +15,7 @@ namespace Presentation.Mapping
             {
                 ApplicationId = process.ApplicationId,
                 CreatedBy = process.CreatedBy,
+                Note = process.Note,
             };
         }
 
@@ -27,6 +28,7 @@ namespace Presentation.Mapping
             {
                 ApplicationId = process.ApplicationId,
                 CreatedBy = process.CreatedBy,
+                Note = process.Note,
             };
         }
     }

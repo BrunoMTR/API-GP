@@ -263,15 +263,20 @@
   },
   {
     "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
-    "Method": "PostAproveProcess",
-    "RelativePath": "processes/{processId}",
+    "Method": "PatchCanselProcess",
+    "RelativePath": "processes/{processId}/cancel",
     "HttpMethod": "PATCH",
     "IsController": false,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "Presentation.Models.Request.ApproveProcessRequest",
+        "Name": "processId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "canceledBy",
+        "Type": "System.String",
         "IsRequired": true
       },
       {
@@ -290,7 +295,37 @@
     "Tags": [
       "Process"
     ],
-    "EndpointName": "processAprove"
+    "EndpointName": "processCancel"
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
+    "Method": "PostAproveProcess",
+    "RelativePath": "processes/approve",
+    "HttpMethod": "PATCH",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Presentation.Models.Request.AproveProcessRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Process"
+    ]
   },
   {
     "ContainingType": "Presentation.Endpoints.ProcessEndpoints",

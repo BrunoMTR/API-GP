@@ -6,5 +6,6 @@ namespace Presentation.Models
     {
         public int ApplicationId { get; set; }
         public string CreatedBy { get; set; }
+        public string? Note { get; set; }
     }
 }

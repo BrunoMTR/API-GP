@@ -1,0 +1,1363 @@
+2025-10-03 22:04:33.786 +02:00 [Information] Executed DbCommand ("91"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-10-03 22:04:33.968 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-10-03 22:04:34.206 +02:00 [Information] Executed DbCommand ("230"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-10-03 22:04:34.517 +02:00 [Information] Executed DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-10-03 22:04:34.550 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-10-03 22:04:34.557 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-10-03 22:04:34.649 +02:00 [Information] Executed DbCommand ("81"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-10-03 22:04:34.673 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-10-03 22:04:34.687 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-10-03 22:04:34.999 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-03 22:04:37.146 +02:00 [Information] Executed DbCommand ("67"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:04:37.963 +02:00 [Information] Executed DbCommand ("165"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:04:38.409 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-10-03 22:04:38.653 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-03 22:04:39.125 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-10-03 22:04:39.199 +02:00 [Information] Hosting environment: "Development"
+2025-10-03 22:04:39.236 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-10-03 22:04:40.353 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger""" - null null
+2025-10-03 22:04:40.871 +02:00 [Information] Request "GET" "/swagger" responded 301
+2025-10-03 22:04:40.882 +02:00 [Information] HTTP "GET" "/swagger" responded 301 in 26.2552 ms
+2025-10-03 22:04:40.897 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger""" - 301 0 null 578.6063ms
+2025-10-03 22:04:40.909 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-10-03 22:04:41.092 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-10-03 22:04:41.100 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 172.2344 ms
+2025-10-03 22:04:41.108 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui.css""" - null null
+2025-10-03 22:04:41.111 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-bundle.js""" - null null
+2025-10-03 22:04:41.119 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-standalone-preset.js""" - null null
+2025-10-03 22:04:41.134 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 224.8435ms
+2025-10-03 22:04:41.418 +02:00 [Information] Sending file. Request path: '"/swagger-ui-standalone-preset.js"'. Physical path: '"N/A"'
+2025-10-03 22:04:41.419 +02:00 [Information] Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"'
+2025-10-03 22:04:41.430 +02:00 [Information] Request "GET" "/swagger/swagger-ui-standalone-preset.js" responded 200
+2025-10-03 22:04:41.436 +02:00 [Information] Request "GET" "/swagger/swagger-ui.css" responded 200
+2025-10-03 22:04:41.464 +02:00 [Information] HTTP "GET" "/swagger/swagger-ui-standalone-preset.js" responded 200 in 314.8035 ms
+2025-10-03 22:04:41.481 +02:00 [Information] Sending file. Request path: '"/swagger-ui-bundle.js"'. Physical path: '"N/A"'
+2025-10-03 22:04:41.484 +02:00 [Information] HTTP "GET" "/swagger/swagger-ui.css" responded 200 in 346.1609 ms
+2025-10-03 22:04:41.491 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-standalone-preset.js""" - 200 230280 "text/javascript" 372.2516ms
+2025-10-03 22:04:41.496 +02:00 [Information] Request "GET" "/swagger/swagger-ui-bundle.js" responded 200
+2025-10-03 22:04:41.501 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui.css""" - 200 152034 "text/css" 393.2973ms
+2025-10-03 22:04:41.509 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-10-03 22:04:41.516 +02:00 [Information] HTTP "GET" "/swagger/swagger-ui-bundle.js" responded 200 in 370.8844 ms
+2025-10-03 22:04:41.525 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-10-03 22:04:41.537 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-bundle.js""" - 200 1456926 "text/javascript" 426.512ms
+2025-10-03 22:04:41.591 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 65.7938ms
+2025-10-03 22:04:41.711 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 202.5746ms
+2025-10-03 22:04:41.822 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-10-03 22:04:41.833 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-10-03 22:04:41.837 +02:00 [Information] CORS policy execution failed.
+2025-10-03 22:04:41.840 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-10-03 22:04:41.945 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-10-03 22:04:42.179 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-10-03 22:04:42.190 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 159.9859 ms
+2025-10-03 22:04:42.197 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 252.9596ms
+2025-10-03 22:04:42.221 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-10-03 22:04:42.254 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 423.7231 ms
+2025-10-03 22:04:42.262 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 439.4462ms
+2025-10-03 22:04:42.272 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-10-03 22:07:59.678 +02:00 [Information] Executed DbCommand ("226"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-10-03 22:08:00.013 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-10-03 22:08:00.302 +02:00 [Information] Executed DbCommand ("158"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-10-03 22:08:00.597 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-10-03 22:08:00.639 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-10-03 22:08:00.649 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-10-03 22:08:00.683 +02:00 [Information] Executed DbCommand ("22"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-10-03 22:08:00.710 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-10-03 22:08:00.717 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-10-03 22:08:01.090 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-10-03 22:08:03.693 +02:00 [Information] Executed DbCommand ("104"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:08:04.351 +02:00 [Information] Executed DbCommand ("55"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:08:04.952 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-10-03 22:08:05.582 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-03 22:08:06.184 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-10-03 22:08:06.192 +02:00 [Information] Hosting environment: "Development"
+2025-10-03 22:08:06.195 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-10-03 22:08:07.902 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger""" - null null
+2025-10-03 22:08:08.743 +02:00 [Information] Request "GET" "/swagger" responded 301
+2025-10-03 22:08:08.760 +02:00 [Information] HTTP "GET" "/swagger" responded 301 in 46.2004 ms
+2025-10-03 22:08:08.786 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger""" - 301 0 null 941.1691ms
+2025-10-03 22:08:08.803 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-10-03 22:08:09.014 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-10-03 22:08:09.020 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 192.1946 ms
+2025-10-03 22:08:09.033 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 230.6872ms
+2025-10-03 22:08:09.044 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui.css""" - null null
+2025-10-03 22:08:09.048 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-bundle.js""" - null null
+2025-10-03 22:08:09.050 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-standalone-preset.js""" - null null
+2025-10-03 22:08:09.226 +02:00 [Information] Sending file. Request path: '"/swagger-ui-standalone-preset.js"'. Physical path: '"N/A"'
+2025-10-03 22:08:09.226 +02:00 [Information] Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"'
+2025-10-03 22:08:09.257 +02:00 [Information] Request "GET" "/swagger/swagger-ui-standalone-preset.js" responded 200
+2025-10-03 22:08:09.263 +02:00 [Information] Request "GET" "/swagger/swagger-ui.css" responded 200
+2025-10-03 22:08:09.281 +02:00 [Information] HTTP "GET" "/swagger/swagger-ui-standalone-preset.js" responded 200 in 204.2295 ms
+2025-10-03 22:08:09.285 +02:00 [Information] HTTP "GET" "/swagger/swagger-ui.css" responded 200 in 226.5181 ms
+2025-10-03 22:08:09.293 +02:00 [Information] Sending file. Request path: '"/swagger-ui-bundle.js"'. Physical path: '"N/A"'
+2025-10-03 22:08:09.298 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-standalone-preset.js""" - 200 230280 "text/javascript" 248.0311ms
+2025-10-03 22:08:09.316 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui.css""" - 200 152034 "text/css" 272.6879ms
+2025-10-03 22:08:09.351 +02:00 [Information] Request "GET" "/swagger/swagger-ui-bundle.js" responded 200
+2025-10-03 22:08:09.377 +02:00 [Information] HTTP "GET" "/swagger/swagger-ui-bundle.js" responded 200 in 312.4941 ms
+2025-10-03 22:08:09.381 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-bundle.js""" - 200 1456926 "text/javascript" 333.8515ms
+2025-10-03 22:08:09.400 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-10-03 22:08:09.400 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-10-03 22:08:09.418 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 17.6225ms
+2025-10-03 22:08:09.567 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 167.1691ms
+2025-10-03 22:08:09.838 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-10-03 22:08:10.036 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-10-03 22:08:10.082 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 96.4686 ms
+2025-10-03 22:08:10.100 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 262.2846ms
+2025-10-03 22:08:10.415 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-10-03 22:08:10.487 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-10-03 22:08:10.515 +02:00 [Information] CORS policy execution failed.
+2025-10-03 22:08:10.562 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-10-03 22:08:11.511 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-10-03 22:08:11.530 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 1045.3593 ms
+2025-10-03 22:08:11.580 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 1165.3242ms
+2025-10-03 22:08:11.647 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-10-03 22:08:51.064 +02:00 [Information] Executed DbCommand ("65"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:08:52.641 +02:00 [Information] Executed DbCommand ("178"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:09:37.310 +02:00 [Information] Executed DbCommand ("65"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:09:37.403 +02:00 [Information] Executed DbCommand ("66"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:10:20.358 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:10:20.380 +02:00 [Information] Executed DbCommand ("8"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:11:48.433 +02:00 [Information] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:11:48.586 +02:00 [Information] Executed DbCommand ("131"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:12:00.646 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-10-03 22:12:00.835 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:12:01.149 +02:00 [Information] Executing endpoint '"HTTP: GET applications/ => GetAllApplications"'
+2025-10-03 22:12:01.556 +02:00 [Information] Executed DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[Name], [a].[Abbreviation], [a].[Team], [a].[TeamEmail], [a].[ApplicationEmail]
+FROM [dbo].[Application] AS [a]"
+2025-10-03 22:12:01.587 +02:00 [Information] Setting HTTP status code 200.
+2025-10-03 22:12:01.639 +02:00 [Information] Writing value of type '"List`1"' as Json.
+2025-10-03 22:12:01.712 +02:00 [Information] Executed endpoint '"HTTP: GET applications/ => GetAllApplications"'
+2025-10-03 22:12:01.720 +02:00 [Information] Request "GET" "/applications" responded 200
+2025-10-03 22:12:01.724 +02:00 [Information] HTTP "GET" "/applications" responded 200 in 923.6481 ms
+2025-10-03 22:12:01.767 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 200 null "application/json; charset=utf-8" 1130.069ms
+2025-10-03 22:12:30.121 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:12:30.136 +02:00 [Information] Executed DbCommand ("8"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:12:57.127 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/flows/1""" - null null
+2025-10-03 22:12:57.140 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:12:57.149 +02:00 [Information] Executing endpoint '"HTTP: GET flows/{applicationId} => GetFlow"'
+2025-10-03 22:12:57.351 +02:00 [Information] Executed DbCommand ("42"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:12:57.393 +02:00 [Information] Setting HTTP status code 200.
+2025-10-03 22:12:57.455 +02:00 [Information] Writing value of type '"Response`1"' as Json.
+2025-10-03 22:12:57.470 +02:00 [Information] Executed endpoint '"HTTP: GET flows/{applicationId} => GetFlow"'
+2025-10-03 22:12:57.473 +02:00 [Information] Request "GET" "/flows/1" responded 200
+2025-10-03 22:12:57.476 +02:00 [Information] HTTP "GET" "/flows/1" responded 200 in 337.8415 ms
+2025-10-03 22:12:57.484 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/flows/1""" - 200 null "application/json; charset=utf-8" 356.0808ms
+2025-10-03 22:13:11.384 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:13:11.405 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:13:41.557 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/units""" - null null
+2025-10-03 22:13:41.565 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:13:41.568 +02:00 [Information] Executing endpoint '"HTTP: GET units/ => GetAllUnits"'
+2025-10-03 22:13:41.643 +02:00 [Information] Executed DbCommand ("29"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[Name], [u].[Abbreviation], [u].[Email]
+FROM [dbo].[Unit] AS [u]"
+2025-10-03 22:13:41.678 +02:00 [Information] Setting HTTP status code 200.
+2025-10-03 22:13:41.682 +02:00 [Information] Writing value of type '"List`1"' as Json.
+2025-10-03 22:13:41.686 +02:00 [Information] Executed endpoint '"HTTP: GET units/ => GetAllUnits"'
+2025-10-03 22:13:41.691 +02:00 [Information] Request "GET" "/units" responded 200
+2025-10-03 22:13:41.694 +02:00 [Information] HTTP "GET" "/units" responded 200 in 128.9157 ms
+2025-10-03 22:13:41.697 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/units""" - 200 null "application/json; charset=utf-8" 140.3579ms
+2025-10-03 22:13:53.254 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:13:53.279 +02:00 [Information] Executed DbCommand ("16"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:15:21.325 +02:00 [Information] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:15:21.342 +02:00 [Information] Executed DbCommand ("8"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:16:02.614 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:16:02.634 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:16:23.977 +02:00 [Information] Request starting "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/applications""" - null null
+2025-10-03 22:16:23.997 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:16:24.026 +02:00 [Information] Request "OPTIONS" "/applications" responded 204
+2025-10-03 22:16:24.029 +02:00 [Information] HTTP "OPTIONS" "/applications" responded 204 in 38.4646 ms
+2025-10-03 22:16:24.034 +02:00 [Information] Request finished "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/applications""" - 204 null null 60.606ms
+2025-10-03 22:16:24.066 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - "application/json" 129
+2025-10-03 22:16:24.082 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:16:24.086 +02:00 [Information] Executing endpoint '"HTTP: POST applications/ => PostApplication"'
+2025-10-03 22:16:24.384 +02:00 [Information] Setting HTTP status code 400.
+2025-10-03 22:16:24.418 +02:00 [Information] Writing value of type '"HttpValidationProblemDetails"' as Json.
+2025-10-03 22:16:24.446 +02:00 [Information] Executed endpoint '"HTTP: POST applications/ => PostApplication"'
+2025-10-03 22:16:24.449 +02:00 [Warning] Client error 400 for "/applications"
+2025-10-03 22:16:24.450 +02:00 [Information] HTTP "POST" "/applications" responded 400 in 368.5447 ms
+2025-10-03 22:16:24.455 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - 400 null "application/problem+json" 389.7685ms
+2025-10-03 22:16:25.476 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - "application/json" 129
+2025-10-03 22:16:25.483 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:16:25.485 +02:00 [Information] Executing endpoint '"HTTP: POST applications/ => PostApplication"'
+2025-10-03 22:16:25.498 +02:00 [Information] Setting HTTP status code 400.
+2025-10-03 22:16:25.500 +02:00 [Information] Writing value of type '"HttpValidationProblemDetails"' as Json.
+2025-10-03 22:16:25.502 +02:00 [Information] Executed endpoint '"HTTP: POST applications/ => PostApplication"'
+2025-10-03 22:16:25.506 +02:00 [Warning] Client error 400 for "/applications"
+2025-10-03 22:16:25.509 +02:00 [Information] HTTP "POST" "/applications" responded 400 in 26.7878 ms
+2025-10-03 22:16:25.513 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - 400 null "application/problem+json" 37.4589ms
+2025-10-03 22:16:43.744 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:16:43.762 +02:00 [Information] Executed DbCommand ("11"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:17:16.917 +02:00 [Information] Request starting "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/applications""" - null null
+2025-10-03 22:17:16.939 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:17:16.951 +02:00 [Information] Request "OPTIONS" "/applications" responded 204
+2025-10-03 22:17:16.956 +02:00 [Information] HTTP "OPTIONS" "/applications" responded 204 in 17.8826 ms
+2025-10-03 22:17:16.968 +02:00 [Information] Request finished "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/applications""" - 204 null null 52.0202ms
+2025-10-03 22:17:16.983 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - "application/json" 129
+2025-10-03 22:17:16.999 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:17:17.003 +02:00 [Information] Executing endpoint '"HTTP: POST applications/ => PostApplication"'
+2025-10-03 22:17:17.021 +02:00 [Information] Setting HTTP status code 400.
+2025-10-03 22:17:17.025 +02:00 [Information] Writing value of type '"HttpValidationProblemDetails"' as Json.
+2025-10-03 22:17:17.029 +02:00 [Information] Executed endpoint '"HTTP: POST applications/ => PostApplication"'
+2025-10-03 22:17:17.034 +02:00 [Warning] Client error 400 for "/applications"
+2025-10-03 22:17:17.037 +02:00 [Information] HTTP "POST" "/applications" responded 400 in 38.2958 ms
+2025-10-03 22:17:17.042 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - 400 null "application/problem+json" 59.2813ms
+2025-10-03 22:17:18.140 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - "application/json" 129
+2025-10-03 22:17:18.163 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:17:18.167 +02:00 [Information] Executing endpoint '"HTTP: POST applications/ => PostApplication"'
+2025-10-03 22:17:18.216 +02:00 [Information] Setting HTTP status code 400.
+2025-10-03 22:17:18.236 +02:00 [Information] Writing value of type '"HttpValidationProblemDetails"' as Json.
+2025-10-03 22:17:18.241 +02:00 [Information] Executed endpoint '"HTTP: POST applications/ => PostApplication"'
+2025-10-03 22:17:18.255 +02:00 [Warning] Client error 400 for "/applications"
+2025-10-03 22:17:18.290 +02:00 [Information] HTTP "POST" "/applications" responded 400 in 127.4316 ms
+2025-10-03 22:17:18.355 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - 400 null "application/problem+json" 194.7248ms
+2025-10-03 22:17:25.148 +02:00 [Information] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:17:25.166 +02:00 [Information] Executed DbCommand ("11"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:18:52.793 +02:00 [Information] Executed DbCommand ("29"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:18:52.818 +02:00 [Information] Executed DbCommand ("15"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:19:34.040 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:19:34.063 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:20:15.334 +02:00 [Information] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:20:15.355 +02:00 [Information] Executed DbCommand ("14"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:20:56.635 +02:00 [Information] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:20:56.649 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:22:24.374 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:22:24.395 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:23:05.591 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:23:05.613 +02:00 [Information] Executed DbCommand ("14"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:23:47.064 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:23:47.089 +02:00 [Information] Executed DbCommand ("10"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:24:28.069 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:24:28.087 +02:00 [Information] Executed DbCommand ("12"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:25:55.931 +02:00 [Information] Executed DbCommand ("12"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:25:55.954 +02:00 [Information] Executed DbCommand ("17"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:26:37.235 +02:00 [Information] Executed DbCommand ("11"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:26:37.254 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:27:18.568 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:27:18.591 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:27:59.816 +02:00 [Information] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:27:59.830 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:29:27.929 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:29:27.945 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:30:09.466 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:30:09.482 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:30:49.061 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/units""" - null null
+2025-10-03 22:30:49.078 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:30:49.081 +02:00 [Information] Executing endpoint '"HTTP: GET units/ => GetAllUnits"'
+2025-10-03 22:30:49.106 +02:00 [Information] Executed DbCommand ("11"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[Name], [u].[Abbreviation], [u].[Email]
+FROM [dbo].[Unit] AS [u]"
+2025-10-03 22:30:49.121 +02:00 [Information] Setting HTTP status code 200.
+2025-10-03 22:30:49.124 +02:00 [Information] Writing value of type '"List`1"' as Json.
+2025-10-03 22:30:49.129 +02:00 [Information] Executed endpoint '"HTTP: GET units/ => GetAllUnits"'
+2025-10-03 22:30:49.132 +02:00 [Information] Request "GET" "/units" responded 200
+2025-10-03 22:30:49.135 +02:00 [Information] HTTP "GET" "/units" responded 200 in 62.1092 ms
+2025-10-03 22:30:49.139 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/units""" - 200 null "application/json; charset=utf-8" 78.7176ms
+2025-10-03 22:30:50.739 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:30:50.760 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:31:32.042 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:31:32.064 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:32:23.310 +02:00 [Information] Request starting "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/applications""" - null null
+2025-10-03 22:32:23.319 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:32:23.324 +02:00 [Information] Request "OPTIONS" "/applications" responded 204
+2025-10-03 22:32:23.327 +02:00 [Information] HTTP "OPTIONS" "/applications" responded 204 in 8.8713 ms
+2025-10-03 22:32:23.332 +02:00 [Information] Request finished "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/applications""" - 204 null null 22.0085ms
+2025-10-03 22:32:23.344 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - "application/json" 441
+2025-10-03 22:32:23.348 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:32:23.349 +02:00 [Information] Executing endpoint '"HTTP: POST applications/ => PostApplication"'
+2025-10-03 22:32:23.689 +02:00 [Information] Executed DbCommand ("46"ms) [Parameters=["@__ids_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id]
+FROM [dbo].[Unit] AS [u]
+WHERE [u].[Id] IN (
+    SELECT [i].[value]
+    FROM OPENJSON(@__ids_0) WITH ([value] int '$') AS [i]
+)"
+2025-10-03 22:32:24.050 +02:00 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-10-03 22:32:24.087 +02:00 [Information] Executed DbCommand ("30"ms) [Parameters=["@p0='?' (Size = 10), @p1='?' (Size = 50), @p2='?' (Size = 100), @p3='?' (Size = 50), @p4='?' (Size = 50)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [dbo].[Application] ([Abbreviation], [ApplicationEmail], [Name], [Team], [TeamEmail])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4);"
+2025-10-03 22:32:24.195 +02:00 [Warning] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2025-10-03 22:32:24.257 +02:00 [Information] Executed DbCommand ("58"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Size = 20), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32), @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (Size = 20), @p9='?' (DbType = Int32), @p10='?' (DbType = Int32), @p11='?' (DbType = Int32), @p12='?' (DbType = Int32), @p13='?' (Size = 20), @p14='?' (DbType = Int32), @p15='?' (DbType = Int32), @p16='?' (DbType = Int32), @p17='?' (DbType = Int32), @p18='?' (Size = 20), @p19='?' (DbType = Int32), @p20='?' (DbType = Int32), @p21='?' (DbType = Int32), @p22='?' (DbType = Int32), @p23='?' (Size = 20), @p24='?' (DbType = Int32), @p25='?' (DbType = Int32), @p26='?' (DbType = Int32), @p27='?' (DbType = Int32), @p28='?' (Size = 20), @p29='?' (DbType = Int32), @p30='?' (DbType = Int32), @p31='?' (DbType = Int32), @p32='?' (DbType = Int32), @p33='?' (Size = 20), @p34='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+MERGE [Node] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, 0),
+(@p5, @p6, @p7, @p8, @p9, 1),
+(@p10, @p11, @p12, @p13, @p14, 2),
+(@p15, @p16, @p17, @p18, @p19, 3),
+(@p20, @p21, @p22, @p23, @p24, 4),
+(@p25, @p26, @p27, @p28, @p29, 5),
+(@p30, @p31, @p32, @p33, @p34, 6)) AS i ([ApplicationId], [Approvals], [DestinationId], [Direction], [OriginId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([ApplicationId], [Approvals], [DestinationId], [Direction], [OriginId])
+VALUES (i.[ApplicationId], i.[Approvals], i.[DestinationId], i.[Direction], i.[OriginId])
+OUTPUT INSERTED.[Id], i._Position;"
+2025-10-03 22:32:24.337 +02:00 [Information] Setting HTTP status code 201.
+2025-10-03 22:32:24.357 +02:00 [Information] Writing value of type '"Response`1"' as Json.
+2025-10-03 22:32:24.362 +02:00 [Information] Executed endpoint '"HTTP: POST applications/ => PostApplication"'
+2025-10-03 22:32:24.364 +02:00 [Information] Request "POST" "/applications" responded 201
+2025-10-03 22:32:24.367 +02:00 [Information] HTTP "POST" "/applications" responded 201 in 1019.6114 ms
+2025-10-03 22:32:24.373 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - 201 null "application/json; charset=utf-8" 1029.2766ms
+2025-10-03 22:32:30.444 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-10-03 22:32:30.449 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/flows/1""" - null null
+2025-10-03 22:32:30.451 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:32:30.454 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:32:30.455 +02:00 [Information] Executing endpoint '"HTTP: GET applications/ => GetAllApplications"'
+2025-10-03 22:32:30.457 +02:00 [Information] Executing endpoint '"HTTP: GET flows/{applicationId} => GetFlow"'
+2025-10-03 22:32:30.462 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[Name], [a].[Abbreviation], [a].[Team], [a].[TeamEmail], [a].[ApplicationEmail]
+FROM [dbo].[Application] AS [a]"
+2025-10-03 22:32:30.466 +02:00 [Information] Setting HTTP status code 200.
+2025-10-03 22:32:30.470 +02:00 [Information] Writing value of type '"List`1"' as Json.
+2025-10-03 22:32:30.473 +02:00 [Information] Executed endpoint '"HTTP: GET applications/ => GetAllApplications"'
+2025-10-03 22:32:30.483 +02:00 [Information] Request "GET" "/applications" responded 200
+2025-10-03 22:32:30.487 +02:00 [Information] HTTP "GET" "/applications" responded 200 in 36.8303 ms
+2025-10-03 22:32:30.492 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 200 null "application/json; charset=utf-8" 48.1511ms
+2025-10-03 22:32:30.613 +02:00 [Information] Executed DbCommand ("18"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:32:30.617 +02:00 [Information] Setting HTTP status code 200.
+2025-10-03 22:32:30.620 +02:00 [Information] Writing value of type '"Response`1"' as Json.
+2025-10-03 22:32:30.622 +02:00 [Information] Executed endpoint '"HTTP: GET flows/{applicationId} => GetFlow"'
+2025-10-03 22:32:30.624 +02:00 [Information] Request "GET" "/flows/1" responded 200
+2025-10-03 22:32:30.626 +02:00 [Information] HTTP "GET" "/flows/1" responded 200 in 171.2581 ms
+2025-10-03 22:32:30.631 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/flows/1""" - 200 null "application/json; charset=utf-8" 181.9539ms
+2025-10-03 22:32:35.930 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/flows/5""" - null null
+2025-10-03 22:32:35.938 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:32:35.940 +02:00 [Information] Executing endpoint '"HTTP: GET flows/{applicationId} => GetFlow"'
+2025-10-03 22:32:35.944 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:32:35.949 +02:00 [Information] Setting HTTP status code 200.
+2025-10-03 22:32:35.950 +02:00 [Information] Writing value of type '"Response`1"' as Json.
+2025-10-03 22:32:35.952 +02:00 [Information] Executed endpoint '"HTTP: GET flows/{applicationId} => GetFlow"'
+2025-10-03 22:32:35.954 +02:00 [Information] Request "GET" "/flows/5" responded 200
+2025-10-03 22:32:35.956 +02:00 [Information] HTTP "GET" "/flows/5" responded 200 in 18.5538 ms
+2025-10-03 22:32:35.960 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/flows/5""" - 200 null "application/json; charset=utf-8" 30.2267ms
+2025-10-03 22:33:00.020 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:33:00.056 +02:00 [Information] Executed DbCommand ("28"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:33:33.593 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/processes""?pageIndex=0&pageSize=10&search=&applicationId=0&dateFilter=all" - null null
+2025-10-03 22:33:33.600 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:33:33.603 +02:00 [Information] Executing endpoint '"HTTP: GET processes/ => GetProcesses"'
+2025-10-03 22:33:33.635 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:33:33.651 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:33:33.664 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:33:33.683 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:33:33.692 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:33:33.701 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:33:33.710 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:33:33.718 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:33:33.728 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:33:33.738 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:33:33.750 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:33:33.760 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:33:33.767 +02:00 [Information] Setting HTTP status code 200.
+2025-10-03 22:33:33.796 +02:00 [Information] Writing value of type '"Response`1"' as Json.
+2025-10-03 22:33:33.811 +02:00 [Information] Executed endpoint '"HTTP: GET processes/ => GetProcesses"'
+2025-10-03 22:33:33.813 +02:00 [Information] Request "GET" "/processes" responded 200
+2025-10-03 22:33:33.816 +02:00 [Information] HTTP "GET" "/processes" responded 200 in 216.6963 ms
+2025-10-03 22:33:33.819 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/processes""?pageIndex=0&pageSize=10&search=&applicationId=0&dateFilter=all" - 200 null "application/json; charset=utf-8" 226.3666ms
+2025-10-03 22:33:38.775 +02:00 [Information] Request starting "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null null
+2025-10-03 22:33:38.782 +02:00 [Information] Request starting "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null null
+2025-10-03 22:33:38.785 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:33:38.788 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:33:38.790 +02:00 [Information] Request "OPTIONS" "/hubs/documentation/negotiate" responded 204
+2025-10-03 22:33:38.792 +02:00 [Information] Request "OPTIONS" "/hubs/documentation/negotiate" responded 204
+2025-10-03 22:33:38.794 +02:00 [Information] HTTP "OPTIONS" "/hubs/documentation/negotiate" responded 204 in 8.7924 ms
+2025-10-03 22:33:38.798 +02:00 [Information] HTTP "OPTIONS" "/hubs/documentation/negotiate" responded 204 in 9.7863 ms
+2025-10-03 22:33:38.805 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null 0
+2025-10-03 22:33:38.801 +02:00 [Information] Request finished "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 204 null null 26.3445ms
+2025-10-03 22:33:38.811 +02:00 [Information] Request finished "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 204 null null 29.0007ms
+2025-10-03 22:33:38.817 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null 0
+2025-10-03 22:33:38.829 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:33:38.849 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:33:38.851 +02:00 [Information] Executing endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:33:38.852 +02:00 [Information] Executing endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:33:38.887 +02:00 [Information] Executed endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:33:38.887 +02:00 [Information] Executed endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:33:38.889 +02:00 [Information] Request "POST" "/hubs/documentation/negotiate" responded 200
+2025-10-03 22:33:38.892 +02:00 [Information] Request "POST" "/hubs/documentation/negotiate" responded 200
+2025-10-03 22:33:38.896 +02:00 [Information] HTTP "POST" "/hubs/documentation/negotiate" responded 200 in 46.4802 ms
+2025-10-03 22:33:38.898 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/hubs/documentation""?id=AHmCQM9gydpz5kw-tgCrDg" - null null
+2025-10-03 22:33:38.899 +02:00 [Information] HTTP "POST" "/hubs/documentation/negotiate" responded 200 in 70.5294 ms
+2025-10-03 22:33:38.903 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 200 316 "application/json" 85.9285ms
+2025-10-03 22:33:38.908 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:33:38.911 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 200 316 "application/json" 106.4969ms
+2025-10-03 22:33:38.922 +02:00 [Information] Executing endpoint '"/hubs/documentation"'
+2025-10-03 22:33:41.378 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:33:41.394 +02:00 [Information] Executed DbCommand ("10"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:33:44.012 +02:00 [Information] Executed endpoint '"/hubs/documentation"'
+2025-10-03 22:33:44.014 +02:00 [Information] Request "GET" "/hubs/documentation" responded 101
+2025-10-03 22:33:44.018 +02:00 [Information] HTTP "GET" "/hubs/documentation" responded 101 in 5110.1438 ms
+2025-10-03 22:33:44.020 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/hubs/documentation""?id=AHmCQM9gydpz5kw-tgCrDg" - 101 null null 5122.8804ms
+2025-10-03 22:33:59.865 +02:00 [Information] Request starting "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null null
+2025-10-03 22:33:59.872 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:33:59.872 +02:00 [Information] Request starting "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null null
+2025-10-03 22:33:59.874 +02:00 [Information] Request "OPTIONS" "/hubs/documentation/negotiate" responded 204
+2025-10-03 22:33:59.879 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:33:59.881 +02:00 [Information] HTTP "OPTIONS" "/hubs/documentation/negotiate" responded 204 in 9.3488 ms
+2025-10-03 22:33:59.883 +02:00 [Information] Request "OPTIONS" "/hubs/documentation/negotiate" responded 204
+2025-10-03 22:33:59.887 +02:00 [Information] Request finished "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 204 null null 22.2542ms
+2025-10-03 22:33:59.889 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null 0
+2025-10-03 22:33:59.890 +02:00 [Information] HTTP "OPTIONS" "/hubs/documentation/negotiate" responded 204 in 11.0244 ms
+2025-10-03 22:33:59.902 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:33:59.905 +02:00 [Information] Request finished "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 204 null null 33.1528ms
+2025-10-03 22:33:59.907 +02:00 [Information] Executing endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:33:59.907 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null 0
+2025-10-03 22:33:59.913 +02:00 [Information] Executed endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:33:59.917 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:33:59.918 +02:00 [Information] Request "POST" "/hubs/documentation/negotiate" responded 200
+2025-10-03 22:33:59.920 +02:00 [Information] Executing endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:33:59.922 +02:00 [Information] HTTP "POST" "/hubs/documentation/negotiate" responded 200 in 19.7884 ms
+2025-10-03 22:33:59.924 +02:00 [Information] Executed endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:33:59.928 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 200 316 "application/json" 38.6187ms
+2025-10-03 22:33:59.933 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/hubs/documentation""?id=521QjIYwdg1eRgMd9vpRQw" - null null
+2025-10-03 22:33:59.932 +02:00 [Information] Request "POST" "/hubs/documentation/negotiate" responded 200
+2025-10-03 22:33:59.950 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:33:59.953 +02:00 [Information] HTTP "POST" "/hubs/documentation/negotiate" responded 200 in 36.2350 ms
+2025-10-03 22:33:59.954 +02:00 [Information] Executing endpoint '"/hubs/documentation"'
+2025-10-03 22:33:59.957 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 200 316 "application/json" 50.6633ms
+2025-10-03 22:34:01.173 +02:00 [Information] Executed endpoint '"/hubs/documentation"'
+2025-10-03 22:34:01.180 +02:00 [Information] Request "GET" "/hubs/documentation" responded 101
+2025-10-03 22:34:01.185 +02:00 [Information] HTTP "GET" "/hubs/documentation" responded 101 in 1234.8250 ms
+2025-10-03 22:34:01.189 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/hubs/documentation""?id=521QjIYwdg1eRgMd9vpRQw" - 101 null null 1257.3098ms
+2025-10-03 22:34:19.770 +02:00 [Information] Request starting "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null null
+2025-10-03 22:34:19.775 +02:00 [Information] Request starting "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null null
+2025-10-03 22:34:19.776 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:34:19.780 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:34:19.781 +02:00 [Information] Request "OPTIONS" "/hubs/documentation/negotiate" responded 204
+2025-10-03 22:34:19.783 +02:00 [Information] Request "OPTIONS" "/hubs/documentation/negotiate" responded 204
+2025-10-03 22:34:19.785 +02:00 [Information] HTTP "OPTIONS" "/hubs/documentation/negotiate" responded 204 in 8.7449 ms
+2025-10-03 22:34:19.788 +02:00 [Information] HTTP "OPTIONS" "/hubs/documentation/negotiate" responded 204 in 7.4830 ms
+2025-10-03 22:34:19.791 +02:00 [Information] Request finished "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 204 null null 21.1915ms
+2025-10-03 22:34:19.792 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null 0
+2025-10-03 22:34:19.794 +02:00 [Information] Request finished "HTTP/1.1" "OPTIONS" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 204 null null 19.2469ms
+2025-10-03 22:34:19.795 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - null 0
+2025-10-03 22:34:19.804 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:34:19.813 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:34:19.814 +02:00 [Information] Executing endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:34:19.817 +02:00 [Information] Executing endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:34:19.819 +02:00 [Information] Executed endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:34:19.821 +02:00 [Information] Executed endpoint '"/hubs/documentation/negotiate"'
+2025-10-03 22:34:19.823 +02:00 [Information] Request "POST" "/hubs/documentation/negotiate" responded 200
+2025-10-03 22:34:19.825 +02:00 [Information] Request "POST" "/hubs/documentation/negotiate" responded 200
+2025-10-03 22:34:19.826 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/hubs/documentation""?id=icglAGpVLfIklJ3BLaCj6w" - null null
+2025-10-03 22:34:19.828 +02:00 [Information] HTTP "POST" "/hubs/documentation/negotiate" responded 200 in 23.7742 ms
+2025-10-03 22:34:19.830 +02:00 [Information] HTTP "POST" "/hubs/documentation/negotiate" responded 200 in 16.9428 ms
+2025-10-03 22:34:19.836 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:34:19.839 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 200 316 "application/json" 46.0938ms
+2025-10-03 22:34:19.842 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/hubs/documentation/negotiate""?negotiateVersion=1" - 200 316 "application/json" 47.1543ms
+2025-10-03 22:34:19.843 +02:00 [Information] Executing endpoint '"/hubs/documentation"'
+2025-10-03 22:34:21.270 +02:00 [Information] Executed endpoint '"/hubs/documentation"'
+2025-10-03 22:34:21.272 +02:00 [Information] Request "GET" "/hubs/documentation" responded 101
+2025-10-03 22:34:21.276 +02:00 [Information] HTTP "GET" "/hubs/documentation" responded 101 in 1439.9686 ms
+2025-10-03 22:34:21.280 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/hubs/documentation""?id=icglAGpVLfIklJ3BLaCj6w" - 101 null null 1453.7355ms
+2025-10-03 22:34:22.720 +02:00 [Information] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:34:22.736 +02:00 [Information] Executed DbCommand ("10"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:34:43.483 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/flows/4""" - null null
+2025-10-03 22:34:43.493 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:34:43.495 +02:00 [Information] Executing endpoint '"HTTP: GET flows/{applicationId} => GetFlow"'
+2025-10-03 22:34:43.505 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:34:43.510 +02:00 [Information] Setting HTTP status code 200.
+2025-10-03 22:34:43.512 +02:00 [Information] Writing value of type '"Response`1"' as Json.
+2025-10-03 22:34:43.514 +02:00 [Information] Executed endpoint '"HTTP: GET flows/{applicationId} => GetFlow"'
+2025-10-03 22:34:43.516 +02:00 [Information] Request "GET" "/flows/4" responded 200
+2025-10-03 22:34:43.518 +02:00 [Information] HTTP "GET" "/flows/4" responded 200 in 24.6600 ms
+2025-10-03 22:34:43.521 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/flows/4""" - 200 null "application/json; charset=utf-8" 38.1332ms
+2025-10-03 22:34:52.998 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/flows/2""" - null null
+2025-10-03 22:34:53.006 +02:00 [Information] CORS policy execution successful.
+2025-10-03 22:34:53.009 +02:00 [Information] Executing endpoint '"HTTP: GET flows/{applicationId} => GetFlow"'
+2025-10-03 22:34:53.012 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=["@__applicationId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [n].[Id], [n].[ApplicationId], [n].[Approvals], [n].[DestinationId], [n].[Direction], [n].[OriginId], [a].[Id], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Id], [u].[Abbreviation], [u].[Email], [u].[Name], [u0].[Id], [u0].[Abbreviation], [u0].[Email], [u0].[Name]
+FROM [Node] AS [n]
+INNER JOIN [dbo].[Application] AS [a] ON [n].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [n].[OriginId] = [u].[Id]
+INNER JOIN [dbo].[Unit] AS [u0] ON [n].[DestinationId] = [u0].[Id]
+WHERE [n].[ApplicationId] = @__applicationId_0"
+2025-10-03 22:34:53.017 +02:00 [Information] Setting HTTP status code 200.
+2025-10-03 22:34:53.019 +02:00 [Information] Writing value of type '"Response`1"' as Json.
+2025-10-03 22:34:53.021 +02:00 [Information] Executed endpoint '"HTTP: GET flows/{applicationId} => GetFlow"'
+2025-10-03 22:34:53.024 +02:00 [Information] Request "GET" "/flows/2" responded 200
+2025-10-03 22:34:53.027 +02:00 [Information] HTTP "GET" "/flows/2" responded 200 in 20.7306 ms
+2025-10-03 22:34:53.030 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/flows/2""" - 200 null "application/json; charset=utf-8" 32.3927ms
+2025-10-03 22:35:04.059 +02:00 [Information] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:35:04.075 +02:00 [Information] Executed DbCommand ("11"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:36:32.035 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:36:32.056 +02:00 [Information] Executed DbCommand ("15"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:37:13.561 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:37:13.587 +02:00 [Information] Executed DbCommand ("17"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:37:55.274 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:37:55.293 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:38:36.712 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:38:36.728 +02:00 [Information] Executed DbCommand ("10"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:40:04.858 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:40:04.895 +02:00 [Information] Executed DbCommand ("16"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:40:46.428 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:40:46.450 +02:00 [Information] Executed DbCommand ("15"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:41:27.964 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:41:27.988 +02:00 [Information] Executed DbCommand ("17"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:42:09.588 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:42:09.615 +02:00 [Information] Executed DbCommand ("18"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:43:37.832 +02:00 [Information] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:43:37.876 +02:00 [Information] Executed DbCommand ("29"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:44:19.447 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:44:19.468 +02:00 [Information] Executed DbCommand ("16"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:45:00.937 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:45:00.963 +02:00 [Information] Executed DbCommand ("18"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:45:42.624 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:45:42.654 +02:00 [Information] Executed DbCommand ("18"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:47:10.870 +02:00 [Information] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:47:10.911 +02:00 [Information] Executed DbCommand ("14"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:47:52.459 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:47:52.473 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:48:33.977 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:48:34.004 +02:00 [Information] Executed DbCommand ("16"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:49:15.611 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:49:15.618 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:50:43.927 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:50:43.961 +02:00 [Information] Executed DbCommand ("15"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:51:25.539 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:51:25.561 +02:00 [Information] Executed DbCommand ("14"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:52:07.302 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:52:07.331 +02:00 [Information] Executed DbCommand ("15"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:52:48.894 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:52:48.913 +02:00 [Information] Executed DbCommand ("12"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-10-03 22:54:16.997 +02:00 [Information] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-10-03 22:54:17.025 +02:00 [Information] Executed DbCommand ("12"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"

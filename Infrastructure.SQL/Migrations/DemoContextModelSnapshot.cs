@@ -131,6 +131,10 @@ namespace Infrastructure.SQL.Migrations
                     b.Property<int>("At")
                         .HasColumnType("int");
 
+                    b.Property<string>("Note")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<bool>("Notified")
                         .HasColumnType("bit");
 
@@ -263,6 +267,10 @@ namespace Infrastructure.SQL.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Status")
                         .IsRequired()

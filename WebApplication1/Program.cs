@@ -22,6 +22,7 @@ using InfrastructureFileStorage.Interfaces;
 using InfrastructureFileStorage.Services;
 using BL.Handlers;
 using Infrastructure.Notifications.Email;
+using Infrastructure.SignalR.Documentation;
 
 
 
@@ -55,18 +56,36 @@ builder.Services.AddHostedService<EmailService>();
 builder.Services.AddSingleton<IEmailChannel, EmailChannel>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 
+builder.Services.AddSignalR()
+    .AddJsonProtocol(options =>
+    {
+        options.PayloadSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+    });
+
 
 
 
 builder.Host.UseSerilog(LoggingConfiguration.Configure);
 
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAll", policy =>
+//    {
+//        policy.AllowAnyOrigin()
+//              .AllowAnyHeader()
+//              .AllowAnyMethod()
+//              .AllowCredentials();
+//    });
+//});
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("https://super-duper-garbanzo-rvqgxq97jwv2xwx9-5173.app.github.dev") // porta do React
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials(); // necessário para WebSockets
     });
 });
 
@@ -145,10 +164,13 @@ app.UseHttpsRedirection();
 app.AddApllicatioGroup();
 app.AddFlowGroup();
 app.AddUnitEndpoints();
+
+
+
 app.AddProcessEndpoints();
 
 app.UseCors("AllowAll");
-
+app.MapHub<DocumentationHub>("/hubs/documentation");
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -159,7 +181,5 @@ app.UseAuthorization();
 
 app.Run();
 
-
-app.Run();
 
 

@@ -13,8 +13,12 @@ namespace Domain.DTOs
         public int ProcessId { get; set; }
         public int At { get; set; }
         public string UpdatedBy { get; set; }
+
+        public string? Note { get; set; }
         public DateTime UpdatedAt { get; set; }
         public bool Notified { get; set; } = false;
+
+    
 
     }
 }

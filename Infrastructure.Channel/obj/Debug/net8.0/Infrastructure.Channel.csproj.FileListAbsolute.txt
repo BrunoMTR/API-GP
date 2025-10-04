@@ -14,3 +14,5 @@ C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\obj\Debug\net8.0\Infras
 C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\obj\Debug\net8.0\refint\Infrastructure.Channel.dll
 C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\obj\Debug\net8.0\Infrastructure.Channel.pdb
 C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\obj\Debug\net8.0\ref\Infrastructure.Channel.dll
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\bin\Debug\net8.0\Infrastructure.SignalR.dll
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.Channel\bin\Debug\net8.0\Infrastructure.SignalR.pdb

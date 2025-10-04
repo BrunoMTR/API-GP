@@ -36,6 +36,10 @@ namespace Infrastructure.SQL.Configurations
                    .IsRequired()
                    .HasDefaultValue(Domain.DTOs.ProcessStatus.Initiated);
 
+            builder.Property(p => p.Note)
+                 .HasMaxLength(200);
+
+
             // Relacionamento com Application (propriedade de navegação)
             builder.HasOne(p => p.Application)
                    .WithMany()

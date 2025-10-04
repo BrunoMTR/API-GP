@@ -30,7 +30,8 @@ namespace Infrastructure.SQL.Repositories
                 At = historyDto.At,
                 UpdatedBy = historyDto.UpdatedBy,
                 UpdatedAt = historyDto.UpdatedAt,
-                Notified = historyDto.Notified
+                Notified = historyDto.Notified,
+                Note = historyDto.Note
             };
 
             await _demoContext.AddAsync(historyEntity);
@@ -52,7 +53,8 @@ namespace Infrastructure.SQL.Repositories
                     At = x.At,
                     UpdatedAt = x.UpdatedAt,
                     UpdatedBy = x.UpdatedBy,
-                    Notified = x.Notified
+                    Notified = x.Notified,
+                    Note = x.Note
 
 
                 }).ToListAsync();

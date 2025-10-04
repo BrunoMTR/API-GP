@@ -3,64 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD307577-3F4F-42A1-8A0A-B8D99CA009A2}|Infrastructure.Notifications\\Infrastructure.Notifications.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.notifications\\email\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD307577-3F4F-42A1-8A0A-B8D99CA009A2}|Infrastructure.Notifications\\Infrastructure.Notifications.csproj|solutionrelative:infrastructure.notifications\\email\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\repositories\\processrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\repositories\\processrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{280520D2-9DF4-49FD-8160-A103D9F8D25A}|BL\\BL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\bl\\services\\processservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{280520D2-9DF4-49FD-8160-A103D9F8D25A}|BL\\BL.csproj|solutionrelative:bl\\services\\processservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\repositories\\historyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\repositories\\historyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\repositories\\notificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\repositories\\notificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\endpoints\\processendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\endpoints\\processendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\db\\entities\\notificationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\db\\entities\\notificationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\mapping\\processmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\mapping\\processmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Migrations\\20250927163328_history bcc 2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure.SQL\\Migrations\\20250927163328_history bcc 2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Migrations\\20251004072528_note adition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure.SQL\\Migrations\\20251004072528_note adition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\db\\democontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\db\\democontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\domain\\dtos\\historydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|solutionrelative:domain\\dtos\\historydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\configurations\\notificationconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\configurations\\notificationconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\models\\request\\aproveprocessrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\models\\request\\aproveprocessrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\migrations\\20250927161739_history bcc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\migrations\\20250927161739_history bcc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\routegroups\\processgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\routegroups\\processgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\domain\\dtos\\notificationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25588C9C-7B32-4D6B-B0E2-A38A8783F29F}|Domain\\Domain.csproj|solutionrelative:domain\\dtos\\notificationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\repositories\\processrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\repositories\\processrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1867A272-050A-4028-BF47-FA55685692AE}|Infrastructure.Channel\\Infrastructure.Channel.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.channel\\documentation\\documentationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1867A272-050A-4028-BF47-FA55685692AE}|Infrastructure.Channel\\Infrastructure.Channel.csproj|solutionrelative:infrastructure.channel\\documentation\\documentationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\webapplication1\\middlewares\\loggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E57EC60D-AE66-4B95-87D5-F9AEE2128C9B}|WebApplication1\\Presentation.csproj|solutionrelative:webapplication1\\middlewares\\loggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\db\\entities\\processentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\db\\entities\\processentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.sql\\configurations\\historyconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED653839-8415-430F-8791-4659DF6A2666}|Infrastructure.SQL\\Infrastructure.SQL.csproj|solutionrelative:infrastructure.sql\\configurations\\historyconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD307577-3F4F-42A1-8A0A-B8D99CA009A2}|Infrastructure.Notifications\\Infrastructure.Notifications.csproj|c:\\users\\dell\\documents\\pf\\api-gp\\infrastructure.notifications\\email\\emailchannel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD307577-3F4F-42A1-8A0A-B8D99CA009A2}|Infrastructure.Notifications\\Infrastructure.Notifications.csproj|solutionrelative:infrastructure.notifications\\email\\emailchannel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,123 +54,136 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "20250927163328_history bcc 2.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Migrations\\20250927163328_history bcc 2.cs",
-              "RelativeDocumentMoniker": "Infrastructure.SQL\\Migrations\\20250927163328_history bcc 2.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Migrations\\20250927163328_history bcc 2.cs",
-              "RelativeToolTip": "Infrastructure.SQL\\Migrations\\20250927163328_history bcc 2.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Title": "ProcessMapper.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Mapping\\ProcessMapper.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Mapping\\ProcessMapper.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Mapping\\ProcessMapper.cs",
+              "RelativeToolTip": "WebApplication1\\Mapping\\ProcessMapper.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwB4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T16:33:29.278Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EmailService.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.Notifications\\Email\\EmailService.cs",
-              "RelativeDocumentMoniker": "Infrastructure.Notifications\\Email\\EmailService.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.Notifications\\Email\\EmailService.cs",
-              "RelativeToolTip": "Infrastructure.Notifications\\Email\\EmailService.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAmwGcAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T13:38:40.081Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NotificationRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\NotificationRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure.SQL\\Repositories\\NotificationRepository.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\NotificationRepository.cs",
-              "RelativeToolTip": "Infrastructure.SQL\\Repositories\\NotificationRepository.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACIAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T14:54:43.127Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NotificationEntity.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\DB\\Entities\\NotificationEntity.cs",
-              "RelativeDocumentMoniker": "Infrastructure.SQL\\DB\\Entities\\NotificationEntity.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\DB\\Entities\\NotificationEntity.cs",
-              "RelativeToolTip": "Infrastructure.SQL\\DB\\Entities\\NotificationEntity.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAmwA0AAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T16:30:29.999Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HistoryRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\HistoryRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure.SQL\\Repositories\\HistoryRepository.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\HistoryRepository.cs",
-              "RelativeToolTip": "Infrastructure.SQL\\Repositories\\HistoryRepository.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAuwEYAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T16:22:21.568Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "NotificationDto.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\DTOs\\NotificationDto.cs",
-              "RelativeDocumentMoniker": "Domain\\DTOs\\NotificationDto.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\DTOs\\NotificationDto.cs",
-              "RelativeToolTip": "Domain\\DTOs\\NotificationDto.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAwAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T16:16:10.214Z",
+              "WhenOpened": "2025-10-04T07:40:32.686Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "20250927161739_history bcc.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Migrations\\20250927161739_history bcc.cs",
-              "RelativeDocumentMoniker": "Infrastructure.SQL\\Migrations\\20250927161739_history bcc.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Migrations\\20250927161739_history bcc.cs",
-              "RelativeToolTip": "Infrastructure.SQL\\Migrations\\20250927161739_history bcc.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "AproveProcessRequest.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Models\\Request\\AproveProcessRequest.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Models\\Request\\AproveProcessRequest.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Models\\Request\\AproveProcessRequest.cs",
+              "RelativeToolTip": "WebApplication1\\Models\\Request\\AproveProcessRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T16:18:02.673Z",
+              "WhenOpened": "2025-10-04T07:13:55.534Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DemoContext.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\DB\\DemoContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure.SQL\\DB\\DemoContext.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\DB\\DemoContext.cs",
-              "RelativeToolTip": "Infrastructure.SQL\\DB\\DemoContext.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ProcessService.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\BL\\Services\\ProcessService.cs",
+              "RelativeDocumentMoniker": "BL\\Services\\ProcessService.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\BL\\Services\\ProcessService.cs",
+              "RelativeToolTip": "BL\\Services\\ProcessService.cs",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAgwOwAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T16:32:47.839Z",
+              "WhenOpened": "2025-10-04T06:28:59.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProcessGroup.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\RouteGroups\\ProcessGroup.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\RouteGroups\\ProcessGroup.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\RouteGroups\\ProcessGroup.cs",
+              "RelativeToolTip": "WebApplication1\\RouteGroups\\ProcessGroup.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAcwC4AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T04:44:45.203Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProcessEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Endpoints\\ProcessEndpoints.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Endpoints\\ProcessEndpoints.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Endpoints\\ProcessEndpoints.cs",
+              "RelativeToolTip": "WebApplication1\\Endpoints\\ProcessEndpoints.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAowBIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T04:40:25.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProcessRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\ProcessRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure.SQL\\Repositories\\ProcessRepository.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\ProcessRepository.cs",
+              "RelativeToolTip": "Infrastructure.SQL\\Repositories\\ProcessRepository.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAowEQAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T07:23:39.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HistoryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\HistoryRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure.SQL\\Repositories\\HistoryRepository.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\HistoryRepository.cs",
+              "RelativeToolTip": "Infrastructure.SQL\\Repositories\\HistoryRepository.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAwwDgAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T07:55:42.212Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "NotificationConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Configurations\\NotificationConfiguration.cs",
-              "RelativeDocumentMoniker": "Infrastructure.SQL\\Configurations\\NotificationConfiguration.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Configurations\\NotificationConfiguration.cs",
-              "RelativeToolTip": "Infrastructure.SQL\\Configurations\\NotificationConfiguration.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAywBMAAAApAAAAAAAAAA==",
+              "Title": "HistoryDto.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\DTOs\\HistoryDto.cs",
+              "RelativeDocumentMoniker": "Domain\\DTOs\\HistoryDto.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Domain\\DTOs\\HistoryDto.cs",
+              "RelativeToolTip": "Domain\\DTOs\\HistoryDto.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T14:49:50.943Z",
+              "WhenOpened": "2025-10-04T07:16:37.746Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "20251004072528_note adition.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Migrations\\20251004072528_note adition.cs",
+              "RelativeDocumentMoniker": "Infrastructure.SQL\\Migrations\\20251004072528_note adition.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Migrations\\20251004072528_note adition.cs",
+              "RelativeToolTip": "Infrastructure.SQL\\Migrations\\20251004072528_note adition.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T07:25:28.68Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DocumentationService.cs",
+              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.Channel\\Documentation\\DocumentationService.cs",
+              "RelativeDocumentMoniker": "Infrastructure.Channel\\Documentation\\DocumentationService.cs",
+              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.Channel\\Documentation\\DocumentationService.cs",
+              "RelativeToolTip": "Infrastructure.Channel\\Documentation\\DocumentationService.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAQwB8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T06:09:53.568Z",
               "EditorCaption": ""
             },
             {
@@ -197,74 +194,9 @@
               "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
               "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Program.cs",
               "RelativeToolTip": "WebApplication1\\Program.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAmwDYAAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAcwK8AAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T15:26:14.42Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ProcessRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\ProcessRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure.SQL\\Repositories\\ProcessRepository.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Repositories\\ProcessRepository.cs",
-              "RelativeToolTip": "Infrastructure.SQL\\Repositories\\ProcessRepository.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAAAAG0AAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T14:35:29.974Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ProcessEntity.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\DB\\Entities\\ProcessEntity.cs",
-              "RelativeDocumentMoniker": "Infrastructure.SQL\\DB\\Entities\\ProcessEntity.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\DB\\Entities\\ProcessEntity.cs",
-              "RelativeToolTip": "Infrastructure.SQL\\DB\\Entities\\ProcessEntity.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABQAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T14:51:10.813Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "LoggingMiddleware.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Middlewares\\LoggingMiddleware.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Middlewares\\LoggingMiddleware.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\WebApplication1\\Middlewares\\LoggingMiddleware.cs",
-              "RelativeToolTip": "WebApplication1\\Middlewares\\LoggingMiddleware.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAswDEAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T15:24:30.758Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "HistoryConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Configurations\\HistoryConfiguration.cs",
-              "RelativeDocumentMoniker": "Infrastructure.SQL\\Configurations\\HistoryConfiguration.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.SQL\\Configurations\\HistoryConfiguration.cs",
-              "RelativeToolTip": "Infrastructure.SQL\\Configurations\\HistoryConfiguration.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwCUAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T14:50:30.828Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "EmailChannel.cs",
-              "DocumentMoniker": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.Notifications\\Email\\EmailChannel.cs",
-              "RelativeDocumentMoniker": "Infrastructure.Notifications\\Email\\EmailChannel.cs",
-              "ToolTip": "C:\\Users\\Dell\\Documents\\PF\\API-GP\\Infrastructure.Notifications\\Email\\EmailChannel.cs",
-              "RelativeToolTip": "Infrastructure.Notifications\\Email\\EmailChannel.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAACQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T13:50:43.864Z",
+              "WhenOpened": "2025-10-04T06:00:47.56Z",
               "EditorCaption": ""
             }
           ]

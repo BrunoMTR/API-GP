@@ -22,7 +22,7 @@ namespace Presentation.RouteGroups
                     Summary = "Create a new Process",
                     Description = "Creates a new process entity with the provided information. Validates the input before persisting."
                 });
-            group.MapPost("/upload",ProcessEndpoints.PostProcessDocumentation)
+            group.MapPost("/upload", ProcessEndpoints.PostProcessDocumentation)
                 .AddEndpointFilter<InputValidatorFilter<DocumentForm>>()
                 .DisableAntiforgery()
                 .WithOpenApi(operation => new(operation)
@@ -38,13 +38,23 @@ namespace Presentation.RouteGroups
                     Description = "Fetches all processes flow states"
                 });
 
-            group.MapPatch("/{processId}", ProcessEndpoints.PostAproveProcess)
-                .WithName("processAprove")
-                 .WithOpenApi(operation => new(operation)
-                 {
+            group.MapPatch("/approve", ProcessEndpoints.PostAproveProcess)
+                .DisableAntiforgery()
+                .WithOpenApi(operation => new(operation)
+                {
                      Summary = "Approve a process by ID",
                      Description = "Approves the process associated with the specified unique identifier, advancing its state in the workflow."
+                });
+
+            group.MapPatch("/{processId}/cancel", ProcessEndpoints.PatchCanselProcess)
+                .WithName("processCancel")
+                 .WithOpenApi(operation => new(operation)
+                 {
+                     Summary = "Cancel a process by ID",
+                     Description = "Cancels the process associated with the specified unique identifier, halting its progress in the workflow."
                  });
+
+
 
 
         }

@@ -1,0 +1,13 @@
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\bin\Debug\net8.0\Infrastructure.SignalR.deps.json
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\bin\Debug\net8.0\Infrastructure.SignalR.dll
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\bin\Debug\net8.0\Infrastructure.SignalR.pdb
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\obj\Debug\net8.0\Infrastructure.SignalR.csproj.AssemblyReference.cache
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\obj\Debug\net8.0\Infrastructure.SignalR.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\obj\Debug\net8.0\Infrastructure.SignalR.AssemblyInfoInputs.cache
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\obj\Debug\net8.0\Infrastructure.SignalR.AssemblyInfo.cs
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\obj\Debug\net8.0\Infrastructure.SignalR.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\obj\Debug\net8.0\Infrastructure.SignalR.sourcelink.json
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\obj\Debug\net8.0\Infrastructure.SignalR.dll
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\obj\Debug\net8.0\refint\Infrastructure.SignalR.dll
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\obj\Debug\net8.0\Infrastructure.SignalR.pdb
+C:\Users\Dell\Documents\PF\API-GP\Infrastructure.SignalR\obj\Debug\net8.0\ref\Infrastructure.SignalR.dll

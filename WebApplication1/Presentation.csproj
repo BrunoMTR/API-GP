@@ -44,6 +44,7 @@
     <ProjectReference Include="..\Infrastructure.Channel\Infrastructure.Channel.csproj" />
     <ProjectReference Include="..\Infrastructure.Logging\Infrastructure.Logging.csproj" />
     <ProjectReference Include="..\Infrastructure.Notifications\Infrastructure.Notifications.csproj" />
+    <ProjectReference Include="..\Infrastructure.SignalR\Infrastructure.SignalR.csproj" />
     <ProjectReference Include="..\Infrastructure.SQL\Infrastructure.SQL.csproj" />
     <ProjectReference Include="..\InfrastructureFileStorage\Infrastructure.Storage.csproj" />
   </ItemGroup>

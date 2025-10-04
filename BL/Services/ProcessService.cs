@@ -37,7 +37,12 @@ namespace BL.Services
         }
 
 
-        public async Task<Response<ProcessDto>> ApproveAsync(int processId, string updatedBy)
+        public async Task<Response<ProcessDto>> ApproveAsync(
+    int processId,
+    string updatedBy,
+    string note,
+    IFormFile? file,
+    CancellationToken cancellationToken)
         {
             var process = await _processRepository.RetrieveAsync(processId);
 
@@ -49,6 +54,9 @@ namespace BL.Services
 
             if (process.Status == ProcessStatus.Uploading)
                 return Response<ProcessDto>.Fail("Uploading documentation linked to the specified process.");
+
+            if (process.Status == ProcessStatus.Canceled)
+                return Response<ProcessDto>.Fail("Process already canceled.");
 
             var flow = await _flowRepository.GetByApplicationAsync(process.ApplicationId);
             var nodes = flow?.Nodes;
@@ -73,18 +81,22 @@ namespace BL.Services
             return await strategy.ExecuteAsync(async () =>
             {
                 await using var transaction = await _demoContext.Database.BeginTransactionAsync();
-
                 try
                 {
+                    // Grava histórico com a nota atual antes de sobrescrever
                     var historyDto = new HistoryDto
                     {
                         ApplicationId = process.ApplicationId,
                         ProcessId = process.Id,
                         At = process.At,
                         UpdatedBy = updatedBy,
-                        UpdatedAt = DateTime.UtcNow
+                        UpdatedAt = DateTime.UtcNow,
+                        Note = process.Note // pega o valor atual antes da alteração
                     };
                     await _historyRepository.CreateAsync(historyDto);
+
+                    // Atualiza o processo
+                    process.Note = note; // novo note enviado pelo utilizador
 
                     if (willTransition)
                     {
@@ -106,9 +118,33 @@ namespace BL.Services
                         process.Approvals += 1;
                     }
 
+                    // Se houver ficheiro, marca como Uploading
+                    if (file != null)
+                        process.Status = ProcessStatus.Uploading;
+
                     var result = await _processRepository.UpdateAsync(processId, process);
 
                     await transaction.CommitAsync();
+
+                    // Envio para background handler (após commit)
+                    if (file != null)
+                    {
+                        var application = await _applicationRepository.RetrieveAsync(process.ApplicationId);
+                        if (application == null)
+                            return Response<ProcessDto>.Fail("Application not found.");
+
+                        var message = new DocumentMessageDto
+                        {
+                            ProcessId = result.Id,
+                            ApplicationName = application.Abbreviation,
+                            TempFilePath = string.Empty,
+                            UploadedBy = updatedBy,
+                            At = process.At
+                        };
+
+                        await _documentationHandler.QueueFileAsync(message, file, cancellationToken);
+                    }
+
                     return Response<ProcessDto>.Ok(result, "Process approved successfully.");
                 }
                 catch (Exception ex)
@@ -118,6 +154,8 @@ namespace BL.Services
                 }
             });
         }
+
+
 
         public async Task<Response<ProcessDto>> CreateAsync(ProcessDto process,
             IFormFile? file,
@@ -170,7 +208,8 @@ namespace BL.Services
                             ProcessId = result.Id,
                             At = initialNode.OriginId,
                             UpdatedBy = process.CreatedBy,
-                            UpdatedAt = DateTime.UtcNow
+                            UpdatedAt = DateTime.UtcNow,
+                            Note = process.Note
                         };
                         await _historyRepository.CreateAsync(historyDto);
                     }
@@ -207,15 +246,15 @@ namespace BL.Services
 
         public async Task<Response<List<ProcessFlowDto>>> GetAllAsync(Query query)
         {
-            var processes = await _processRepository.GetAllAsync(query);
-            var totalCount = processes.Count;
+            var (processes, totalCount) = await _processRepository.GetAllAsync(query);
+
 
             var results = new List<ProcessFlowDto>();
 
             foreach (var process in processes)
             {
                 var normalizedNodes = await _flowRepository.GetByApplicationAsync(process.Application.Id);
-                if(normalizedNodes == null)
+                if (normalizedNodes == null)
                     return Response<List<ProcessFlowDto>>.Fail("No flow found for one of the applications.");
 
                 var flow = GraphUtil.MapToFlow(normalizedNodes);
@@ -225,14 +264,61 @@ namespace BL.Services
             }
 
             return Response<List<ProcessFlowDto>>.Ok(
-                results,
-                results.Any() ? "Processes retrieved successfully." : "No processes found."
-            );
+            results,
+            results.Any() ? "Processes retrieved successfully." : "No processes found.",
+            totalCount
+);
         }
 
+        public async Task<Response<ProcessDto>> CancelAsync(int processId, string updatedBy)
+        {
+            var process = await _processRepository.RetrieveAsync(processId);
+
+            if (process == null)
+                return Response<ProcessDto>.Fail("Process not found.");
+
+            if (process.Status == ProcessStatus.Concluded)
+                return Response<ProcessDto>.Fail("Process already concluded.");
+
+            if (process.Status == ProcessStatus.Uploading)
+                return Response<ProcessDto>.Fail("Uploading documentation linked to the specified process.");
+
+            if (process.Status == ProcessStatus.Canceled)
+                return Response<ProcessDto>.Fail("Process already canceled.");
+
+            process.Status = ProcessStatus.Canceled;
+
+            var strategy = _demoContext.Database.CreateExecutionStrategy();
+
+            return await strategy.ExecuteAsync(async () =>
+            {
+                await using var transaction = await _demoContext.Database.BeginTransactionAsync();
+
+                try
+                {
+                    var historyDto = new HistoryDto
+                    {
+                        ApplicationId = process.ApplicationId,
+                        ProcessId = process.Id,
+                        At = process.At,
+                        UpdatedBy = updatedBy,
+                        UpdatedAt = DateTime.UtcNow
+                    };
+                    await _historyRepository.CreateAsync(historyDto);
+
+                    var result = await _processRepository.UpdateAsync(processId, process);
+
+                    await transaction.CommitAsync();
+                    return Response<ProcessDto>.Ok(result, "Process canseled successfully.");
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    return Response<ProcessDto>.Fail($"Error while canseling process: {ex.Message}");
+                }
+            });
 
 
-
-
+        }
     }
 }

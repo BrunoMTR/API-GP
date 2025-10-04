@@ -46,11 +46,13 @@ namespace Infrastructure.Notifications.Email
                     do
                     {
                         // Pega processos paginados
-                        processes = await _processRepository.GetAllAsync(new Query
+                        var (processesList, totalCount) = await _processRepository.GetAllAsync(new Query
                         {
                             PageIndex = pageIndex,
                             PageSize = 10
                         });
+
+                        processes = processesList;
 
                         foreach (var process in processes)
                         {

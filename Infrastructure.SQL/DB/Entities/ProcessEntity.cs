@@ -13,6 +13,7 @@ namespace Infrastructure.SQL.DB.Entities
         public int ApplicationId { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
+        public string? Note { get; set; }
         public int At { get; set; }
         public int Approvals { get; set; }
         public ProcessStatus Status { get; set; }

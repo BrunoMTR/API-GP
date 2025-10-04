@@ -12,6 +12,7 @@ namespace Domain.DTOs
         public int ApplicationId { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
+        public string? Note { get; set; }
         public int At { get; set; }
         public int Approvals { get; set; }
         public ProcessStatus Status { get; set; }
@@ -21,6 +22,7 @@ namespace Domain.DTOs
 
         public ApplicationDto Application { get; set; }
         public UnitDto Unit { get; set; }
+
     }
 
     public enum ProcessStatus

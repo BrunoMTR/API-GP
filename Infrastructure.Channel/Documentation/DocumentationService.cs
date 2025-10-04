@@ -2,6 +2,8 @@
 using Domain.DTOs;
 using Domain.Repositories;
 using Domain.Services;
+using Infrastructure.SignalR.Documentation;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -17,11 +19,13 @@ namespace Infrastructure.Channel.Documentation
         private readonly IDocumentationChannel _documentationChannel;
         private readonly IServiceProvider _serviceProvider;
         private const long MaxFileSize = 50 * 1024 * 1024; // 50 MB
+        private readonly IHubContext<DocumentationHub> _hubContext;
 
-        public DocumentationService(IDocumentationChannel documentationChannel, IServiceProvider serviceProvider)
+        public DocumentationService(IDocumentationChannel documentationChannel, IServiceProvider serviceProvider, IHubContext<DocumentationHub> hubContext)
         {
             _documentationChannel = documentationChannel;
             _serviceProvider = serviceProvider;
+            _hubContext = hubContext;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -47,6 +51,16 @@ namespace Infrastructure.Channel.Documentation
 
                 try
                 {
+
+                    await _hubContext.Clients.All.SendAsync("ReceiveUploadStatus", new SignalDto
+                    {
+                        ProcessId = message.ProcessId,
+                        Status = "Uploading",
+                        FileName = fileName,
+                        Reason = "",
+                        FileSize = new FileInfo(message.TempFilePath).Length.ToString(),
+                    });
+
                     bool isValid;
 
                     // Abrir stream apenas para validações
@@ -55,14 +69,33 @@ namespace Infrastructure.Channel.Documentation
                         // 1️⃣ Validar tamanho
                         if (!ValidateFileSize(fs))
                         {
-                            Console.WriteLine($"Ficheiro excede tamanho máximo ({MaxFileSize / (1024 * 1024)} MB): {fileName}");
+                            await _hubContext.Clients.All.SendAsync("ReceiveUploadStatus", new SignalDto
+                            {
+                                ProcessId = message.ProcessId,
+                                Status = "Failed",
+                                FileName = fileName,
+                                Reason = "File too large",
+                                FileSize = new FileInfo(message.TempFilePath).Length.ToString(),
+                            });
+
                             continue;
                         }
 
                         // 2️⃣ Validar assinatura PDF
                         if (!ValidatePdf(fs))
                         {
-                            Console.WriteLine($"Ficheiro inválido (não é PDF): {fileName}");
+                            await _hubContext.Clients.All.SendAsync("ReceiveUploadStatus", new SignalDto
+                            {
+                                ProcessId = message.ProcessId,
+                                Status = "Failed",
+                                FileName = fileName,
+                                Reason = "Invalid PDF",
+                                FileSize = new FileInfo(message.TempFilePath).Length.ToString(),
+                                UploadedBy = message.UploadedBy ?? "Desconhecido",
+                                
+
+                            });
+
                             continue;
                         }
 
@@ -125,11 +158,37 @@ namespace Infrastructure.Channel.Documentation
                         }
                     }
 
-                    Console.WriteLine($"Upload concluído: {finalPath}");
+                    await _hubContext.Clients.All.SendAsync("ReceiveUploadStatus", new SignalDto
+                    {
+                        
+                        ProcessId = message.ProcessId,
+                        Status = "Uploaded",
+                        FileName = finalFileName ?? "",
+                        FileSize = docDto.FileSize,
+                        UploadedBy = docDto.UploadedBy ?? "Desconhecido",
+                        Reason = ""
+                    });
+
+                    if (process != null)
+                    {
+                        await _hubContext.Clients.All.SendAsync("ReceiveUploadStatus", new
+                        {
+                            ProcessId = process.Id,
+                            Status = process.Status.ToString()
+                        });
+                    }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Erro a processar {fileName}: {ex.Message}");
+                    await _hubContext.Clients.All.SendAsync("ReceiveUploadStatus", new SignalDto
+                    {
+                        ProcessId = message.ProcessId,
+                        Status = "Failed",
+                        FileName = fileName ?? "",
+                        FileSize = new FileInfo(message.TempFilePath).Length.ToString(),
+                        UploadedBy = message.UploadedBy ?? "Desconhecido",
+                        Reason = ""
+                    });
                 }
             }
         }

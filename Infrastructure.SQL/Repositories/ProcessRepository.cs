@@ -29,16 +29,67 @@ namespace Infrastructure.SQL.Repositories
                 Approvals = process.Approvals,
                 Status = process.Status,
                 At = process.At,
+                Note = process.Note
 
             };
 
             await _demoContext.AddAsync(processEntity);
             await _demoContext.SaveChangesAsync();
-            process.Id = processEntity.Id;
-            return process;
+
+            // Recarrega a entidade com os relacionamentos necessários
+            var entity = await _demoContext.Process
+                .Include(p => p.Histories)
+                .Include(p => p.Unit)
+                .Include(p => p.Application)
+                .FirstOrDefaultAsync(p => p.Id == processEntity.Id);
+
+            if (entity == null)
+                throw new Exception("Process not found after creation.");
+
+            // Mapeia para o DTO sem documentations
+            var result = new ProcessDto
+            {
+                Id = entity.Id,
+                ApplicationId = entity.ApplicationId,
+                CreatedAt = entity.CreatedAt,
+                CreatedBy = entity.CreatedBy,
+                At = entity.At,
+                Approvals = entity.Approvals,
+                Status = entity.Status,
+                Note = entity.Note,
+                Histories = entity.Histories?.Select(h => new HistoryDto
+                {
+                    Id = h.Id,
+                    ApplicationId = h.ApplicationId,
+                    ProcessId = h.ProcessId,
+                    At = h.At,
+                    UpdatedBy = h.UpdatedBy,
+                    UpdatedAt = h.UpdatedAt,
+                    Notified = h.Notified,
+                    Note = h.Note
+                }).ToList(),
+                Unit = entity.Unit != null ? new UnitDto
+                {
+                    Id = entity.Unit.Id,
+                    Name = entity.Unit.Name,
+                    Email = entity.Unit.Email,
+                    Abbreviation = entity.Unit.Abbreviation
+                } : null,
+                Application = entity.Application != null ? new ApplicationDto
+                {
+                    Id = entity.Application.Id,
+                    Name = entity.Application.Name,
+                    Abbreviation = entity.Application.Abbreviation,
+                    Team = entity.Application.Team,
+                    ApplicationEmail = entity.Application.ApplicationEmail,
+                    TeamEmail = entity.Application.TeamEmail
+                } : null
+            };
+
+            return result;
         }
 
-        public async Task<List<ProcessDto>> GetAllAsync(Query query)
+        public async Task<(List<ProcessDto> Processes, int TotalCount)> GetAllAsync(Query query)
         {
             var processesQuery = _demoContext.Process
                 .Include(p => p.Histories)
@@ -74,6 +125,8 @@ namespace Infrastructure.SQL.Repositories
                     processesQuery = processesQuery.Where(p => p.CreatedAt >= now.AddDays(-30));
                 }
             }
+
+            var totalCount = await processesQuery.CountAsync();
 
             processesQuery = processesQuery
                 .OrderByDescending(p => p.CreatedAt)
@@ -117,7 +170,7 @@ namespace Infrastructure.SQL.Repositories
                     Email = p.Unit.Email
                 } : null
             }).ToList();
-            return results;
+            return (results, totalCount);
         }
 
         public async Task<ProcessDto> RetrieveAsync(int id)
@@ -152,7 +205,10 @@ namespace Infrastructure.SQL.Repositories
         public async Task<ProcessDto> UpdateAsync(int processId, ProcessDto process)
         {
             var entity = await _demoContext.Process
-                .Include(p => p.Histories) 
+                .Include(p => p.Histories)
+                .Include(p => p.Documentations)
+                .Include(p => p.Unit)
+                .Include(p => p.Application)
                 .FirstOrDefaultAsync(p => p.Id == processId);
 
             if (entity == null)
@@ -162,36 +218,77 @@ namespace Infrastructure.SQL.Repositories
                               entity.Approvals != process.Approvals ||
                               entity.Status != process.Status;
 
-            if (!hasChanges)
-                return process;
+            if (hasChanges)
+            {
+                entity.At = process.At;
+                entity.Approvals = process.Approvals;
+                entity.Status = process.Status;
+                entity.Note = process.Note;
 
-            entity.At = process.At;
-            entity.Approvals = process.Approvals;
-            entity.Status = process.Status;
+                _demoContext.Process.Update(entity);
+                await _demoContext.SaveChangesAsync();
+            }
 
-            _demoContext.Process.Update(entity);
-            await _demoContext.SaveChangesAsync();
-
-            process.Id = entity.Id;
-            process.Status = entity.Status;
-
-            process.Histories = entity.Histories?
-                .Select(h => new HistoryDto
+            // Map DTO completo
+            var result = new ProcessDto
+            {
+                Id = entity.Id,
+                ApplicationId = entity.ApplicationId,
+                CreatedAt = entity.CreatedAt,
+                CreatedBy = entity.CreatedBy,
+                At = entity.At,
+                Approvals = entity.Approvals,
+                Status = entity.Status,
+                Note = entity.Note,
+                Histories = entity.Histories?.Select(h => new HistoryDto
                 {
                     Id = h.Id,
                     ApplicationId = h.ApplicationId,
                     ProcessId = h.ProcessId,
                     At = h.At,
                     UpdatedBy = h.UpdatedBy,
-                    UpdatedAt = h.UpdatedAt
-                }).ToList();
+                    UpdatedAt = h.UpdatedAt,
+                    Notified = h.Notified,
+                    Note = h.Note
+                }).ToList(),
+                Documentations = entity.Documentations?.Select(d => new DocumentationDto
+                {
+                    Id = d.Id,
+                    ProcessId = d.ProcessId,
+                    FileName = d.FileName,
+                    FilePath = d.FilePath,
+                    FileSize = d.FileSize,
+                    FileType = d.FileType,
+                    UploadedAt = d.UploadedAt,
+                    UploadedBy = d.UploadedBy,
+                    At = d.At
+                }).ToList(),
+                Unit = entity.Unit != null ? new UnitDto
+                {
+                    Id = entity.Unit.Id,
+                    Name = entity.Unit.Name,
+                    Email = entity.Unit.Email,
+                    Abbreviation  = entity.Unit.Abbreviation
 
-            return process;
+                } : null,
+                Application = entity.Application != null ? new ApplicationDto
+                {
+                    Id = entity.Application.Id,
+                    Name = entity.Application.Name,
+                    Abbreviation = entity.Application.Abbreviation,
+                    Team = entity.Application.Team,
+                    ApplicationEmail = entity.Application.ApplicationEmail,
+                    TeamEmail = entity.Application.TeamEmail
+                } : null
+            };
+
+            return result;
         }
 
 
 
-       
+
+
 
 
 

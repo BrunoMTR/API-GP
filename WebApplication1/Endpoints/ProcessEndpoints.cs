@@ -20,6 +20,7 @@ namespace Presentation.Endpoints
             {
                 ApplicationId = process.ApplicationId,
                 CreatedBy = process.CreatedBy,
+                Note = process.Note
             };
 
             var processDto = mapper.Map(processModel);
@@ -29,6 +30,17 @@ namespace Presentation.Endpoints
                 return Results.BadRequest(newProcess.Message);
 
             return Results.Created($"/process/{newProcess.Data.Id}", newProcess);
+        }
+
+        public static async Task<IResult> PatchCanselProcess(
+            [FromRoute] int processId,
+            [FromBody] string canceledBy,
+            [FromServices] IProcessService processService)
+        {
+            var process = await processService.CancelAsync(processId, canceledBy);
+            if (!process.Success)
+                return Results.BadRequest(process.Message);
+            return Results.Ok(process);
         }
 
         public static async Task<IResult> GetProcesses(
@@ -53,10 +65,11 @@ namespace Presentation.Endpoints
             return Results.Ok(processes);
         }
                     
-        public static async Task<IResult> PostAproveProcess([FromBody] ApproveProcessRequest request,
-           [FromServices] IProcessService processService)
+        public static async Task<IResult> PostAproveProcess([FromForm] AproveProcessRequest request,
+           [FromServices] IProcessService processService,
+           CancellationToken cancellationToken)
         {
-            var process = await processService.ApproveAsync(request.ProcessId, request.UpdatedBy);
+            var process = await processService.ApproveAsync(request.ProcessId, request.UpdatedBy, request.Note, request.File, cancellationToken);
             if(!process.Success)
                 return Results.BadRequest(process.Message);
 
@@ -77,6 +90,11 @@ namespace Presentation.Endpoints
                 return Results.Created("Uploading document", document.ProcessId);
             }
             return Results.BadRequest("File null");
+        }
+
+        public static IResult ConnectHub()
+        {
+            return Results.Ok();
         }
 
     }

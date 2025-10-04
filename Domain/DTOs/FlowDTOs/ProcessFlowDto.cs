@@ -18,6 +18,6 @@ namespace Domain.DTOs.FlowDTOs
         public UnitDto Unit { get; set; } = new();
         public List<ReactFlowNodeDto> Nodes { get; set; } = new();
         public List<ReactFlowEdgeDto> Edges { get; set; } = new();
-        public int ProcessCount { get; set; }
+        
     }
 }

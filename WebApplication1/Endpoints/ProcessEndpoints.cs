@@ -34,10 +34,10 @@ namespace Presentation.Endpoints
 
         public static async Task<IResult> PatchCanselProcess(
             [FromRoute] int processId,
-            [FromBody] string canceledBy,
+            [FromBody] PatchProcessRequest request,
             [FromServices] IProcessService processService)
         {
-            var process = await processService.CancelAsync(processId, canceledBy);
+            var process = await processService.CancelAsync(processId, request.CanceledBy, request.Note);
             if (!process.Success)
                 return Results.BadRequest(process.Message);
             return Results.Ok(process);

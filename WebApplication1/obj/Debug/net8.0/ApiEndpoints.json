@@ -275,8 +275,8 @@
         "IsRequired": true
       },
       {
-        "Name": "canceledBy",
-        "Type": "System.String",
+        "Name": "request",
+        "Type": "Presentation.Models.Request.CancelProcessRequest",
         "IsRequired": true
       },
       {

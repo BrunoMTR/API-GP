@@ -8,6 +8,7 @@ using Domain.Services;
 using Infrastructure.SQL.DB;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
 
 
 namespace BL.Services
@@ -38,11 +39,11 @@ namespace BL.Services
 
 
         public async Task<Response<ProcessDto>> ApproveAsync(
-    int processId,
-    string updatedBy,
-    string note,
-    IFormFile? file,
-    CancellationToken cancellationToken)
+        int processId,
+        string updatedBy,
+        string note,
+        IFormFile? file,
+        CancellationToken cancellationToken)
         {
             var process = await _processRepository.RetrieveAsync(processId);
 
@@ -270,7 +271,7 @@ namespace BL.Services
 );
         }
 
-        public async Task<Response<ProcessDto>> CancelAsync(int processId, string updatedBy)
+        public async Task<Response<ProcessDto>> CancelAsync(int processId, string updatedBy, string note)
         {
             var process = await _processRepository.RetrieveAsync(processId);
 
@@ -286,7 +287,11 @@ namespace BL.Services
             if (process.Status == ProcessStatus.Canceled)
                 return Response<ProcessDto>.Fail("Process already canceled.");
 
+            if (process.CreatedBy != updatedBy.Trim())
+                return Response<ProcessDto>.Fail("Only the user that reated the process can cancel");
+
             process.Status = ProcessStatus.Canceled;
+           
 
             var strategy = _demoContext.Database.CreateExecutionStrategy();
 
@@ -302,9 +307,12 @@ namespace BL.Services
                         ProcessId = process.Id,
                         At = process.At,
                         UpdatedBy = updatedBy,
-                        UpdatedAt = DateTime.UtcNow
+                        UpdatedAt = DateTime.UtcNow,
+                        Note = process.Note
                     };
                     await _historyRepository.CreateAsync(historyDto);
+
+                    process.Note = note;
 
                     var result = await _processRepository.UpdateAsync(processId, process);
 
@@ -318,6 +326,81 @@ namespace BL.Services
                 }
             });
 
+
+        }
+
+        public async Task<Response<ProcessDto>> ReturnAsync(int processId, string updatedBy, string? note)
+        {
+            var process = await _processRepository.RetrieveAsync(processId);
+
+            if (process == null)
+                return Response<ProcessDto>.Fail("Process not found.");
+
+            if (process.Status == ProcessStatus.Concluded)
+                return Response<ProcessDto>.Fail("Process already concluded.");
+
+            if (process.Status == ProcessStatus.Uploading)
+                return Response<ProcessDto>.Fail("Uploading documentation linked to the specified process.");
+
+            if (process.Status == ProcessStatus.Canceled)
+                return Response<ProcessDto>.Fail("Process already canceled.");
+
+            var flow = await _flowRepository.GetByApplicationAsync(process.ApplicationId);
+            var nodes = flow?.Nodes;
+
+            if (flow == null || nodes == null)
+                return Response<ProcessDto>.Fail("No flow found for the application associated with this process.");
+
+            var currentNode = GraphUtil.GetCurrentNodeRecuo(nodes, process.At);
+            if (currentNode == null)
+                return Response<ProcessDto>.Fail("Current node not found in flow or no forward node available.");
+
+            var initialNode = GraphUtil.GetInitialNode(nodes);
+            if (initialNode == null)
+                return Response<ProcessDto>.Fail("Initial node not found.");
+
+            if (initialNode == currentNode)
+                return Response<ProcessDto>.Fail("The process cant be return becouse is in the initial stage");
+
+            var previsNode = GraphUtil.GetPreviousNodeId(currentNode);
+
+            process.At = previsNode;
+
+            var strategy = _demoContext.Database.CreateExecutionStrategy();
+
+            return await strategy.ExecuteAsync(async () =>
+            {
+                await using var transaction = await _demoContext.Database.BeginTransactionAsync();
+                try
+                {
+                    // Grava histórico com a nota atual antes de sobrescrever
+                    var historyDto = new HistoryDto
+                    {
+                        ApplicationId = process.ApplicationId,
+                        ProcessId = process.Id,
+                        At = process.At,
+                        UpdatedBy = updatedBy,
+                        UpdatedAt = DateTime.UtcNow,
+                        Note = process.Note // pega o valor atual antes da alteração
+                    };
+                    await _historyRepository.CreateAsync(historyDto);
+
+                    
+                    process.Note = note; 
+                   
+                    var result = await _processRepository.UpdateAsync(processId, process);
+
+                    await transaction.CommitAsync();
+                  
+
+                    return Response<ProcessDto>.Ok(result, "Process return successfully.");
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    return Response<ProcessDto>.Fail($"Error while returning process: {ex.Message}");
+                }
+            });
 
         }
     }

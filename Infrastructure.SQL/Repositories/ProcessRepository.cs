@@ -187,6 +187,7 @@ namespace Infrastructure.SQL.Repositories
                     At = x.At,
                     Approvals = x.Approvals,
                     Status = x.Status,
+                    Note = x.Note,
                     Histories = x.Histories
                         .Select(h => new HistoryDto
                         {

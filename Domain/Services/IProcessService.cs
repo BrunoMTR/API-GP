@@ -10,7 +10,9 @@ namespace Domain.Services
         Task<Response<List<ProcessFlowDto>>> GetAllAsync(Query query);
         Task<Response<ProcessDto>> CreateAsync(ProcessDto process, IFormFile? file, CancellationToken cancellationToken);
         Task<Response<ProcessDto>> ApproveAsync(int processId, string updatedBy, string? note, IFormFile? file, CancellationToken cancellationToken);
-        Task<Response<ProcessDto>> CancelAsync(int processId, string updatedBy);
+        Task<Response<ProcessDto>> CancelAsync(int processId, string updatedBy, string? note);
+
+        Task<Response<ProcessDto>> ReturnAsync(int processId, string updatedBy, string? note);
 
     }
 

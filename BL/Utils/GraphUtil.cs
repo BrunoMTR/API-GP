@@ -42,6 +42,30 @@ namespace BL.Utils
         }
 
         /// <summary>
+        /// Retorna o nó atual baseado no processo e na direção "RECUO".
+        /// </summary>
+        public static NodeDto? GetCurrentNodeRecuo(IEnumerable<NodeDto> nodes, int currentAt)
+        {
+            if (nodes == null || !nodes.Any())
+                return null;
+
+            // Aqui procuramos o node onde o destino é o nó atual e a direção é "RECUO"
+            return nodes.FirstOrDefault(n =>
+                n.OriginId == currentAt &&
+                n.Direction.Equals("RECUO", StringComparison.OrdinalIgnoreCase));
+        }
+
+        public static int GetPreviousNodeId(NodeDto currentNode)
+        {
+            if (currentNode == null)
+                throw new ArgumentNullException(nameof(currentNode));
+
+            return currentNode.DestinationId;
+        }
+
+
+
+        /// <summary>
         /// Calcula o total de approvals necessários no fluxo (somente direção AVANÇO).
         /// </summary>
         public static int GetTotalRequiredApprovals(IEnumerable<NodeDto> nodes)

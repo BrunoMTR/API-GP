@@ -313,7 +313,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/CancelProcessRequest"
               }
             }
           },
@@ -497,6 +497,20 @@
           "file": {
             "type": "string",
             "format": "binary",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CancelProcessRequest": {
+        "type": "object",
+        "properties": {
+          "canceledBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
             "nullable": true
           }
         },

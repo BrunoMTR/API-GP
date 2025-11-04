@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.DTOs.FlowDTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,10 @@ namespace Domain.DTOs.Flow
     {
         public string Label { get; set; } = null!;
         public string? Status { get; set; } = null!;
+
+        public string? Email { get; set; }
+        public int? Approvals { get; set; }
+
+        public List<NodeHistoryItem>? History { get; set; } = new();
     }
 }

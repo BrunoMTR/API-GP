@@ -365,6 +365,7 @@ namespace BL.Services
             var previsNode = GraphUtil.GetPreviousNodeId(currentNode);
 
             process.At = previsNode;
+            process.Approvals = 0;
 
             var strategy = _demoContext.Database.CreateExecutionStrategy();
 

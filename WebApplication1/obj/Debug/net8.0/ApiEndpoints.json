@@ -263,7 +263,7 @@
   },
   {
     "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
-    "Method": "PatchCanselProcess",
+    "Method": "PatchCancelProcess",
     "RelativePath": "processes/{processId}/cancel",
     "HttpMethod": "PATCH",
     "IsController": false,
@@ -276,7 +276,7 @@
       },
       {
         "Name": "request",
-        "Type": "Presentation.Models.Request.CancelProcessRequest",
+        "Type": "Presentation.Models.Request.PatchProcessRequest",
         "IsRequired": true
       },
       {
@@ -296,6 +296,42 @@
       "Process"
     ],
     "EndpointName": "processCancel"
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
+    "Method": "PatchReturnProcess",
+    "RelativePath": "processes/{processId}/return",
+    "HttpMethod": "PATCH",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "processId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "Presentation.Models.Request.PatchProcessRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Process"
+    ],
+    "EndpointName": "processReturn"
   },
   {
     "ContainingType": "Presentation.Endpoints.ProcessEndpoints",
@@ -506,6 +542,61 @@
     ],
     "Tags": [
       "Units"
+    ]
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.UserEndpoints",
+    "Method": "PostUserLogin",
+    "RelativePath": "users/login",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Presentation.Models.Request.LoginRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Users"
+    ]
+  },
+  {
+    "ContainingType": "Presentation.Endpoints.UserEndpoints",
+    "Method": "PostUserLogout",
+    "RelativePath": "users/logout",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Users"
     ]
   }
 ]

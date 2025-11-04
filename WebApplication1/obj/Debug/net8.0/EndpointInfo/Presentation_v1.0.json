@@ -313,7 +313,43 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CancelProcessRequest"
+                "$ref": "#/components/schemas/PatchProcessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/processes/{processId}/return": {
+      "patch": {
+        "tags": [
+          "Process"
+        ],
+        "summary": "Return a process by ID",
+        "description": "Approves the process associated with the specified unique identifier, returnig its state in the workflow.",
+        "operationId": "processReturn",
+        "parameters": [
+          {
+            "name": "processId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchProcessRequest"
               }
             }
           },
@@ -443,6 +479,44 @@
           }
         }
       }
+    },
+    "/users/login": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "User login",
+        "description": "Authenticates a user with provided credentials.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "User logout",
+        "description": "Logs out the currently authenticated user.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -502,20 +576,6 @@
         },
         "additionalProperties": false
       },
-      "CancelProcessRequest": {
-        "type": "object",
-        "properties": {
-          "canceledBy": {
-            "type": "string",
-            "nullable": true
-          },
-          "note": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "CreateApplicationFlowRequest": {
         "type": "object",
         "properties": {
@@ -560,6 +620,20 @@
         },
         "additionalProperties": false
       },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Node": {
         "type": "object",
         "properties": {
@@ -581,6 +655,20 @@
           "direction": {
             "type": "string",
             "description": "Direction of the transition (e.g., Forward or Backward).",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PatchProcessRequest": {
+        "type": "object",
+        "properties": {
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
             "nullable": true
           }
         },

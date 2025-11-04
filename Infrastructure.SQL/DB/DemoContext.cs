@@ -23,6 +23,7 @@ namespace Infrastructure.SQL.DB
         public DbSet<HistoryEntity> History { get; set; }
         public DbSet<DocumentationEntity> Documentation { get; set; }
         public DbSet<NotificationEntity> Notification { get; set; }
+        public DbSet<UserEntity>User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

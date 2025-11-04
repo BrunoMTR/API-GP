@@ -2,7 +2,11 @@ C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\BL.deps.json
 C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\BL.dll
 C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\BL.pdb
 C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Domain.dll
+C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.SQL.dll
+C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.Storage.dll
 C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Domain.pdb
+C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.SQL.pdb
+C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.Storage.pdb
 C:\Users\Dell\Documents\PF\API-GP\BL\obj\Debug\net8.0\BL.csproj.AssemblyReference.cache
 C:\Users\Dell\Documents\PF\API-GP\BL\obj\Debug\net8.0\BL.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Dell\Documents\PF\API-GP\BL\obj\Debug\net8.0\BL.AssemblyInfoInputs.cache
@@ -14,7 +18,3 @@ C:\Users\Dell\Documents\PF\API-GP\BL\obj\Debug\net8.0\BL.dll
 C:\Users\Dell\Documents\PF\API-GP\BL\obj\Debug\net8.0\refint\BL.dll
 C:\Users\Dell\Documents\PF\API-GP\BL\obj\Debug\net8.0\BL.pdb
 C:\Users\Dell\Documents\PF\API-GP\BL\obj\Debug\net8.0\ref\BL.dll
-C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.SQL.dll
-C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.SQL.pdb
-C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.Storage.dll
-C:\Users\Dell\Documents\PF\API-GP\BL\bin\Debug\net8.0\Infrastructure.Storage.pdb

@@ -23,6 +23,7 @@ using InfrastructureFileStorage.Services;
 using BL.Handlers;
 using Infrastructure.Notifications.Email;
 using Infrastructure.SignalR.Documentation;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 
 
@@ -51,6 +52,8 @@ builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<IDocumentationService, BL.Services.DocumentationService>();
 builder.Services.AddScoped<IDocumentMapper, DocumentMapper>();
 builder.Services.AddScoped<DocumentationHandler>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddHostedService<EmailService>();
 builder.Services.AddSingleton<IEmailChannel, EmailChannel>();
@@ -63,7 +66,17 @@ builder.Services.AddSignalR()
     });
 
 
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.SameSite = SameSiteMode.None;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.LoginPath = "/users/login";
+        options.AccessDeniedPath = "/users/denied";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        options.SlidingExpiration = true;
+    });
+builder.Services.AddAuthorization();
 
 builder.Host.UseSerilog(LoggingConfiguration.Configure);
 
@@ -118,19 +131,20 @@ builder.Services.AddDbContextPool<DemoContext>(Options => Options.UseSqlServer(D
     }));
 
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.Authority = "https://login.microsoftonline.com / 136544d9 - xxxx - xxxx - xxxx - 10accb370679 / v2.0";
-    options.Audience = "257b6c36-xxxx-xxxx-xxxx-6f2cd81cec43";
-    options.TokenValidationParameters.ValidateLifetime = true;
-    options.TokenValidationParameters.ValidateIssuer = true;
-    options.TokenValidationParameters.ClockSkew = TimeSpan.
-   FromMinutes(5);
-});
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//}).AddJwtBearer(options =>
+//{
+//    options.Authority = "https://login.microsoftonline.com / 136544d9 - xxxx - xxxx - xxxx - 10accb370679 / v2.0";
+//    options.Audience = "257b6c36-xxxx-xxxx-xxxx-6f2cd81cec43";
+//    options.TokenValidationParameters.ValidateLifetime = true;
+//    options.TokenValidationParameters.ValidateIssuer = true;
+//    options.TokenValidationParameters.ClockSkew = TimeSpan.
+//   FromMinutes(5);
+//});
+
 
 builder.Services.AddAuthorization();
 
@@ -138,6 +152,7 @@ var app = builder.Build();
 
 app.UseSerilogRequestLogging();
 app.UseCustomLogging();
+app.UseHttpsRedirection();
 
 
 using (var scope = app.Services.CreateScope())
@@ -164,16 +179,19 @@ app.UseHttpsRedirection();
 app.AddApllicatioGroup();
 app.AddFlowGroup();
 app.AddUnitEndpoints();
+app.AddUserGroup();
 
 
 
 app.AddProcessEndpoints();
 
-app.UseCors("AllowAll");
+
 app.MapHub<DocumentationHub>("/hubs/documentation");
 
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
+
 
 
 

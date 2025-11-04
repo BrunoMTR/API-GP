@@ -14,6 +14,7 @@ namespace Presentation.RouteGroups
             var group = app.MapGroup("flows").WithTags("Flows").WithApiVersionSet(versionSet).HasApiVersion(1.0);    
 
             group.MapGet("/{applicationId}", FlowEndpoints.GetFlow)
+                .RequireAuthorization()
                 .WithName("flowByApplicationId")
                 .WithOpenApi(operation => new(operation)
                 {

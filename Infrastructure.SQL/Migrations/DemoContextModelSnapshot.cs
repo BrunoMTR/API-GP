@@ -315,6 +315,40 @@ namespace Infrastructure.SQL.Migrations
                     b.ToTable("Unit", "dbo");
                 });
 
+            modelBuilder.Entity("Infrastructure.SQL.DB.Entities.UserEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastChanged")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User", "dbo");
+                });
+
             modelBuilder.Entity("Infrastructure.SQL.DB.Entities.DocumentationEntity", b =>
                 {
                     b.HasOne("Infrastructure.SQL.DB.Entities.ProcessEntity", null)

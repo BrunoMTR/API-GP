@@ -140,7 +140,8 @@ namespace BL.Utils
                 Type = "department",
                 Data = new NodeDataDto
                 {
-                    Label = u.Name
+                    Label = u.Name,
+                    Email = u.Email,
                 }
             }).ToList();
 
@@ -162,9 +163,9 @@ namespace BL.Utils
         /// Map to process history
         /// </summary>
         public static ProcessFlowDto MapToHistory(
-            ProcessDto process,
-            ReactFlowDto flow,
-            int totalCount)
+        ProcessDto process,
+        ReactFlowDto flow,
+        int totalCount)
         {
             if (flow == null) throw new ArgumentNullException(nameof(flow));
 
@@ -175,11 +176,33 @@ namespace BL.Utils
 
             var currentAt = process.At;
 
+            // Agrupar histórico por At (node)
+            var historiesByNode = process.Histories?
+                .GroupBy(h => h.At)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.Select(h => new NodeHistoryItem
+                    {
+                        At = h.At,
+                        UpdatedBy = h.UpdatedBy,
+                        UpdatedAt = h.UpdatedAt,
+                        Notified = h.Notified
+                    }).ToList()
+                ) ?? new Dictionary<int, List<NodeHistoryItem>>();
+
+            // Atualizar nodes existentes no flow
             var nodes = flow.Nodes.Select(n =>
             {
                 int nodeId = int.Parse(n.Id.Substring(1));
+
                 var status = visitedAtValues.Contains(nodeId) ? "visited" : "pending";
-                if (nodeId == currentAt) status = "current";
+                if (nodeId == currentAt)
+                    status = "current";
+
+                // histórico desse node
+                var nodeHistory = historiesByNode.ContainsKey(nodeId)
+                    ? historiesByNode[nodeId]
+                    : new List<NodeHistoryItem>();
 
                 return new ReactFlowNodeDto
                 {
@@ -189,7 +212,10 @@ namespace BL.Utils
                     Data = new NodeDataDto
                     {
                         Label = n.Data.Label,
-                        Status = status
+                        Status = status,
+                        Email = n.Data.Email, // caso já exista
+                        Approvals = nodeHistory.Count,
+                        History = nodeHistory
                     }
                 };
             }).ToList();
@@ -217,10 +243,10 @@ namespace BL.Utils
                 },
                 Status = process.Status,
                 Nodes = nodes,
-                Edges = flow.Edges,
-                
+                Edges = flow.Edges
             };
         }
+
 
         /// <summary>
         /// Verify if the graph has a cicle

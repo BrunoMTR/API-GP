@@ -15,6 +15,7 @@ namespace Presentation.RouteGroups
 
             group.MapPost("/",UnitEndpoints.PostUnit)
                  .AddEndpointFilter<InputValidatorFilter<Unit>>()
+                 .RequireAuthorization()
                 .DisableAntiforgery()
                 .WithOpenApi(operation => new(operation)
                 {
@@ -23,6 +24,7 @@ namespace Presentation.RouteGroups
                 });
 
             group.MapGet("/{unitId}",UnitEndpoints.GetUnit)
+                .RequireAuthorization()
                 .WithName("unitId")
                  .WithOpenApi(operation => new(operation)
                  {
@@ -31,6 +33,7 @@ namespace Presentation.RouteGroups
                  });
 
             group.MapGet("/",UnitEndpoints.GetAllUnits)
+                .RequireAuthorization()
                  .WithOpenApi(operation => new(operation)
                  {
                      Summary = "List all units",
@@ -38,6 +41,7 @@ namespace Presentation.RouteGroups
                  });
 
             group.MapDelete("/{unitId}",UnitEndpoints.DeleteUnit)
+                .RequireAuthorization()
                  .WithOpenApi(operation => new(operation)
                  {
                      Summary = "Delete an unit",
@@ -46,6 +50,7 @@ namespace Presentation.RouteGroups
 
             group.MapPut("/{unitId}",UnitEndpoints.UpdateUnit)
                 .AddEndpointFilter<InputValidatorFilter<Unit>>()
+                .RequireAuthorization()
                 .WithOpenApi(operation => new(operation)
                 {
                     Summary = "Update an existing unit",

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Presentation.Mapping.Interfaces;
 using Presentation.Models.Forms;
 using Presentation.Models.Request;
+using System.Threading;
 using Process = Presentation.Models.Process;
 
 namespace Presentation.Endpoints
@@ -32,12 +33,25 @@ namespace Presentation.Endpoints
             return Results.Created($"/process/{newProcess.Data.Id}", newProcess);
         }
 
-        public static async Task<IResult> PatchCanselProcess(
+        
+        public static async Task<IResult> PatchReturnProcess(
+            [FromRoute]    int processId,
+            [FromBody]     PatchProcessRequest request,
+            [FromServices] IProcessService processService)
+        {
+            var result = await processService.ReturnAsync(processId,request.UpdatedBy, request.Note);
+            if (!result.Success)
+                return Results.BadRequest(result.Message);
+
+            return Results.Ok(result);
+        }
+        
+        public static async Task<IResult> PatchCancelProcess(
             [FromRoute] int processId,
             [FromBody] PatchProcessRequest request,
             [FromServices] IProcessService processService)
         {
-            var process = await processService.CancelAsync(processId, request.CanceledBy, request.Note);
+            var process = await processService.CancelAsync(processId, request.UpdatedBy, request.Note);
             if (!process.Success)
                 return Results.BadRequest(process.Message);
             return Results.Ok(process);

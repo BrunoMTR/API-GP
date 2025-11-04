@@ -4,9 +4,9 @@ namespace Presentation.Models.Request
 {
     public class PatchProcessRequest
     {
-   
+
         [FromForm(Name = "updatedBy")]
-        public string CanceledBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         [FromForm(Name = "note")]
         public string? Note { get; set; } = string.Empty;

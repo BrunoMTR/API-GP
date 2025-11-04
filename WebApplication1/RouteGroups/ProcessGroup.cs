@@ -16,6 +16,7 @@ namespace Presentation.RouteGroups
 
             group.MapPost("/", ProcessEndpoints.PostProcess)
                 .AddEndpointFilter<InputValidatorFilter<ProcessForm>>()
+                .RequireAuthorization()
                 .DisableAntiforgery()
                 .WithOpenApi(operation => new(operation)
                 {
@@ -24,6 +25,7 @@ namespace Presentation.RouteGroups
                 });
             group.MapPost("/upload", ProcessEndpoints.PostProcessDocumentation)
                 .AddEndpointFilter<InputValidatorFilter<DocumentForm>>()
+                .RequireAuthorization()
                 .DisableAntiforgery()
                 .WithOpenApi(operation => new(operation)
                 {
@@ -32,6 +34,7 @@ namespace Presentation.RouteGroups
                 });
 
             group.MapGet("/", ProcessEndpoints.GetProcesses)
+                .RequireAuthorization()
                 .WithOpenApi(operation => new(operation)
                 {
                     Summary = "Retrieve all processes flow",
@@ -39,6 +42,7 @@ namespace Presentation.RouteGroups
                 });
 
             group.MapPatch("/approve", ProcessEndpoints.PostAproveProcess)
+                .RequireAuthorization()
                 .DisableAntiforgery()
                 .WithOpenApi(operation => new(operation)
                 {
@@ -46,12 +50,22 @@ namespace Presentation.RouteGroups
                      Description = "Approves the process associated with the specified unique identifier, advancing its state in the workflow."
                 });
 
-            group.MapPatch("/{processId}/cancel", ProcessEndpoints.PatchCanselProcess)
+            group.MapPatch("/{processId}/cancel", ProcessEndpoints.PatchCancelProcess)
+                .RequireAuthorization()
                 .WithName("processCancel")
                  .WithOpenApi(operation => new(operation)
                  {
                      Summary = "Cancel a process by ID",
                      Description = "Cancels the process associated with the specified unique identifier, halting its progress in the workflow."
+                 });
+
+            group.MapPatch("/{processId}/return", ProcessEndpoints.PatchReturnProcess)
+                .RequireAuthorization()
+                .WithName("processReturn")
+                 .WithOpenApi(operation => new(operation)
+                 {
+                     Summary = "Return a process by ID",
+                     Description = "Approves the process associated with the specified unique identifier, returnig its state in the workflow."
                  });
 
 

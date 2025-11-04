@@ -1,0 +1,874 @@
+2025-11-01 21:16:39.703 +02:00 [Information] Executed DbCommand ("58"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:16:39.834 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-01 21:16:39.929 +02:00 [Information] Executed DbCommand ("84"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-11-01 21:16:40.099 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-11-01 21:16:40.286 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:16:40.295 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-11-01 21:16:40.355 +02:00 [Information] Executed DbCommand ("37"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-11-01 21:16:40.391 +02:00 [Information] Applying migration '"20251101191549_auth"'.
+2025-11-01 21:16:40.481 +02:00 [Information] Executed DbCommand ("33"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [dbo].[User] (
+    [Id] int NOT NULL IDENTITY,
+    [Username] nvarchar(10) NOT NULL,
+    [Password] nvarchar(10) NOT NULL,
+    [Role] nvarchar(50) NOT NULL,
+    [IsActive] bit NOT NULL,
+    [LastChanged] datetime2 NOT NULL,
+    CONSTRAINT [PK_User] PRIMARY KEY ([Id])
+);"
+2025-11-01 21:16:40.512 +02:00 [Information] Executed DbCommand ("24"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20251101191549_auth', N'9.0.6');"
+2025-11-01 21:16:40.529 +02:00 [Information] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-11-01 21:16:40.831 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-01 21:16:42.838 +02:00 [Information] Executed DbCommand ("44"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:16:43.591 +02:00 [Information] Executed DbCommand ("159"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:16:44.080 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-11-01 21:16:44.174 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-01 21:16:44.447 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-11-01 21:16:44.451 +02:00 [Information] Hosting environment: "Development"
+2025-11-01 21:16:44.455 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-11-01 21:16:45.557 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger""" - null null
+2025-11-01 21:16:46.101 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:16:46.215 +02:00 [Information] Request "GET" "/swagger" responded 301
+2025-11-01 21:16:46.247 +02:00 [Information] HTTP "GET" "/swagger" responded 301 in 141.1455 ms
+2025-11-01 21:16:46.273 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger""" - 301 0 null 758.68ms
+2025-11-01 21:16:46.291 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-11-01 21:16:46.507 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-11-01 21:16:46.516 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 201.4500 ms
+2025-11-01 21:16:46.533 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 242.4253ms
+2025-11-01 21:16:46.557 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui.css""" - null null
+2025-11-01 21:16:46.564 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-standalone-preset.js""" - null null
+2025-11-01 21:16:46.564 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-bundle.js""" - null null
+2025-11-01 21:16:46.770 +02:00 [Information] Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"'
+2025-11-01 21:16:46.770 +02:00 [Information] Sending file. Request path: '"/swagger-ui-standalone-preset.js"'. Physical path: '"N/A"'
+2025-11-01 21:16:46.771 +02:00 [Information] Sending file. Request path: '"/swagger-ui-bundle.js"'. Physical path: '"N/A"'
+2025-11-01 21:16:46.784 +02:00 [Information] Request "GET" "/swagger/swagger-ui.css" responded 200
+2025-11-01 21:16:46.788 +02:00 [Information] Request "GET" "/swagger/swagger-ui-standalone-preset.js" responded 200
+2025-11-01 21:16:46.798 +02:00 [Information] Request "GET" "/swagger/swagger-ui-bundle.js" responded 200
+2025-11-01 21:16:46.803 +02:00 [Information] HTTP "GET" "/swagger/swagger-ui.css" responded 200 in 224.3312 ms
+2025-11-01 21:16:46.811 +02:00 [Information] HTTP "GET" "/swagger/swagger-ui-standalone-preset.js" responded 200 in 215.5346 ms
+2025-11-01 21:16:46.816 +02:00 [Information] HTTP "GET" "/swagger/swagger-ui-bundle.js" responded 200 in 212.4104 ms
+2025-11-01 21:16:46.831 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui.css""" - 200 152034 "text/css" 274.5276ms
+2025-11-01 21:16:46.841 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-standalone-preset.js""" - 200 230280 "text/javascript" 277.0196ms
+2025-11-01 21:16:46.855 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/swagger-ui-bundle.js""" - 200 1456926 "text/javascript" 291.0625ms
+2025-11-01 21:16:46.887 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-11-01 21:16:46.897 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-11-01 21:16:46.911 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 24.7206ms
+2025-11-01 21:16:47.099 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 201.575ms
+2025-11-01 21:16:47.418 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-11-01 21:16:47.545 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-11-01 21:16:47.562 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 130.0872 ms
+2025-11-01 21:16:47.569 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 151.5855ms
+2025-11-01 21:16:47.792 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-11-01 21:16:47.803 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:16:47.810 +02:00 [Information] CORS policy execution failed.
+2025-11-01 21:16:47.813 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-11-01 21:16:47.820 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-11-01 21:16:47.825 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 22.0269 ms
+2025-11-01 21:16:47.831 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 38.5705ms
+2025-11-01 21:16:47.842 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-11-01 21:17:00.834 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-11-01 21:17:00.873 +02:00 [Information] Executing endpoint '"HTTP: GET applications/ => GetAllApplications"'
+2025-11-01 21:17:00.996 +02:00 [Information] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[Name], [a].[Abbreviation], [a].[Team], [a].[TeamEmail], [a].[ApplicationEmail]
+FROM [dbo].[Application] AS [a]"
+2025-11-01 21:17:01.015 +02:00 [Information] Setting HTTP status code 200.
+2025-11-01 21:17:01.021 +02:00 [Information] Writing value of type '"List`1"' as Json.
+2025-11-01 21:17:01.039 +02:00 [Information] Executed endpoint '"HTTP: GET applications/ => GetAllApplications"'
+2025-11-01 21:17:01.045 +02:00 [Information] Request "GET" "/applications" responded 200
+2025-11-01 21:17:01.051 +02:00 [Information] HTTP "GET" "/applications" responded 200 in 181.4427 ms
+2025-11-01 21:17:01.073 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 200 null "application/json; charset=utf-8" 238.1744ms
+2025-11-01 21:33:00.463 +02:00 [Information] Executed DbCommand ("80"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:33:00.732 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-01 21:33:00.830 +02:00 [Information] Executed DbCommand ("60"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-11-01 21:33:01.077 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-11-01 21:33:01.130 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:33:01.149 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-11-01 21:33:01.201 +02:00 [Information] Executed DbCommand ("35"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-11-01 21:33:01.239 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-11-01 21:33:01.258 +02:00 [Information] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-11-01 21:33:01.954 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-01 21:33:02.995 +02:00 [Information] Executed DbCommand ("81"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:33:03.715 +02:00 [Information] Executed DbCommand ("90"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:33:04.111 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-11-01 21:33:04.272 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-01 21:33:05.867 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-11-01 21:33:06.157 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-11-01 21:33:06.168 +02:00 [Information] Hosting environment: "Development"
+2025-11-01 21:33:06.178 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-11-01 21:33:06.527 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:33:06.826 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-11-01 21:33:06.852 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 322.9604 ms
+2025-11-01 21:33:06.919 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1089.4972ms
+2025-11-01 21:33:07.210 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-11-01 21:33:07.210 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-11-01 21:33:07.241 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 25.4682ms
+2025-11-01 21:33:07.302 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 92.5626ms
+2025-11-01 21:33:07.646 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-11-01 21:33:07.761 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-11-01 21:33:07.781 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 110.3998 ms
+2025-11-01 21:33:07.790 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 143.8725ms
+2025-11-01 21:33:08.059 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-11-01 21:33:08.081 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:33:08.089 +02:00 [Information] CORS policy execution failed.
+2025-11-01 21:33:08.094 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-11-01 21:33:08.101 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-11-01 21:33:08.105 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 35.5174 ms
+2025-11-01 21:33:08.113 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 54.2733ms
+2025-11-01 21:33:08.129 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-11-01 21:33:15.173 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-11-01 21:33:15.254 +02:00 [Information] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+2025-11-01 21:33:15.268 +02:00 [Information] AuthenticationScheme: "Cookies" was challenged.
+2025-11-01 21:33:15.271 +02:00 [Information] Request "GET" "/applications" responded 302
+2025-11-01 21:33:15.276 +02:00 [Information] HTTP "GET" "/applications" responded 302 in 37.4594 ms
+2025-11-01 21:33:15.283 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 302 0 null 110.5637ms
+2025-11-01 21:33:15.294 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/api/auth/login""?ReturnUrl=%2Fapplications" - null null
+2025-11-01 21:33:15.304 +02:00 [Warning] Client error 404 for "/api/auth/login"
+2025-11-01 21:33:15.308 +02:00 [Information] HTTP "GET" "/api/auth/login" responded 404 in 5.4007 ms
+2025-11-01 21:33:15.315 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/api/auth/login""?ReturnUrl=%2Fapplications" - 404 0 null 20.8977ms
+2025-11-01 21:33:15.327 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/api/auth/login", Response status code: 404
+2025-11-01 21:33:45.926 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/units""" - null null
+2025-11-01 21:33:45.940 +02:00 [Information] Executing endpoint '"HTTP: GET units/ => GetAllUnits"'
+2025-11-01 21:33:46.077 +02:00 [Information] Executed DbCommand ("11"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[Name], [u].[Abbreviation], [u].[Email]
+FROM [dbo].[Unit] AS [u]"
+2025-11-01 21:33:46.098 +02:00 [Information] Setting HTTP status code 200.
+2025-11-01 21:33:46.105 +02:00 [Information] Writing value of type '"List`1"' as Json.
+2025-11-01 21:33:46.126 +02:00 [Information] Executed endpoint '"HTTP: GET units/ => GetAllUnits"'
+2025-11-01 21:33:46.135 +02:00 [Information] Request "GET" "/units" responded 200
+2025-11-01 21:33:46.142 +02:00 [Information] HTTP "GET" "/units" responded 200 in 205.7999 ms
+2025-11-01 21:33:46.166 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/units""" - 200 null "application/json; charset=utf-8" 240.4965ms
+2025-11-01 21:35:36.048 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:35:36.184 +02:00 [Information] Executed DbCommand ("19"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:36:17.718 +02:00 [Information] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:36:17.740 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:37:08.074 +02:00 [Information] Executed DbCommand ("37"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:37:08.276 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-01 21:37:08.314 +02:00 [Information] Executed DbCommand ("26"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-11-01 21:37:08.500 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-11-01 21:37:08.527 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:37:08.536 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-11-01 21:37:08.555 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-11-01 21:37:08.598 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-11-01 21:37:08.609 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-11-01 21:37:08.876 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-01 21:37:10.009 +02:00 [Information] Executed DbCommand ("49"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:37:11.156 +02:00 [Information] Executed DbCommand ("120"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:37:11.761 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-11-01 21:37:12.032 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-01 21:37:12.650 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-11-01 21:37:13.006 +02:00 [Information] Hosting environment: "Development"
+2025-11-01 21:37:13.013 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-11-01 21:37:13.126 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-11-01 21:37:13.772 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:37:14.027 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-11-01 21:37:14.084 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 309.0444 ms
+2025-11-01 21:37:14.118 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1035.144ms
+2025-11-01 21:37:14.426 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-11-01 21:37:14.426 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-11-01 21:37:14.445 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 18.8322ms
+2025-11-01 21:37:14.533 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 107.9135ms
+2025-11-01 21:37:14.686 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-11-01 21:37:14.809 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-11-01 21:37:14.823 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 114.1495 ms
+2025-11-01 21:37:14.829 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 142.4526ms
+2025-11-01 21:37:14.879 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-11-01 21:37:14.901 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:37:14.908 +02:00 [Information] CORS policy execution failed.
+2025-11-01 21:37:14.911 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-11-01 21:37:14.921 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-11-01 21:37:14.924 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 33.6768 ms
+2025-11-01 21:37:14.930 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 51.5645ms
+2025-11-01 21:37:14.961 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-11-01 21:38:03.437 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/users/login""" - "application/json" 48
+2025-11-01 21:38:03.478 +02:00 [Information] CORS policy execution failed.
+2025-11-01 21:38:03.483 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-11-01 21:38:03.491 +02:00 [Information] Executing endpoint '"HTTP: POST users/login => PostUserLogin"'
+2025-11-01 21:38:03.721 +02:00 [Information] Executed DbCommand ("14"ms) [Parameters=["@__username_0='?' (Size = 10)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[IsActive], [u].[LastChanged], [u].[Password], [u].[Role], [u].[Username]
+FROM [dbo].[User] AS [u]
+WHERE [u].[Username] = @__username_0"
+2025-11-01 21:41:13.085 +02:00 [Information] Executed DbCommand ("52"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:41:13.244 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-01 21:41:13.306 +02:00 [Information] Executed DbCommand ("49"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-11-01 21:41:13.502 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-11-01 21:41:13.535 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:41:13.545 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-11-01 21:41:13.560 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-11-01 21:41:13.587 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-11-01 21:41:13.594 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-11-01 21:41:51.458 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-01 21:41:52.298 +02:00 [Information] Executed DbCommand ("49"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:41:52.958 +02:00 [Information] Executed DbCommand ("68"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:41:53.224 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-11-01 21:41:53.308 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-01 21:41:54.205 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-11-01 21:41:54.318 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-11-01 21:41:54.324 +02:00 [Information] Hosting environment: "Development"
+2025-11-01 21:41:54.346 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-11-01 21:41:54.753 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:41:54.987 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-11-01 21:41:55.048 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 290.7394 ms
+2025-11-01 21:41:55.073 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 914.4031ms
+2025-11-01 21:41:55.413 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-11-01 21:41:55.413 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-11-01 21:41:55.440 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 26.4181ms
+2025-11-01 21:41:55.530 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 116.6126ms
+2025-11-01 21:41:55.673 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-11-01 21:41:55.897 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-11-01 21:41:55.908 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 198.7196 ms
+2025-11-01 21:41:55.920 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 246.6943ms
+2025-11-01 21:41:56.229 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-11-01 21:41:56.261 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:41:56.269 +02:00 [Information] CORS policy execution failed.
+2025-11-01 21:41:56.272 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-11-01 21:41:56.281 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-11-01 21:41:56.287 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 38.9126 ms
+2025-11-01 21:41:56.296 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 66.8043ms
+2025-11-01 21:41:56.315 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-11-01 21:42:03.570 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-11-01 21:42:03.626 +02:00 [Information] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+2025-11-01 21:42:03.640 +02:00 [Information] AuthenticationScheme: "Cookies" was challenged.
+2025-11-01 21:42:03.644 +02:00 [Information] Request "GET" "/applications" responded 302
+2025-11-01 21:42:03.651 +02:00 [Information] HTTP "GET" "/applications" responded 302 in 33.9071 ms
+2025-11-01 21:42:03.657 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 302 0 null 87.7086ms
+2025-11-01 21:42:03.673 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/api/auth/login""?ReturnUrl=%2Fapplications" - null null
+2025-11-01 21:42:03.683 +02:00 [Warning] Client error 404 for "/api/auth/login"
+2025-11-01 21:42:03.688 +02:00 [Information] HTTP "GET" "/api/auth/login" responded 404 in 5.6751 ms
+2025-11-01 21:42:03.695 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/api/auth/login""?ReturnUrl=%2Fapplications" - 404 0 null 22.7037ms
+2025-11-01 21:42:03.711 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/api/auth/login", Response status code: 404
+2025-11-01 21:42:18.279 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/users/login""" - "application/json" 50
+2025-11-01 21:42:18.296 +02:00 [Information] CORS policy execution failed.
+2025-11-01 21:42:18.299 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-11-01 21:42:18.304 +02:00 [Information] Executing endpoint '"HTTP: POST users/login => PostUserLogin"'
+2025-11-01 21:42:29.303 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=["@__username_0='?' (Size = 10)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[IsActive], [u].[LastChanged], [u].[Password], [u].[Role], [u].[Username]
+FROM [dbo].[User] AS [u]
+WHERE [u].[Username] = @__username_0"
+2025-11-01 21:42:44.005 +02:00 [Information] Setting HTTP status code 401.
+2025-11-01 21:42:44.012 +02:00 [Information] Executed endpoint '"HTTP: POST users/login => PostUserLogin"'
+2025-11-01 21:42:57.438 +02:00 [Warning] Client error 401 for "/users/login"
+2025-11-01 21:42:59.851 +02:00 [Information] HTTP "POST" "/users/login" responded 401 in 41557.5306 ms
+2025-11-01 21:42:59.876 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/users/login""" - 401 0 null 41596.461ms
+2025-11-01 21:43:53.377 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-11-01 21:43:53.420 +02:00 [Information] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+2025-11-01 21:43:53.428 +02:00 [Information] AuthenticationScheme: "Cookies" was challenged.
+2025-11-01 21:43:53.432 +02:00 [Information] Request "GET" "/applications" responded 302
+2025-11-01 21:43:53.436 +02:00 [Information] HTTP "GET" "/applications" responded 302 in 19.0960 ms
+2025-11-01 21:43:53.444 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 302 0 null 66.6812ms
+2025-11-01 21:43:53.458 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/api/auth/login""?ReturnUrl=%2Fapplications" - null null
+2025-11-01 21:43:53.473 +02:00 [Warning] Client error 404 for "/api/auth/login"
+2025-11-01 21:43:53.477 +02:00 [Information] HTTP "GET" "/api/auth/login" responded 404 in 4.9806 ms
+2025-11-01 21:43:53.482 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/api/auth/login""?ReturnUrl=%2Fapplications" - 404 0 null 24.2212ms
+2025-11-01 21:43:53.492 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/api/auth/login", Response status code: 404
+2025-11-01 21:44:39.775 +02:00 [Information] Executed DbCommand ("55"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:44:39.967 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-01 21:44:40.003 +02:00 [Information] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-11-01 21:44:40.201 +02:00 [Information] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-11-01 21:44:40.236 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:44:40.247 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-11-01 21:44:40.274 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-11-01 21:44:40.304 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-11-01 21:44:40.312 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-11-01 21:44:42.905 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-01 21:44:43.651 +02:00 [Information] Executed DbCommand ("37"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:44:44.366 +02:00 [Information] Executed DbCommand ("75"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:44:44.667 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-11-01 21:44:44.788 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-01 21:44:45.175 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-11-01 21:44:45.369 +02:00 [Information] Hosting environment: "Development"
+2025-11-01 21:44:45.437 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-11-01 21:44:45.651 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-11-01 21:44:46.230 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:44:46.544 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-11-01 21:44:46.585 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-11-01 21:44:46.603 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 371.3911 ms
+2025-11-01 21:44:46.622 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 31.8362ms
+2025-11-01 21:44:46.641 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 1022.1019ms
+2025-11-01 21:44:46.828 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-11-01 21:44:46.980 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 151.3623ms
+2025-11-01 21:44:47.161 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-11-01 21:44:47.274 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-11-01 21:44:47.281 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 96.7051 ms
+2025-11-01 21:44:47.303 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 142.5445ms
+2025-11-01 21:44:47.419 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-11-01 21:44:47.436 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:44:47.440 +02:00 [Information] CORS policy execution failed.
+2025-11-01 21:44:47.443 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-11-01 21:44:47.450 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-11-01 21:44:47.453 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 24.7249 ms
+2025-11-01 21:44:47.459 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 39.9717ms
+2025-11-01 21:44:47.471 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-11-01 21:44:57.250 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-11-01 21:44:57.292 +02:00 [Information] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+2025-11-01 21:44:57.312 +02:00 [Information] AuthenticationScheme: "Cookies" was challenged.
+2025-11-01 21:44:57.318 +02:00 [Information] Request "GET" "/applications" responded 302
+2025-11-01 21:44:57.324 +02:00 [Information] HTTP "GET" "/applications" responded 302 in 40.6510 ms
+2025-11-01 21:44:57.334 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 302 0 null 84.5097ms
+2025-11-01 21:44:57.350 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/users/login""?ReturnUrl=%2Fapplications" - null null
+2025-11-01 21:44:57.368 +02:00 [Information] Executing endpoint '"405 HTTP Method Not Supported"'
+2025-11-01 21:44:57.373 +02:00 [Information] Executed endpoint '"405 HTTP Method Not Supported"'
+2025-11-01 21:44:57.377 +02:00 [Warning] Client error 405 for "/users/login"
+2025-11-01 21:44:57.383 +02:00 [Information] HTTP "GET" "/users/login" responded 405 in 19.5598 ms
+2025-11-01 21:44:57.391 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/users/login""?ReturnUrl=%2Fapplications" - 405 0 null 41.669ms
+2025-11-01 21:45:14.003 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-11-01 21:45:14.066 +02:00 [Information] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+2025-11-01 21:45:14.088 +02:00 [Information] AuthenticationScheme: "Cookies" was challenged.
+2025-11-01 21:45:14.092 +02:00 [Information] Request "GET" "/applications" responded 302
+2025-11-01 21:45:14.105 +02:00 [Information] HTTP "GET" "/applications" responded 302 in 68.7804 ms
+2025-11-01 21:45:14.114 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 302 0 null 110.3285ms
+2025-11-01 21:45:14.141 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/users/login""?ReturnUrl=%2Fapplications" - null null
+2025-11-01 21:45:14.163 +02:00 [Information] Executing endpoint '"405 HTTP Method Not Supported"'
+2025-11-01 21:45:14.169 +02:00 [Information] Executed endpoint '"405 HTTP Method Not Supported"'
+2025-11-01 21:45:14.172 +02:00 [Warning] Client error 405 for "/users/login"
+2025-11-01 21:45:14.175 +02:00 [Information] HTTP "GET" "/users/login" responded 405 in 14.2076 ms
+2025-11-01 21:45:14.184 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/users/login""?ReturnUrl=%2Fapplications" - 405 0 null 43.1738ms
+2025-11-01 21:47:15.547 +02:00 [Information] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:47:15.656 +02:00 [Information] Executed DbCommand ("18"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:47:57.289 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:47:57.324 +02:00 [Information] Executed DbCommand ("24"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:48:38.855 +02:00 [Information] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:48:38.884 +02:00 [Information] Executed DbCommand ("19"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:49:49.469 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:49:49.496 +02:00 [Information] Executed DbCommand ("17"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:50:59.017 +02:00 [Information] Executed DbCommand ("74"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:50:59.225 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-01 21:50:59.305 +02:00 [Information] Executed DbCommand ("62"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-11-01 21:50:59.580 +02:00 [Information] Executed DbCommand ("12"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-11-01 21:50:59.636 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:50:59.647 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-11-01 21:50:59.669 +02:00 [Information] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-11-01 21:50:59.701 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-11-01 21:50:59.708 +02:00 [Information] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-11-01 21:51:02.700 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-01 21:51:03.456 +02:00 [Information] Executed DbCommand ("28"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:51:04.313 +02:00 [Information] Executed DbCommand ("93"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:51:04.679 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-11-01 21:51:04.769 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-01 21:51:05.018 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-11-01 21:51:05.023 +02:00 [Information] Hosting environment: "Development"
+2025-11-01 21:51:05.027 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-11-01 21:51:05.813 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-11-01 21:51:06.518 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-11-01 21:51:06.568 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 271.1749 ms
+2025-11-01 21:51:06.590 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 808.3408ms
+2025-11-01 21:51:06.929 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-11-01 21:51:06.929 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-11-01 21:51:06.952 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 22.9749ms
+2025-11-01 21:51:07.015 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 85.7721ms
+2025-11-01 21:51:07.169 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-11-01 21:51:07.260 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-11-01 21:51:07.288 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 97.6121 ms
+2025-11-01 21:51:07.295 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 126.027ms
+2025-11-01 21:51:07.370 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-11-01 21:51:07.388 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:51:07.392 +02:00 [Information] CORS policy execution failed.
+2025-11-01 21:51:07.395 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-11-01 21:51:07.403 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-11-01 21:51:07.406 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 28.2915 ms
+2025-11-01 21:51:07.413 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 42.5657ms
+2025-11-01 21:51:07.424 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-11-01 21:51:30.442 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-11-01 21:51:30.494 +02:00 [Information] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+2025-11-01 21:51:30.620 +02:00 [Information] AuthenticationScheme: "Cookies" was challenged.
+2025-11-01 21:51:30.626 +02:00 [Information] Request "GET" "/applications" responded 302
+2025-11-01 21:51:30.630 +02:00 [Information] HTTP "GET" "/applications" responded 302 in 148.5325 ms
+2025-11-01 21:51:30.636 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 302 0 null 194.4024ms
+2025-11-01 21:51:30.647 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/users/login""?ReturnUrl=%2Fapplications" - null null
+2025-11-01 21:51:30.662 +02:00 [Information] Executing endpoint '"405 HTTP Method Not Supported"'
+2025-11-01 21:51:30.666 +02:00 [Information] Executed endpoint '"405 HTTP Method Not Supported"'
+2025-11-01 21:51:30.670 +02:00 [Warning] Client error 405 for "/users/login"
+2025-11-01 21:51:30.676 +02:00 [Information] HTTP "GET" "/users/login" responded 405 in 17.0606 ms
+2025-11-01 21:51:30.681 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/users/login""?ReturnUrl=%2Fapplications" - 405 0 null 34.0815ms
+2025-11-01 21:51:50.265 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - "application/json" 320
+2025-11-01 21:51:50.281 +02:00 [Information] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+2025-11-01 21:51:50.288 +02:00 [Information] AuthenticationScheme: "Cookies" was challenged.
+2025-11-01 21:51:50.292 +02:00 [Information] Request "POST" "/applications" responded 302
+2025-11-01 21:51:50.297 +02:00 [Information] HTTP "POST" "/applications" responded 302 in 19.0213 ms
+2025-11-01 21:51:50.304 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/applications""" - 302 0 null 38.6118ms
+2025-11-01 21:51:50.319 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/users/login""?ReturnUrl=%2Fapplications" - null null
+2025-11-01 21:51:50.333 +02:00 [Information] Executing endpoint '"405 HTTP Method Not Supported"'
+2025-11-01 21:51:50.337 +02:00 [Information] Executed endpoint '"405 HTTP Method Not Supported"'
+2025-11-01 21:51:50.343 +02:00 [Warning] Client error 405 for "/users/login"
+2025-11-01 21:51:50.347 +02:00 [Information] HTTP "GET" "/users/login" responded 405 in 15.0256 ms
+2025-11-01 21:51:50.354 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/users/login""?ReturnUrl=%2Fapplications" - 405 0 null 34.7253ms
+2025-11-01 21:53:35.367 +02:00 [Information] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:53:35.474 +02:00 [Information] Executed DbCommand ("16"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:54:16.995 +02:00 [Information] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:54:17.017 +02:00 [Information] Executed DbCommand ("12"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:54:59.234 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:54:59.283 +02:00 [Information] Executed DbCommand ("25"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:56:09.893 +02:00 [Information] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:56:09.915 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:58:06.697 +02:00 [Information] Executed DbCommand ("283"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:58:06.994 +02:00 [Information] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-01 21:58:07.077 +02:00 [Information] Executed DbCommand ("69"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result"
+2025-11-01 21:58:07.350 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;"
+2025-11-01 21:58:07.399 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1"
+2025-11-01 21:58:07.416 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2025-11-01 21:58:07.445 +02:00 [Information] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2025-11-01 21:58:07.477 +02:00 [Information] No migrations were applied. The database is already up to date.
+2025-11-01 21:58:07.497 +02:00 [Information] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result"
+2025-11-01 21:58:20.608 +02:00 [Information] User profile is available. Using '"C:\Users\Dell\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-01 21:58:21.646 +02:00 [Information] Executed DbCommand ("121"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 21:58:22.715 +02:00 [Information] Executed DbCommand ("180"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"
+2025-11-01 21:58:23.336 +02:00 [Information] Now listening on: "http://localhost:5157"
+2025-11-01 21:58:23.518 +02:00 [Information] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-01 21:58:23.939 +02:00 [Information] Application started. Press Ctrl+C to shut down.
+2025-11-01 21:58:24.037 +02:00 [Information] Hosting environment: "Development"
+2025-11-01 21:58:24.042 +02:00 [Information] Content root path: "C:\Users\Dell\Documents\PF\API-GP\WebApplication1"
+2025-11-01 21:58:24.733 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - null null
+2025-11-01 21:58:25.222 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:58:25.524 +02:00 [Information] Request "GET" "/swagger/index.html" responded 200
+2025-11-01 21:58:25.555 +02:00 [Information] HTTP "GET" "/swagger/index.html" responded 200 in 328.5493 ms
+2025-11-01 21:58:25.624 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/index.html""" - 200 null "text/html;charset=utf-8" 915.1243ms
+2025-11-01 21:58:26.025 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - null null
+2025-11-01 21:58:26.025 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - null null
+2025-11-01 21:58:26.043 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_framework/aspnetcore-browser-refresh.js""" - 200 16509 "application/javascript; charset=utf-8" 18.9254ms
+2025-11-01 21:58:26.126 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/_vs/browserLink""" - 200 null "text/javascript; charset=UTF-8" 102.0321ms
+2025-11-01 21:58:26.305 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - null null
+2025-11-01 21:58:26.472 +02:00 [Information] Request "GET" "/swagger/v1.0/swagger.json" responded 200
+2025-11-01 21:58:26.482 +02:00 [Information] HTTP "GET" "/swagger/v1.0/swagger.json" responded 200 in 148.5652 ms
+2025-11-01 21:58:26.488 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/v1.0/swagger.json""" - 200 null "application/json;charset=utf-8" 183.4641ms
+2025-11-01 21:58:26.646 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - null null
+2025-11-01 21:58:26.667 +02:00 [Warning] Failed to determine the https port for redirect.
+2025-11-01 21:58:26.673 +02:00 [Information] CORS policy execution failed.
+2025-11-01 21:58:26.678 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-11-01 21:58:26.688 +02:00 [Warning] Client error 404 for "/swagger/ws/ws"
+2025-11-01 21:58:26.694 +02:00 [Information] HTTP "GET" "/swagger/ws/ws" responded 404 in 37.3759 ms
+2025-11-01 21:58:26.702 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/swagger/ws/ws""" - 404 0 null 56.4761ms
+2025-11-01 21:58:26.719 +02:00 [Information] Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5157""""/swagger/ws/ws", Response status code: 404
+2025-11-01 21:58:49.526 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/users/login""" - "application/json" 48
+2025-11-01 21:58:49.588 +02:00 [Information] CORS policy execution failed.
+2025-11-01 21:58:49.592 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-11-01 21:58:49.600 +02:00 [Information] Executing endpoint '"HTTP: POST users/login => PostUserLogin"'
+2025-11-01 21:59:03.041 +02:00 [Information] Executed DbCommand ("14"ms) [Parameters=["@__username_0='?' (Size = 10)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[IsActive], [u].[LastChanged], [u].[Password], [u].[Role], [u].[Username]
+FROM [dbo].[User] AS [u]
+WHERE [u].[Username] = @__username_0"
+2025-11-01 21:59:45.657 +02:00 [Information] AuthenticationScheme: "Cookies" signed in.
+2025-11-01 21:59:55.333 +02:00 [Information] Setting HTTP status code 200.
+2025-11-01 21:59:55.351 +02:00 [Information] Writing value of type '"Response`1"' as Json.
+2025-11-01 21:59:55.470 +02:00 [Information] Executed endpoint '"HTTP: POST users/login => PostUserLogin"'
+2025-11-01 21:59:55.478 +02:00 [Information] Request "POST" "/users/login" responded 200
+2025-11-01 21:59:55.487 +02:00 [Information] HTTP "POST" "/users/login" responded 200 in 65901.4086 ms
+2025-11-01 21:59:55.510 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/users/login""" - 200 null "application/json; charset=utf-8" 65984.2862ms
+2025-11-01 22:00:16.366 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-11-01 22:00:16.400 +02:00 [Information] Executing endpoint '"HTTP: GET applications/ => GetAllApplications"'
+2025-11-01 22:00:16.457 +02:00 [Information] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[Name], [a].[Abbreviation], [a].[Team], [a].[TeamEmail], [a].[ApplicationEmail]
+FROM [dbo].[Application] AS [a]"
+2025-11-01 22:00:16.466 +02:00 [Information] Setting HTTP status code 200.
+2025-11-01 22:00:16.472 +02:00 [Information] Writing value of type '"List`1"' as Json.
+2025-11-01 22:00:16.480 +02:00 [Information] Executed endpoint '"HTTP: GET applications/ => GetAllApplications"'
+2025-11-01 22:00:16.483 +02:00 [Information] Request "GET" "/applications" responded 200
+2025-11-01 22:00:16.488 +02:00 [Information] HTTP "GET" "/applications" responded 200 in 109.5447 ms
+2025-11-01 22:00:16.497 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 200 null "application/json; charset=utf-8" 130.5433ms
+2025-11-01 22:00:36.151 +02:00 [Information] Request starting "HTTP/1.1" "POST" "http"://"localhost:5157""""/users/logout""" - null 0
+2025-11-01 22:00:36.165 +02:00 [Information] CORS policy execution failed.
+2025-11-01 22:00:36.169 +02:00 [Information] Request origin "http://localhost:5157" does not have permission to access the resource.
+2025-11-01 22:00:36.175 +02:00 [Information] Executing endpoint '"HTTP: POST users/logout => PostUserLogout"'
+2025-11-01 22:00:36.184 +02:00 [Information] AuthenticationScheme: "Cookies" signed out.
+2025-11-01 22:00:36.189 +02:00 [Information] Setting HTTP status code 200.
+2025-11-01 22:00:36.194 +02:00 [Information] Writing value of type '"Response`1"' as Json.
+2025-11-01 22:00:36.198 +02:00 [Information] Executed endpoint '"HTTP: POST users/logout => PostUserLogout"'
+2025-11-01 22:00:36.202 +02:00 [Information] Request "POST" "/users/logout" responded 200
+2025-11-01 22:00:36.209 +02:00 [Information] HTTP "POST" "/users/logout" responded 200 in 45.1423 ms
+2025-11-01 22:00:36.216 +02:00 [Information] Request finished "HTTP/1.1" "POST" "http"://"localhost:5157""""/users/logout""" - 200 null "application/json; charset=utf-8" 64.9503ms
+2025-11-01 22:00:43.591 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - null null
+2025-11-01 22:00:43.615 +02:00 [Information] Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+2025-11-01 22:00:43.651 +02:00 [Information] AuthenticationScheme: "Cookies" was challenged.
+2025-11-01 22:00:43.654 +02:00 [Information] Request "GET" "/applications" responded 302
+2025-11-01 22:00:43.661 +02:00 [Information] HTTP "GET" "/applications" responded 302 in 58.2622 ms
+2025-11-01 22:00:43.666 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/applications""" - 302 0 null 74.359ms
+2025-11-01 22:00:43.676 +02:00 [Information] Request starting "HTTP/1.1" "GET" "http"://"localhost:5157""""/users/login""?ReturnUrl=%2Fapplications" - null null
+2025-11-01 22:00:43.684 +02:00 [Information] Executing endpoint '"405 HTTP Method Not Supported"'
+2025-11-01 22:00:43.687 +02:00 [Information] Executed endpoint '"405 HTTP Method Not Supported"'
+2025-11-01 22:00:43.693 +02:00 [Warning] Client error 405 for "/users/login"
+2025-11-01 22:00:43.696 +02:00 [Information] HTTP "GET" "/users/login" responded 405 in 12.3667 ms
+2025-11-01 22:00:43.701 +02:00 [Information] Request finished "HTTP/1.1" "GET" "http"://"localhost:5157""""/users/login""?ReturnUrl=%2Fapplications" - 405 0 null 24.9597ms
+2025-11-01 22:01:50.438 +02:00 [Information] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [dbo].[Process] AS [p]"
+2025-11-01 22:01:50.558 +02:00 [Information] Executed DbCommand ("32"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[ApplicationId], [p0].[Approvals], [p0].[At], [p0].[CreatedAt], [p0].[CreatedBy], [p0].[Note], [p0].[Status], [a].[Id], [u].[Id], [h].[Id], [h].[ApplicationId], [h].[At], [h].[Note], [h].[Notified], [h].[ProcessId], [h].[UpdatedAt], [h].[UpdatedBy], [a].[Abbreviation], [a].[ApplicationEmail], [a].[Name], [a].[Team], [a].[TeamEmail], [u].[Abbreviation], [u].[Email], [u].[Name]
+FROM (
+    SELECT [p].[Id], [p].[ApplicationId], [p].[Approvals], [p].[At], [p].[CreatedAt], [p].[CreatedBy], [p].[Note], [p].[Status]
+    FROM [dbo].[Process] AS [p]
+    ORDER BY [p].[CreatedAt] DESC
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [p0]
+INNER JOIN [dbo].[Application] AS [a] ON [p0].[ApplicationId] = [a].[Id]
+INNER JOIN [dbo].[Unit] AS [u] ON [p0].[At] = [u].[Id]
+LEFT JOIN [History] AS [h] ON [p0].[Id] = [h].[ProcessId]
+ORDER BY [p0].[CreatedAt] DESC, [p0].[Id], [a].[Id], [u].[Id]"

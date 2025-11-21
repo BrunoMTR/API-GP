@@ -25,7 +25,7 @@ namespace Presentation.RouteGroups
                 });
             group.MapPost("/upload", ProcessEndpoints.PostProcessDocumentation)
                 .AddEndpointFilter<InputValidatorFilter<DocumentForm>>()
-                .RequireAuthorization()
+                
                 .DisableAntiforgery()
                 .WithOpenApi(operation => new(operation)
                 {
@@ -40,6 +40,14 @@ namespace Presentation.RouteGroups
                     Summary = "Retrieve all processes flow",
                     Description = "Fetches all processes flow states"
                 });
+
+            group.MapGet("/docs", ProcessEndpoints.GetDocs)
+              .RequireAuthorization()
+              .WithOpenApi(operation => new(operation)
+              {
+                  Summary = "Retrieve all documentations in lots",
+                  Description = "Fetches documents in lots"
+              });
 
             group.MapPatch("/approve", ProcessEndpoints.PostAproveProcess)
                 .RequireAuthorization()

@@ -26,6 +26,8 @@ namespace Presentation.RouteGroups
                     Description = "Logs out the currently authenticated user."
                 });
 
+            
+
         }
     }
 }

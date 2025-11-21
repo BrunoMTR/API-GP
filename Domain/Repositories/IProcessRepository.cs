@@ -16,6 +16,8 @@ namespace Domain.Repositories
         Task<ProcessDto> CreateAsync(ProcessDto process);
         Task<ProcessDto> UpdateAsync(int processId, ProcessDto process);
 
+        Task<(List<DocumentationDto> Docs, int TotalCount)> GetAllDocumentationsAsync(Query query);
+
 
 
 

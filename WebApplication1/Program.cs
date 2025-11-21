@@ -93,7 +93,7 @@ builder.Host.UseSerilog(LoggingConfiguration.Configure);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("AllowWebApp", policy =>
     {
         policy.WithOrigins("https://super-duper-garbanzo-rvqgxq97jwv2xwx9-5173.app.github.dev") // porta do React
               .AllowAnyHeader()
@@ -175,6 +175,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("AllowWebApp");
+app.UseAuthentication();
+app.UseAuthorization();
+
+//app.MapMethods("{*path}", new[] { "OPTIONS" }, () => Results.Ok()).AllowAnonymous();
+
 
 app.AddApllicatioGroup();
 app.AddFlowGroup();
@@ -188,9 +194,6 @@ app.AddProcessEndpoints();
 
 app.MapHub<DocumentationHub>("/hubs/documentation");
 
-app.UseCors("AllowAll");
-app.UseAuthentication();
-app.UseAuthorization();
 
 
 

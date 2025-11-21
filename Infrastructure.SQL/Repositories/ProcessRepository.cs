@@ -286,14 +286,82 @@ namespace Infrastructure.SQL.Repositories
             return result;
         }
 
+        public async Task<(List<DocumentationDto> Docs, int TotalCount)> GetAllDocumentationsAsync(Query query)
+        {
+            // 1️⃣ Buscar processos já com documentações
+            var processesQuery = _demoContext.Process
+                .Include(p => p.Documentations)
+                .AsQueryable();
 
+            // 2️⃣ Filtro por aplicação
+            if (query.ApplicationId.HasValue && query.ApplicationId.Value > 0)
+            {
+                processesQuery = processesQuery
+                    .Where(p => p.ApplicationId == query.ApplicationId.Value);
+            }
 
+            // 3️⃣ Agora transformamos todos os documentos numa lista plana
+            var allDocumentsQuery = processesQuery
+                .SelectMany(p => p.Documentations.Select(d => new
+                {
+                    ProcessApplicationId = p.ApplicationId,
+                    ProcessId = p.Id,
+                    Doc = d
+                }))
+                .AsQueryable();
 
+            // 4️⃣ Pesquisa textual
+            if (!string.IsNullOrEmpty(query.Search))
+            {
+                var search = query.Search.ToLower();
 
+                allDocumentsQuery = allDocumentsQuery.Where(x =>
+                    x.Doc.Id.ToString().Contains(search) ||
+                    (x.Doc.FileName != null && x.Doc.FileName.ToLower().Contains(search)) ||
+                    (x.Doc.FileType != null && x.Doc.FileType.ToLower().Contains(search)) ||
+                    (x.Doc.UploadedBy != null && x.Doc.UploadedBy.ToLower().Contains(search)) ||
+                    x.ProcessId.ToString().Contains(search)
+                );
+            }
 
+            // 5️⃣ Filtro por data
+            if (!string.IsNullOrEmpty(query.DateFilter) && query.DateFilter != "all")
+            {
+                var now = DateTime.UtcNow;
 
+                if (query.DateFilter == "last7")
+                    allDocumentsQuery = allDocumentsQuery.Where(x => x.Doc.UploadedAt >= now.AddDays(-7));
 
+                else if (query.DateFilter == "last30")
+                    allDocumentsQuery = allDocumentsQuery.Where(x => x.Doc.UploadedAt >= now.AddDays(-30));
+            }
 
+            // 6️⃣ Contagem total
+            var totalCount = await allDocumentsQuery.CountAsync();
+
+            // 7️⃣ Paginação + ordenar
+            var docsPage = await allDocumentsQuery
+                .OrderByDescending(x => x.Doc.UploadedAt)
+                .Skip(query.PageIndex * query.PageSize)
+                .Take(query.PageSize)
+                .ToListAsync();
+
+            // 8️⃣ Mapear para DTO final
+            var results = docsPage.Select(x => new DocumentationDto
+            {
+                Id = x.Doc.Id,
+                FileName = x.Doc.FileName,
+                FilePath = x.Doc.FilePath,
+                FileSize = x.Doc.FileSize,
+                FileType = x.Doc.FileType,
+                UploadedAt = x.Doc.UploadedAt,
+                UploadedBy = x.Doc.UploadedBy,
+                At = x.Doc.At,
+                ProcessId = x.ProcessId
+            }).ToList();
+
+            return (results, totalCount);
+        }
 
 
     }

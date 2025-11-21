@@ -78,7 +78,30 @@ namespace Presentation.Endpoints
             var processes = await processService.GetAllAsync(query);
             return Results.Ok(processes);
         }
-                    
+               
+        
+        public static async Task<IResult>GetDocs(
+            [FromServices] IProcessService processService,
+            [FromQuery] int pageIndex,
+            [FromQuery] int pageSize,
+            [FromQuery] string? search,
+            [FromQuery] int? applicationId,
+            [FromQuery] string? dateFilter
+            )
+        {
+            var query = new Query
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Search = search,
+                ApplicationId = applicationId,
+                DateFilter = dateFilter
+            };
+
+            var docs = await processService.GetAllDocumentationsAsync(query);
+            return Results.Ok(docs);
+        }
+
         public static async Task<IResult> PostAproveProcess([FromForm] AproveProcessRequest request,
            [FromServices] IProcessService processService,
            CancellationToken cancellationToken)
@@ -110,6 +133,9 @@ namespace Presentation.Endpoints
         {
             return Results.Ok();
         }
+
+
+        
 
     }
 

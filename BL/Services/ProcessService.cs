@@ -267,8 +267,20 @@ namespace BL.Services
             return Response<List<ProcessFlowDto>>.Ok(
             results,
             results.Any() ? "Processes retrieved successfully." : "No processes found.",
-            totalCount
-);
+            totalCount);
+        }
+
+        public async Task<Response<List<DocumentationDto>>> GetAllDocumentationsAsync(Query query)
+        {
+            var (docs, totalCount) = await _processRepository.GetAllDocumentationsAsync(query);
+
+            return Response<List<DocumentationDto>>.Ok(
+            docs,
+            docs.Any() ? "Docs retrieved successfully." : "No Docs found.",
+            totalCount);
+
+
+
         }
 
         public async Task<Response<ProcessDto>> CancelAsync(int processId, string updatedBy, string note)
@@ -404,5 +416,7 @@ namespace BL.Services
             });
 
         }
+
+      
     }
 }
